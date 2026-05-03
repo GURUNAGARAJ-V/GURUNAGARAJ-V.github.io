@@ -8,7 +8,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Professional Odometer Library for Smooth Scrolling Numbers -->
+    <!-- Professional Odometer Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-minimal.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
 
@@ -23,22 +23,24 @@
         }
 
         /* ----------------------------------------- */
-        /* NEW: Interactive Mouse Blob Effect        */
+        /* CHAMELEON MOUSE BLOB EFFECT               */
         /* ----------------------------------------- */
         #cursor-blob {
-            background: linear-gradient(to right, rgba(16, 185, 129, 0.7), rgba(6, 182, 212, 0.7));
-            height: 400px;
+            /* Default color: Emerald to Cyan */
+            background: radial-gradient(circle, rgba(16,185,129,0.6) 0%, rgba(6,182,212,0.4) 100%);
+            height: 450px;
             aspect-ratio: 1;
             position: fixed;
             border-radius: 50%;
             left: 50%;
             top: 50%;
             translate: -50% -50%;
-            filter: blur(90px);
+            filter: blur(100px);
             z-index: 0;
             pointer-events: none;
+            transition: background 0.8s ease; /* Smoothly transitions between colors */
         }
-        /* The overlay creates the "deep" background effect, letting the blob shine through */
+        
         #blob-overlay {
             position: fixed;
             inset: 0;
@@ -86,7 +88,7 @@
             transform: scale(1.05);
         }
 
-        /* Scroll Reveal Animations */
+        /* Scroll Animations */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -114,7 +116,7 @@
             z-index: 10;
         }
         .carousel-container::-webkit-scrollbar { display: none; }
-        .carousel-container:active { cursor: grabbing; }
+        .carousel-container.grabbing { cursor: grabbing; }
 
         .carousel-track {
             display: flex;
@@ -133,9 +135,7 @@
 </head>
 <body class="antialiased min-h-screen relative">
 
-    <!-- ========================================== -->
-    <!-- NEW: DYNAMIC BACKGROUND LIGHT ELEMENTS     -->
-    <!-- ========================================== -->
+    <!-- DYNAMIC BACKGROUND LIGHT ELEMENTS -->
     <div id="cursor-blob"></div>
     <div id="blob-overlay"></div>
 
@@ -151,37 +151,40 @@
                     outerDesc: "Applying Python and Big Data analytics to modern infrastructure problems.",
                     innerDesc: "Completed advanced professional certifications through IBM and HP focused on Python programming, data analytics, and big data management. This knowledge empowers me to process vast amounts of infrastructural telemetry data, translating raw numbers into actionable, eco-conscious civil engineering decisions.",
                     image: "project2.jpg.png",
-                    rotation: "-rotate-90"
+                    rotation: "-rotate-90",
+                    themeColor: "rgba(59, 130, 246, 0.6)" // Blue Blob
                 },
                 {
                     title: "AutoCAD & BIM Design",
                     outerDesc: "Advanced architectural drafting and building information modeling for smart cities.",
                     innerDesc: "Certified in Advanced AutoCAD and Introduction to Building Information Modeling (BIM) via REVA University. My design philosophy bridges traditional civil engineering drafting with modern 3D intelligence, ensuring sustainable materials and efficient structural layouts are planned from the ground up.",
                     image: "project3.jpg.png",
-                    rotation: "-rotate-90"
+                    rotation: "-rotate-90",
+                    themeColor: "rgba(234, 179, 8, 0.5)" // Yellow Blob
                 },
                 {
                     title: "Bio-Inspired Health Monitoring",
                     outerDesc: "Smart city models integrating bio-inspired health monitoring and sustainable materials.",
                     innerDesc: "Engineered a physical smart city infrastructure model demonstrating bio-inspired health monitoring. This project showcases the integration of high-throughput sensors that mimic biological nervous systems to track structural strain in real-time, preventing catastrophic failures and optimizing maintenance.",
                     image: "project4.jpg.jpeg",
-                    rotation: "" 
+                    rotation: "",
+                    themeColor: "rgba(16, 185, 129, 0.6)" // Emerald Blob
                 },
                 {
                     title: "Waste Water & Embedded Systems",
                     outerDesc: "Integrating embedded technology with water supply engineering.",
                     innerDesc: "Successfully completed specialized training in Waste Water and Water Supply Engineering integrated with Embedded Systems. This expertise allows me to design automated, highly efficient water treatment and recycling plants that actively conserve resources and protect local ecosystems from contamination.",
                     image: "project1.jpg.jpeg",
-                    rotation: "-rotate-90"
+                    rotation: "-rotate-90",
+                    themeColor: "rgba(239, 68, 68, 0.6)" // Red Blob
                 }
             ]
         };
     </script>
 
-    <!-- Navigation (Now features the dynamic Quote Ticker) -->
+    <!-- Navigation & Quote Ticker -->
     <nav class="fixed w-full z-40 glass-panel border-b-0 border-x-0 rounded-none bg-opacity-30">
         <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center h-20">
-            <!-- Dynamic Quote Container replacing "VG." -->
             <div class="max-w-md w-full relative flex flex-col justify-center h-full">
                 <p id="quote-text" class="text-gray-300 text-xs md:text-sm italic transition-opacity duration-700 opacity-0 leading-tight">Loading quote...</p>
                 <p id="quote-author" class="text-emerald-400 font-bold text-[9px] md:text-[10px] text-right mt-1 tracking-widest uppercase transition-opacity duration-700 opacity-0"></p>
@@ -200,7 +203,7 @@
         <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center reveal">
             <div class="flex justify-center relative">
                 <div class="absolute inset-0 bg-white rounded-full blur-[120px] opacity-10"></div>
-                <img id="profile-img" src="" alt="V Gurunagaraj" onerror="this.src='https://ui-avatars.com/api/?name=V+Gurunagaraj&background=000&color=fff&size=400'" class="w-72 h-72 md:w-96 md:h-96 object-cover object-center rounded-full glass-panel p-2 z-10 border-4 border-gray-600/40 shadow-2xl shadow-black relative grayscale">
+                <img id="profile-img" src="" alt="V Gurunagaraj" onerror="this.src='https://ui-avatars.com/api/?name=V+Gurunagaraj&background=000&color=fff&size=400'" class="w-72 h-72 md:w-96 md:h-96 object-cover object-center rounded-full glass-panel p-2 z-10 border-4 border-gray-600/40 shadow-2xl shadow-black relative">
             </div>
             
             <div class="glass-panel p-8 relative z-20">
@@ -262,7 +265,7 @@
                     </div>
                 </div>
 
-                <!-- Right Column: API Trees & Deficit -->
+                <!-- Right Column -->
                 <div class="space-y-6">
                     <!-- Global Tree API -->
                     <div class="glass-panel p-6 text-center reveal border border-gray-500/30">
@@ -276,15 +279,13 @@
                         <div class="text-gray-400 text-xs font-bold mt-2">Trees (Global 24h Avg Estimate)</div>
                     </div>
 
-                    <!-- The Deficit Dashboard -->
+                    <!-- Deficit Dashboard -->
                     <div class="glass-panel p-6 reveal border-t-4 border-t-red-900/50">
                         <h3 class="text-sm font-bold mb-4 text-gray-300 uppercase tracking-widest">Global Carbon Deficit Analysis</h3>
                         <p class="text-xs text-gray-400 mb-6 leading-relaxed">Comparing current material production vs. actual global reforestation efforts. The gap represents structural environmental debt.</p>
                         
                         <div class="w-full bg-gray-900 rounded-full h-4 mb-2 overflow-hidden border border-gray-800 relative">
-                            <!-- Trees Bar -->
                             <div id="deficit-tree-bar" class="bg-gray-300 h-4 absolute left-0 top-0 z-20" style="width: 15%; transition: width 1s ease-in-out;"></div>
-                            <!-- Carbon Production Bar -->
                             <div class="bg-gray-700 h-4 w-full absolute left-0 top-0 z-10"></div>
                         </div>
                         <div class="flex justify-between text-[10px] font-bold text-gray-500 uppercase tracking-widest">
@@ -322,7 +323,8 @@
             </button>
             <div class="flex flex-col md:flex-row gap-8 items-center">
                 <div class="w-full md:w-1/2 rounded-xl overflow-hidden border border-gray-700 shadow-lg bg-black flex items-center justify-center min-h-[250px]">
-                    <img id="modal-img" src="" alt="" class="w-full h-full max-h-80 object-cover grayscale">
+                    <!-- Removed grayscale class here so image is in color -->
+                    <img id="modal-img" src="" alt="" class="w-full h-full max-h-80 object-cover">
                 </div>
                 <div class="w-full md:w-1/2">
                     <h2 id="modal-title" class="text-3xl font-bold text-white mb-4 leading-tight"></h2>
@@ -347,27 +349,30 @@
         let blobX = mouseX;
         let blobY = mouseY;
 
-        // Track mouse movement
         window.addEventListener("mousemove", (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
         });
 
-        // Smooth easing animation loop
         function animateBlob() {
-            // Easing factor: 0.05 creates that heavy, fluid, laggy light effect
             blobX += (mouseX - blobX) * 0.05;
             blobY += (mouseY - blobY) * 0.05;
-            
             blob.style.left = `${blobX}px`;
             blob.style.top = `${blobY}px`;
-            
             requestAnimationFrame(animateBlob);
         }
         animateBlob();
 
+        // Functions to change the blob color when hovering over projects
+        function changeBlobColor(colorHex) {
+            blob.style.background = `radial-gradient(circle, ${colorHex} 0%, transparent 80%)`;
+        }
+        function resetBlobColor() {
+            blob.style.background = 'radial-gradient(circle, rgba(16,185,129,0.6) 0%, rgba(6,182,212,0.4) 100%)';
+        }
+
         // ----------------------------------------------------
-        // 2. SUSTAINABLE QUOTE TICKER (Built-in API)
+        // 2. SUSTAINABLE QUOTE TICKER 
         // ----------------------------------------------------
         const quotes = [
             { text: "We cannot build the future with the materials of the past.", author: "Sustainable Engineering Principle" },
@@ -382,13 +387,11 @@
         const quoteAuthorElement = document.getElementById("quote-author");
 
         function cycleQuotes() {
-            // Fade out current quote
             quoteTextElement.classList.remove("opacity-100");
             quoteAuthorElement.classList.remove("opacity-100");
             quoteTextElement.classList.add("opacity-0");
             quoteAuthorElement.classList.add("opacity-0");
 
-            // Wait for fade transition, then swap text and fade back in
             setTimeout(() => {
                 quoteTextElement.innerText = `"${quotes[currentQuoteIndex].text}"`;
                 quoteAuthorElement.innerText = `- ${quotes[currentQuoteIndex].author}`;
@@ -401,14 +404,11 @@
                 currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
             }, 700); 
         }
-
-        // Initialize and cycle every 8 seconds
         cycleQuotes();
         setInterval(cycleQuotes, 8000);
 
-
         // ----------------------------------------------------
-        // 3. PROFILE & CAROUSEL LOGIC
+        // 3. PROFILE & CAROUSEL DRAG LOGIC (Fixed for clicking)
         // ----------------------------------------------------
         const imgElement = document.getElementById('profile-img');
         imgElement.src = PORTFOLIO_CONFIG.profilePhoto;
@@ -418,19 +418,21 @@
         let isDragging = false;
         let startX;
         let scrollLeft;
+        let draggedDistance = 0; // Tracks how far mouse moves
         let autoplayInterval;
 
         function buildCarousel() {
             let carouselHTML = '';
             PORTFOLIO_CONFIG.achievements.forEach((ach, index) => {
                 const rotateClass = ach.rotation ? ach.rotation : '';
+                // Removed grayscale, added dynamic blob hover color, added data-index
                 carouselHTML += `
-                    <div onclick="if(!isDragging) openModal(${index})" class="glass-panel p-5 w-80 inline-block whitespace-normal flex-shrink-0 transition hover:-translate-y-2 cursor-pointer bg-black/40 group border-gray-700/50">
+                    <div data-index="${index}" onmouseenter="changeBlobColor('${ach.themeColor}')" onmouseleave="resetBlobColor()" class="achievement-card glass-panel p-5 w-80 inline-block whitespace-normal flex-shrink-0 transition hover:-translate-y-2 cursor-pointer bg-black/40 group border-gray-700/50">
                         <div class="overflow-hidden rounded-lg mb-5 border border-gray-700 shadow-lg h-52 flex items-center justify-center bg-black relative">
                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors z-10 flex items-center justify-center backdrop-blur-0 group-hover:backdrop-blur-sm">
                                 <span class="opacity-0 group-hover:opacity-100 glass-btn pointer-events-none transform scale-90 group-hover:scale-100 transition-all text-xs">Click to Expand</span>
                             </div>
-                            <img src="${ach.image}" alt="${ach.title}" onerror="this.src='https://via.placeholder.com/400x300.png?text=Photo+Error'" class="w-full h-full object-cover grayscale ${rotateClass}">
+                            <img src="${ach.image}" alt="${ach.title}" onerror="this.src='https://via.placeholder.com/400x300.png?text=Photo+Error'" class="w-full h-full object-cover ${rotateClass}">
                         </div>
                         <h4 class="font-bold text-white text-lg mb-3 leading-tight truncate">${ach.title}</h4>
                         <p class="text-gray-400 text-sm leading-relaxed whitespace-normal line-clamp-3">${ach.outerDesc}</p>
@@ -441,31 +443,45 @@
         }
         buildCarousel();
 
-        // Dragging Logic
+        // Dragging & Clicking Logic
         carouselContainer.addEventListener('mousedown', (e) => {
             isDragging = true;
+            draggedDistance = 0; 
             carouselContainer.classList.add('grabbing');
             startX = e.pageX - carouselContainer.offsetLeft;
             scrollLeft = carouselContainer.scrollLeft;
             stopAutoplay();
         });
+
         carouselContainer.addEventListener('mouseleave', () => {
             if(isDragging) startAutoplay();
             isDragging = false;
             carouselContainer.classList.remove('grabbing');
         });
-        carouselContainer.addEventListener('mouseup', () => {
-            setTimeout(() => { isDragging = false; }, 50); // Delay to prevent click on drop
-            startAutoplay();
-            carouselContainer.classList.remove('grabbing');
-        });
+
         carouselContainer.addEventListener('mousemove', (e) => {
             if (!isDragging) return;
             e.preventDefault();
             const x = e.pageX - carouselContainer.offsetLeft;
             const walk = (x - startX) * 2; 
+            draggedDistance = Math.abs(x - startX); // Track movement distance
             carouselContainer.scrollLeft = scrollLeft - walk;
             checkInfiniteLoop();
+        });
+
+        carouselContainer.addEventListener('mouseup', (e) => {
+            isDragging = false;
+            startAutoplay();
+            carouselContainer.classList.remove('grabbing');
+
+            // If the mouse barely moved, treat it as a CLICK and open the modal!
+            if (draggedDistance < 10) {
+                const card = e.target.closest('.achievement-card');
+                if (card) {
+                    const index = card.getAttribute('data-index');
+                    openModal(index);
+                }
+            }
         });
 
         function passiveScroll() {
@@ -489,9 +505,8 @@
         carouselContainer.scrollLeft = track.scrollWidth / 3;
         startAutoplay();
 
-
         // ----------------------------------------------------
-        // 4. MODAL LOGIC
+        // 4. MODAL LOGIC (Original Colors)
         // ----------------------------------------------------
         function openModal(index) {
             const ach = PORTFOLIO_CONFIG.achievements[index];
@@ -502,7 +517,8 @@
             document.getElementById('modal-title').innerText = ach.title;
             document.getElementById('modal-desc').innerText = ach.innerDesc;
             img.src = ach.image;
-            img.className = `w-full h-full max-h-80 object-cover grayscale ${ach.rotation ? ach.rotation : ''}`;
+            // Removed grayscale here as well
+            img.className = `w-full h-full max-h-80 object-cover ${ach.rotation ? ach.rotation : ''}`;
 
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -524,7 +540,6 @@
             }, 300);
         }
 
-
         // ----------------------------------------------------
         // 5. DATA, DASHBOARD, & DEFICIT LOGIC
         // ----------------------------------------------------
@@ -540,7 +555,6 @@
         let currentMaterial = 'heavy';
         let val1 = 85000; let val2 = 42000;
         let globalTrees = 1420500; 
-
         const carbonMultipliers = { 'heavy': 1.25, 'urban': 0.85 };
         
         function switchMaterial(type) {
