@@ -13,35 +13,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
 
     <style>
-        /* Ultra-Smooth 120Hz Background */
+        /* Premium Monochrome Background */
         body {
-            background: radial-gradient(circle at top right, #064e3b 0%, #020617 50%, #0f172a 100%);
+            background: radial-gradient(circle at top right, #1f2937 0%, #000000 50%, #0a0a0a 100%);
             color: #f8fafc;
             font-family: 'Inter', system-ui, sans-serif;
             overflow-x: hidden;
         }
         
-        /* Enhanced Ultra-Glassmorphism */
+        /* Enhanced Ultra-Glassmorphism (Grayscale) */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
             border-radius: 1.2rem;
             transition: all 0.3s ease;
         }
         .glass-panel:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Glass Buttons */
+        /* Glass Buttons (Black & White Theme) */
         .glass-btn {
-            background: rgba(16, 185, 129, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            color: #34d399;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ffffff;
             padding: 0.5rem 1.5rem;
             border-radius: 9999px;
             font-weight: 600;
@@ -51,9 +51,9 @@
             position: relative;
         }
         .glass-btn:hover, .glass-btn.active {
-            background: rgba(16, 185, 129, 0.8);
-            color: white;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+            background: rgba(255, 255, 255, 0.9);
+            color: #000000;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
             transform: scale(1.05);
         }
 
@@ -69,7 +69,7 @@
             transform: translateY(0);
         }
 
-        /* Infinite Carousel Animation (Hover Pause Removed) */
+        /* Infinite Carousel Animation */
         .carousel-container {
             width: 100%;
             overflow: hidden;
@@ -82,8 +82,6 @@
             gap: 2rem;
             animation: scroll-left 30s linear infinite;
         }
-        /* Removed the hover pause so it keeps scrolling until clicked */
-        
         @keyframes scroll-left {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -93,10 +91,10 @@
         .rotate-90 { transform: rotate(90deg); }
         .-rotate-90 { transform: rotate(-90deg); }
 
-        /* Custom Scrollbar */
+        /* Custom Scrollbar (Grayscale) */
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(16, 185, 129, 0.4); border-radius: 10px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
     </style>
 </head>
 <body class="antialiased min-h-screen relative">
@@ -105,8 +103,6 @@
     <script>
         const PORTFOLIO_CONFIG = {
             profilePhoto: "profile.jpg", 
-            
-            // Updated Structure: outerDesc (for carousel) and innerDesc (for popup modal)
             achievements: [
                 {
                     title: "Data Science & Big Data (IBM/HP)",
@@ -143,11 +139,11 @@
     <!-- Navigation -->
     <nav class="fixed w-full z-40 glass-panel border-b-0 border-x-0 rounded-none bg-opacity-30">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold tracking-wider text-emerald-400 drop-shadow-lg">VG.</h1>
+            <h1 class="text-2xl font-bold tracking-wider text-white drop-shadow-lg">VG.</h1>
             <div class="space-x-6 text-sm font-medium hidden md:block">
-                <a href="#about" class="hover:text-emerald-300 transition">About</a>
-                <a href="#impact" class="hover:text-emerald-300 transition">Live Dashboard</a>
-                <a href="#achievements" class="hover:text-emerald-300 transition">Projects</a>
+                <a href="#about" class="text-gray-400 hover:text-white transition">About</a>
+                <a href="#impact" class="text-gray-400 hover:text-white transition">Live Dashboard</a>
+                <a href="#achievements" class="text-gray-400 hover:text-white transition">Projects</a>
             </div>
         </div>
     </nav>
@@ -156,17 +152,18 @@
     <section id="about" class="min-h-screen flex items-center justify-center pt-20 px-4">
         <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center reveal">
             <div class="flex justify-center relative">
-                <div class="absolute inset-0 bg-emerald-500 rounded-full blur-[120px] opacity-30"></div>
-                <img id="profile-img" src="" alt="V Gurunagaraj" onerror="this.src='https://ui-avatars.com/api/?name=V+Gurunagaraj&background=064e3b&color=34d399&size=400'" class="w-72 h-72 md:w-96 md:h-96 object-cover object-center rounded-full glass-panel p-2 z-10 border-4 border-emerald-400/40 shadow-2xl shadow-emerald-900/50 relative">
+                <!-- White glow instead of emerald -->
+                <div class="absolute inset-0 bg-white rounded-full blur-[120px] opacity-10"></div>
+                <img id="profile-img" src="" alt="V Gurunagaraj" onerror="this.src='https://ui-avatars.com/api/?name=V+Gurunagaraj&background=000&color=fff&size=400'" class="w-72 h-72 md:w-96 md:h-96 object-cover object-center rounded-full glass-panel p-2 z-10 border-4 border-gray-600/40 shadow-2xl shadow-black relative grayscale">
             </div>
             
             <div class="glass-panel p-8 relative z-20">
-                <h2 class="text-emerald-400 font-bold tracking-widest uppercase mb-2 text-sm">Civil Engineer & Data Analyst</h2>
-                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Bridging <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Infrastructure</span> & Intelligence.</h1>
-                <p class="text-slate-300 text-base mb-4 leading-relaxed">
+                <h2 class="text-gray-400 font-bold tracking-widest uppercase mb-2 text-sm">Civil Engineer & Data Analyst</h2>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white">Bridging <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-white">Infrastructure</span> & Intelligence.</h1>
+                <p class="text-gray-300 text-base mb-4 leading-relaxed">
                     I am a Civil Engineering student at <strong>REVA University</strong> passionate about redefining how we build the world. My core mission is environmental protection through smart data and sustainable technology.
                 </p>
-                <p class="text-slate-300 text-base mb-8 leading-relaxed">
+                <p class="text-gray-300 text-base mb-8 leading-relaxed">
                     With professional certifications in <strong>Data Science (IBM & HP)</strong> and expertise in <strong>Waste Water Management with Embedded Systems</strong>, I engineer eco-conscious, data-driven smart cities to reduce carbon footprints.
                 </p>
                 <div class="flex flex-wrap gap-4">
@@ -178,11 +175,11 @@
     </section>
 
     <!-- SECTION 2: Interactive Material Dashboard -->
-    <section id="impact" class="py-24 px-4 relative bg-slate-900/40">
+    <section id="impact" class="py-24 px-4 relative bg-black/40 border-t border-b border-gray-800">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10 reveal">
-                <h2 class="text-3xl font-bold mb-4 text-white">Global Construction <span class="text-emerald-400">Impact Ticker</span></h2>
-                <p class="text-slate-400 max-w-2xl mx-auto mb-8">Real-time estimations of global material production. Use the tabs below to analyze different environmental impacts.</p>
+                <h2 class="text-3xl font-bold mb-4 text-white">Global Construction <span class="text-gray-300">Impact Ticker</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mb-8">Real-time estimations of global material production. Use the tabs below to analyze different environmental impacts.</p>
                 
                 <div class="flex justify-center gap-4 flex-wrap relative z-30">
                     <button onclick="switchMaterial('heavy')" id="btn-heavy" class="glass-btn active">Heavy Materials (Cement/Steel)</button>
@@ -195,43 +192,43 @@
                 <div class="space-y-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="glass-panel p-6 text-center reveal group">
-                            <div id="metric1-label" class="text-rose-400 text-[10px] font-bold tracking-widest uppercase mb-2">Global Cement Poured</div>
+                            <div id="metric1-label" class="text-gray-400 text-[10px] font-bold tracking-widest uppercase mb-2">Global Cement Poured</div>
                             <div id="metric1-counter" class="odometer text-4xl font-mono font-bold mb-1 text-white">85000</div>
-                            <div class="text-slate-400 text-xs mt-2">Tons (Today)</div>
+                            <div class="text-gray-500 text-xs mt-2">Tons (Today)</div>
                         </div>
                         <div class="glass-panel p-6 text-center reveal group">
-                            <div id="metric2-label" class="text-orange-400 text-[10px] font-bold tracking-widest uppercase mb-2">Global Steel Produced</div>
+                            <div id="metric2-label" class="text-gray-400 text-[10px] font-bold tracking-widest uppercase mb-2">Global Steel Produced</div>
                             <div id="metric2-counter" class="odometer text-4xl font-mono font-bold mb-1 text-white">42000</div>
-                            <div class="text-slate-400 text-xs mt-2">Tons (Today)</div>
+                            <div class="text-gray-500 text-xs mt-2">Tons (Today)</div>
                         </div>
-                        <div class="glass-panel p-6 text-center reveal border-emerald-500/50 sm:col-span-2 bg-emerald-900/10 group">
-                            <div id="metric3-label" class="text-emerald-400 text-xs font-bold tracking-widest uppercase mb-2">Sustainable Bamboo Alternative</div>
-                            <div id="metric3-counter" class="odometer text-5xl font-mono font-bold mb-1 text-emerald-300">1200</div>
-                            <div class="text-emerald-500/70 text-xs font-bold mt-2">Hectares Cultivated (Today)</div>
+                        <div class="glass-panel p-6 text-center reveal border-gray-600/50 sm:col-span-2 bg-white/5 group">
+                            <div id="metric3-label" class="text-white text-xs font-bold tracking-widest uppercase mb-2">Sustainable Bamboo Alternative</div>
+                            <div id="metric3-counter" class="odometer text-5xl font-mono font-bold mb-1 text-gray-200">1200</div>
+                            <div class="text-gray-400 text-xs font-bold mt-2">Hectares Cultivated (Today)</div>
                         </div>
                     </div>
 
                     <!-- Calculator -->
-                    <div class="glass-panel p-6 reveal border-l-4 border-l-emerald-500 relative z-30">
+                    <div class="glass-panel p-6 reveal border-l-4 border-l-gray-300 relative z-30">
                         <h3 class="text-lg font-bold mb-2 text-white">Carbon Offset Calculator</h3>
                         <div class="flex gap-4 relative z-30">
-                            <input type="number" id="carbon-input" placeholder="Enter Tons of Material..." class="bg-slate-900/80 border border-slate-500 rounded-lg px-4 py-2 text-white w-full outline-none focus:border-emerald-400 shadow-inner relative z-30 pointer-events-auto">
+                            <input type="number" id="carbon-input" placeholder="Enter Tons of Material..." class="bg-black/60 border border-gray-600 rounded-lg px-4 py-2 text-white w-full outline-none focus:border-white shadow-inner relative z-30 pointer-events-auto">
                             <button onclick="calculateTrees()" class="glass-btn whitespace-nowrap">Calculate</button>
                         </div>
-                        <div id="calc-result" class="mt-4 font-bold text-sm hidden text-emerald-200 bg-emerald-900/30 p-3 rounded-lg border border-emerald-800"></div>
+                        <div id="calc-result" class="mt-4 font-bold text-sm hidden text-white bg-white/10 p-3 rounded-lg border border-gray-600"></div>
                     </div>
                 </div>
 
                 <!-- Right Column: Live News -->
-                <div class="glass-panel p-6 reveal h-[500px] flex flex-col bg-black/20">
-                    <h3 class="text-xl font-bold mb-4 border-b border-slate-700 pb-3 flex justify-between items-center text-white">
+                <div class="glass-panel p-6 reveal h-[500px] flex flex-col bg-black/50">
+                    <h3 class="text-xl font-bold mb-4 border-b border-gray-700 pb-3 flex justify-between items-center text-white">
                         Live Industry News 
-                        <span class="flex items-center gap-2 text-[10px] font-bold text-emerald-900 bg-emerald-400 px-2 py-1 rounded uppercase tracking-widest">
-                            <span class="w-2 h-2 rounded-full bg-emerald-900 animate-pulse"></span> Live Feed
+                        <span class="flex items-center gap-2 text-[10px] font-bold text-black bg-white px-2 py-1 rounded uppercase tracking-widest">
+                            <span class="w-2 h-2 rounded-full bg-black animate-pulse"></span> Live Feed
                         </span>
                     </h3>
                     <div id="news-container" class="overflow-y-auto custom-scrollbar flex-1 space-y-4 pr-3">
-                        <p class="text-slate-400 text-sm">Fetching trusted industry feeds...</p>
+                        <p class="text-gray-500 text-sm">Fetching trusted industry feeds...</p>
                     </div>
                 </div>
             </div>
@@ -240,7 +237,7 @@
 
     <!-- SECTION 3: Scrolling Achievements Carousel -->
     <section id="achievements" class="py-24 px-4 overflow-hidden relative">
-        <h2 class="text-3xl font-bold mb-16 text-center reveal text-white">Featured <span class="text-emerald-400">Projects & Skills</span></h2>
+        <h2 class="text-3xl font-bold mb-16 text-center reveal text-white">Featured <span class="text-gray-400">Projects & Skills</span></h2>
         
         <div class="carousel-container reveal">
             <div class="carousel-track" id="carousel-track">
@@ -249,35 +246,29 @@
         </div>
     </section>
 
-    <footer class="text-center py-8 text-slate-500 text-sm glass-panel border-b-0 border-x-0 rounded-none bg-black/40">
+    <footer class="text-center py-8 text-gray-500 text-sm glass-panel border-b-0 border-x-0 rounded-none bg-black">
         <p>&copy; 2026 V Gurunagaraj. Powered by real-time data, REVA University, and sustainable engineering.</p>
     </footer>
 
-    <!-- MODAL POPUP LAYER (Hidden by default) -->
+    <!-- MODAL POPUP LAYER -->
     <div id="achievement-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <!-- Blurred Background Overlay (Clicking this closes the modal) -->
-        <div class="absolute inset-0 bg-slate-900/70 backdrop-blur-md cursor-pointer" onclick="closeModal()"></div>
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer" onclick="closeModal()"></div>
 
-        <!-- The actual Content Box -->
-        <div class="relative z-10 glass-panel p-6 md:p-10 max-w-4xl w-full mx-4 transform scale-95 transition-transform duration-300 bg-slate-900/90 border-emerald-500/50 shadow-2xl" id="modal-content-box">
+        <div class="relative z-10 glass-panel p-6 md:p-10 max-w-4xl w-full mx-4 transform scale-95 transition-transform duration-300 bg-black/90 border-gray-500/50 shadow-2xl" id="modal-content-box">
             
-            <!-- 'X' Close Button -->
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-rose-400 transition transform hover:rotate-90 duration-300">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition transform hover:rotate-90 duration-300">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             
             <div class="flex flex-col md:flex-row gap-8 items-center">
-                <!-- Left: Image -->
-                <div class="w-full md:w-1/2 rounded-xl overflow-hidden border border-slate-600 shadow-lg bg-black/50 flex items-center justify-center min-h-[250px]">
-                    <img id="modal-img" src="" alt="" class="w-full h-full max-h-80 object-cover">
+                <div class="w-full md:w-1/2 rounded-xl overflow-hidden border border-gray-700 shadow-lg bg-black flex items-center justify-center min-h-[250px]">
+                    <img id="modal-img" src="" alt="" class="w-full h-full max-h-80 object-cover grayscale">
                 </div>
-                <!-- Right: Text -->
                 <div class="w-full md:w-1/2">
-                    <h2 id="modal-title" class="text-3xl font-bold text-emerald-400 mb-4 leading-tight"></h2>
-                    <div class="w-16 h-1 bg-emerald-500 mb-6 rounded-full"></div>
-                    <p id="modal-desc" class="text-slate-300 text-base leading-relaxed mb-8"></p>
+                    <h2 id="modal-title" class="text-3xl font-bold text-white mb-4 leading-tight"></h2>
+                    <div class="w-16 h-1 bg-gray-400 mb-6 rounded-full"></div>
+                    <p id="modal-desc" class="text-gray-300 text-base leading-relaxed mb-8"></p>
                     
-                    <!-- Back Button -->
                     <button onclick="closeModal()" class="glass-btn w-full md:w-auto flex justify-center items-center gap-2">
                         <span>← Back to Portfolio</span>
                     </button>
@@ -292,23 +283,22 @@
         const imgElement = document.getElementById('profile-img');
         imgElement.src = PORTFOLIO_CONFIG.profilePhoto;
 
-        // 2. Build Infinite Photo Carousel (Injecting OnClick for Modal)
+        // 2. Build Infinite Photo Carousel
         const track = document.getElementById('carousel-track');
         let carouselHTML = '';
         PORTFOLIO_CONFIG.achievements.forEach((ach, index) => {
             const rotateClass = ach.rotation ? ach.rotation : '';
             
             carouselHTML += `
-                <div onclick="openModal(${index})" class="glass-panel p-5 w-80 inline-block whitespace-normal flex-shrink-0 transition hover:-translate-y-2 bg-slate-900/50 cursor-pointer group">
-                    <div class="overflow-hidden rounded-lg mb-5 border border-slate-700 shadow-lg h-52 flex items-center justify-center bg-black/50 relative">
-                        <!-- Hover Overlay stating 'Click to Expand' -->
-                        <div class="absolute inset-0 bg-emerald-900/0 group-hover:bg-emerald-900/40 transition-colors z-10 flex items-center justify-center backdrop-blur-0 group-hover:backdrop-blur-sm">
+                <div onclick="openModal(${index})" class="glass-panel p-5 w-80 inline-block whitespace-normal flex-shrink-0 transition hover:-translate-y-2 bg-black/40 cursor-pointer group">
+                    <div class="overflow-hidden rounded-lg mb-5 border border-gray-700 shadow-lg h-52 flex items-center justify-center bg-black relative">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors z-10 flex items-center justify-center backdrop-blur-0 group-hover:backdrop-blur-sm">
                             <span class="opacity-0 group-hover:opacity-100 glass-btn pointer-events-none transform scale-90 group-hover:scale-100 transition-all text-xs">Click to Expand</span>
                         </div>
-                        <img src="${ach.image}" alt="${ach.title}" onerror="this.src='https://via.placeholder.com/400x300.png?text=Loading+Image'" class="w-full h-full object-cover ${rotateClass}">
+                        <img src="${ach.image}" alt="${ach.title}" onerror="this.src='https://via.placeholder.com/400x300.png?text=Loading+Image'" class="w-full h-full object-cover grayscale ${rotateClass}">
                     </div>
-                    <h4 class="font-bold text-emerald-400 text-lg mb-3 leading-tight truncate">${ach.title}</h4>
-                    <p class="text-slate-300 text-sm leading-relaxed whitespace-normal line-clamp-3">${ach.outerDesc}</p>
+                    <h4 class="font-bold text-white text-lg mb-3 leading-tight truncate">${ach.title}</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed whitespace-normal line-clamp-3">${ach.outerDesc}</p>
                 </div>
             `;
         });
@@ -321,19 +311,15 @@
             const contentBox = document.getElementById('modal-content-box');
             const img = document.getElementById('modal-img');
 
-            // Populate Text
             document.getElementById('modal-title').innerText = ach.title;
             document.getElementById('modal-desc').innerText = ach.innerDesc;
             
-            // Populate and rotate Image
             img.src = ach.image;
-            img.className = `w-full h-full max-h-80 object-cover ${ach.rotation ? ach.rotation : ''}`;
+            img.className = `w-full h-full max-h-80 object-cover grayscale ${ach.rotation ? ach.rotation : ''}`;
 
-            // Show Modal
             modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Stop background scrolling
+            document.body.style.overflow = 'hidden';
 
-            // Slight delay to allow CSS transitions to trigger
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 contentBox.classList.remove('scale-95');
@@ -344,14 +330,12 @@
             const modal = document.getElementById('achievement-modal');
             const contentBox = document.getElementById('modal-content-box');
             
-            // Trigger exit animations
             modal.classList.add('opacity-0');
             contentBox.classList.add('scale-95');
             
-            // Wait for animation to finish before hiding
             setTimeout(() => {
                 modal.classList.add('hidden');
-                document.body.style.overflow = 'auto'; // Restore background scrolling
+                document.body.style.overflow = 'auto'; 
             }, 300);
         }
 
@@ -414,7 +398,7 @@
             const resDiv = document.getElementById('calc-result');
             if(input && input > 0) {
                 const treesNeeded = Math.ceil((input * 0.13) / 0.02);
-                resDiv.innerHTML = `🌍 To offset <span class="text-rose-400">${input} tons</span> of material, we must plant <span class="text-emerald-400 font-extrabold text-lg">${treesNeeded.toLocaleString()} trees</span>. Great work! — V Gurunagaraj`;
+                resDiv.innerHTML = `🌍 To offset <span class="text-white">${input} tons</span> of material, we must plant <span class="text-white font-extrabold text-lg">${treesNeeded.toLocaleString()} trees</span>. Great work! — V Gurunagaraj`;
                 resDiv.classList.remove('hidden');
             } else {
                 resDiv.innerHTML = "Please enter a valid number of tons.";
@@ -438,16 +422,16 @@
                     articles.forEach(article => {
                         const sourceDomain = new URL(article.link).hostname.replace('www.', '');
                         container.innerHTML += `
-                            <a href="${article.link}" target="_blank" class="block p-4 rounded-xl glass-panel bg-slate-800/40 hover:bg-emerald-900/40 border border-slate-700/50 transition group">
-                                <div class="text-emerald-400 text-[10px] mb-2 uppercase tracking-widest font-bold">${sourceDomain}</div>
-                                <h4 class="font-semibold text-sm text-slate-200 group-hover:text-emerald-300 mb-2 leading-snug">${article.title}</h4>
-                                <div class="text-[10px] text-slate-500">${new Date(article.pubDate).toLocaleDateString()}</div>
+                            <a href="${article.link}" target="_blank" class="block p-4 rounded-xl glass-panel bg-black/40 hover:bg-white/10 border border-gray-700/50 transition group">
+                                <div class="text-gray-400 text-[10px] mb-2 uppercase tracking-widest font-bold">${sourceDomain}</div>
+                                <h4 class="font-semibold text-sm text-gray-200 group-hover:text-white mb-2 leading-snug">${article.title}</h4>
+                                <div class="text-[10px] text-gray-500">${new Date(article.pubDate).toLocaleDateString()}</div>
                             </a>
                         `;
                     });
                 }
             } catch (error) {
-                container.innerHTML = `<p class="text-rose-400 text-sm">Could not load live news.</p>`;
+                container.innerHTML = `<p class="text-gray-400 text-sm">Could not load live news.</p>`;
             }
         }
         fetchNews();
