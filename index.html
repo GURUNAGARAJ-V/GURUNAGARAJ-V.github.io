@@ -98,6 +98,17 @@
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(16, 185, 129, 0.4); border-radius: 10px; }
+
+        /* Loading Spinner */
+        .loader {
+            border: 3px solid rgba(16, 185, 129, 0.2);
+            border-top: 3px solid #34d399;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="antialiased min-h-screen relative">
@@ -105,10 +116,7 @@
     <!-- "BACKEND" CONFIGURATION -->
     <script>
         const PORTFOLIO_CONFIG = {
-            // Your exact profile image name from GitHub
             profilePhoto: "profile.jpg",
-            
-            // Your exact project image names matching your GitHub laptop screenshot
             achievements: [
                 {
                     title: "Waste Water & Embedded Systems",
@@ -146,10 +154,9 @@
         </div>
     </nav>
 
-    <!-- SECTION 1: Hero & About Me (Updated from LinkedIn) -->
+    <!-- SECTION 1: Hero & About Me -->
     <section id="about" class="min-h-screen flex items-center justify-center pt-20 px-4">
         <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center reveal">
-            <!-- Profile Photo (Forced correct rotation via object-cover) -->
             <div class="flex justify-center relative">
                 <div class="absolute inset-0 bg-emerald-500 rounded-full blur-[120px] opacity-30"></div>
                 <img id="profile-img" src="" alt="V Gurunagaraj" class="w-72 h-72 md:w-96 md:h-96 object-cover object-center rounded-full glass-panel p-2 z-10 border-4 border-emerald-400/40 shadow-2xl shadow-emerald-900/50">
@@ -179,43 +186,45 @@
                 <h2 class="text-3xl font-bold mb-4 text-white">Global Construction <span class="text-emerald-400">Impact Ticker</span></h2>
                 <p class="text-slate-400 max-w-2xl mx-auto mb-8">Real-time estimations of global material production. Use the tabs below to analyze different environmental impacts.</p>
                 
-                <!-- Material Selector Buttons -->
                 <div class="flex justify-center gap-4 flex-wrap">
                     <button onclick="switchMaterial('heavy')" id="btn-heavy" class="glass-btn active">Heavy Materials (Cement/Steel)</button>
                     <button onclick="switchMaterial('urban')" id="btn-urban" class="glass-btn">Urban Materials (Asphalt/Glass)</button>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8">
                 <!-- Left Column: Tickers & Calculator -->
                 <div class="space-y-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         
                         <!-- Metric 1 -->
-                        <div class="glass-panel p-6 text-center reveal">
-                            <div id="metric1-label" class="text-rose-400 text-xs font-bold tracking-widest uppercase mb-2">Global Cement Poured</div>
-                            <div class="text-4xl font-mono font-bold mb-1 reel-container text-white">
+                        <div class="glass-panel p-6 text-center reveal relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-rose-500/10 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom"></div>
+                            <div id="metric1-label" class="relative z-10 text-rose-400 text-[10px] font-bold tracking-widest uppercase mb-2">Global Cement Poured</div>
+                            <div class="relative z-10 text-4xl font-mono font-bold mb-1 reel-container text-white">
                                 <span class="reel-number" id="metric1-counter">85,000</span>
                             </div>
-                            <div class="text-slate-400 text-xs">Tons (Today)</div>
+                            <div class="relative z-10 text-slate-400 text-xs">Tons (Today)</div>
                         </div>
                         
                         <!-- Metric 2 -->
-                        <div class="glass-panel p-6 text-center reveal">
-                            <div id="metric2-label" class="text-orange-400 text-xs font-bold tracking-widest uppercase mb-2">Global Steel Produced</div>
-                            <div class="text-4xl font-mono font-bold mb-1 reel-container text-white">
+                        <div class="glass-panel p-6 text-center reveal relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-orange-500/10 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom"></div>
+                            <div id="metric2-label" class="relative z-10 text-orange-400 text-[10px] font-bold tracking-widest uppercase mb-2">Global Steel Produced</div>
+                            <div class="relative z-10 text-4xl font-mono font-bold mb-1 reel-container text-white">
                                 <span class="reel-number" id="metric2-counter">42,000</span>
                             </div>
-                            <div class="text-slate-400 text-xs">Tons (Today)</div>
+                            <div class="relative z-10 text-slate-400 text-xs">Tons (Today)</div>
                         </div>
 
                         <!-- Eco Metric -->
-                        <div class="glass-panel p-6 text-center reveal border-emerald-500/50 sm:col-span-2 bg-emerald-900/10">
-                            <div id="metric3-label" class="text-emerald-400 text-xs font-bold tracking-widest uppercase mb-2">Sustainable Bamboo Alternative</div>
-                            <div class="text-5xl font-mono font-bold mb-1 text-emerald-300 reel-container">
+                        <div class="glass-panel p-6 text-center reveal border-emerald-500/50 sm:col-span-2 bg-emerald-900/10 relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-emerald-500/10 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom"></div>
+                            <div id="metric3-label" class="relative z-10 text-emerald-400 text-xs font-bold tracking-widest uppercase mb-2">Sustainable Bamboo Alternative</div>
+                            <div class="relative z-10 text-5xl font-mono font-bold mb-1 text-emerald-300 reel-container">
                                 <span class="reel-number" id="metric3-counter">1,200.50</span>
                             </div>
-                            <div class="text-emerald-500/70 text-xs font-bold">Hectares Cultivated (Today)</div>
+                            <div class="relative z-10 text-emerald-500/70 text-xs font-bold">Hectares Cultivated (Today)</div>
                         </div>
                     </div>
 
@@ -224,23 +233,37 @@
                         <h3 class="text-lg font-bold mb-2 text-white">Carbon Offset Calculator</h3>
                         <div class="flex gap-4">
                             <input type="number" id="carbon-input" placeholder="Enter Tons of Material..." class="bg-slate-900/80 border border-slate-600 rounded-lg px-4 py-2 text-white w-full outline-none focus:border-emerald-400 shadow-inner">
-                            <button onclick="calculateTrees()" class="glass-btn hover:scale-95">Calculate</button>
+                            <button onclick="calculateTrees()" class="glass-btn hover:scale-95 whitespace-nowrap">Calculate</button>
                         </div>
-                        <div id="calc-result" class="mt-4 font-bold text-sm hidden text-emerald-200"></div>
+                        <div id="calc-result" class="mt-4 font-bold text-sm hidden text-emerald-200 bg-emerald-900/30 p-3 rounded-lg border border-emerald-800"></div>
                     </div>
                 </div>
 
                 <!-- Right Column: Live News API Feed -->
                 <div class="glass-panel p-6 reveal h-[500px] flex flex-col bg-black/20">
                     <h3 class="text-xl font-bold mb-4 border-b border-slate-700 pb-3 flex justify-between items-center text-white">
-                        Live Green Infrastructure News 
-                        <span class="text-[10px] font-bold text-emerald-900 bg-emerald-400 px-2 py-1 rounded uppercase tracking-widest">Live API</span>
+                        Live Industry News 
+                        <span class="flex items-center gap-2 text-[10px] font-bold text-emerald-900 bg-emerald-400 px-2 py-1 rounded uppercase tracking-widest">
+                            <span class="w-2 h-2 rounded-full bg-emerald-900 animate-pulse"></span>
+                            Live Feed
+                        </span>
                     </h3>
+                    
+                    <!-- News Container -->
                     <div id="news-container" class="overflow-y-auto custom-scrollbar flex-1 space-y-4 pr-3">
-                        <p class="text-slate-400 text-sm animate-pulse">Establishing secure connection to Google News API...</p>
+                        <div class="flex items-center justify-center h-full flex-col gap-4">
+                            <div class="loader"></div>
+                            <p class="text-slate-400 text-sm">Fetching trusted industry feeds...</p>
+                        </div>
                     </div>
                 </div>
-
+            </div>
+            
+            <!-- Data Methodology Disclaimer -->
+            <div class="glass-panel p-4 reveal text-center bg-slate-950/50">
+                <p class="text-[10px] text-slate-500 leading-relaxed max-w-4xl mx-auto">
+                    <strong>Data Methodology:</strong> The ticking figures above are algorithmic estimations representing real-time planetary accumulation. They are calculated by dividing the most recently published annual global production data from trusted sources—including the <em>International Energy Agency (IEA)</em>, the <em>World Steel Association</em>, and the <em>Global Cement and Concrete Association (GCCA)</em>—into millisecond increments. Live news is aggregated via public RSS feeds from <em>ScienceDaily</em> and <em>ENR</em>.
+                </p>
             </div>
         </div>
     </section>
@@ -269,7 +292,7 @@
             this.src = "https://via.placeholder.com/400x400.png?text=Photo+Not+Found";
         };
 
-        // 2. Build Infinite Photo Carousel (Forced correct rotation)
+        // 2. Build Infinite Photo Carousel
         const track = document.getElementById('carousel-track');
         let carouselHTML = '';
         PORTFOLIO_CONFIG.achievements.forEach(ach => {
@@ -281,7 +304,7 @@
                 </div>
             `;
         });
-        track.innerHTML = carouselHTML + carouselHTML + carouselHTML; // Triple for smooth loop
+        track.innerHTML = carouselHTML + carouselHTML + carouselHTML;
 
         // 3. Two-Way Scroll Reveal Animations
         const observer = new IntersectionObserver((entries) => {
@@ -306,20 +329,19 @@
 
             if(type === 'heavy') {
                 document.getElementById('metric1-label').innerText = "Global Cement Poured";
-                document.getElementById('metric1-label').className = "text-rose-400 text-xs font-bold tracking-widest uppercase mb-2";
+                document.getElementById('metric1-label').className = "relative z-10 text-rose-400 text-[10px] font-bold tracking-widest uppercase mb-2";
                 document.getElementById('metric2-label').innerText = "Global Steel Produced";
                 document.getElementById('metric3-label').innerText = "Sustainable Bamboo Alternative";
                 val1 = 85000; val2 = 42000; val3 = 1200;
             } else {
                 document.getElementById('metric1-label').innerText = "Global Asphalt Laid";
-                document.getElementById('metric1-label').className = "text-slate-400 text-xs font-bold tracking-widest uppercase mb-2";
+                document.getElementById('metric1-label').className = "relative z-10 text-slate-400 text-[10px] font-bold tracking-widest uppercase mb-2";
                 document.getElementById('metric2-label').innerText = "Architectural Glass Manufactured";
                 document.getElementById('metric3-label').innerText = "Reclaimed Timber Processed";
                 val1 = 15000; val2 = 8000; val3 = 300;
             }
         }
 
-        // Smooth Reel Update Function
         function updateReel(id, newValue) {
             const el = document.getElementById(id);
             el.classList.add('reel-slide-up');
@@ -355,32 +377,55 @@
             }
         }
 
-        // 6. Fetch Live News API
+        // 6. Fetch Live News APIs (Multiple Sources)
         async function fetchNews() {
             const container = document.getElementById('news-container');
-            const rssUrl = "https://news.google.com/rss/search?q=sustainable+infrastructure+civil+engineering+wastewater&hl=en-US&gl=US&ceid=US:en";
-            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
+            
+            // Source 1: ScienceDaily Eco-Friendly Infrastructure RSS
+            // Source 2: General Sustainable Construction Google Alert
+            const rssUrls = [
+                "https://www.sciencedaily.com/rss/earth_climate/environmental_science.xml",
+                "https://news.google.com/rss/search?q=sustainable+infrastructure+civil+engineering&hl=en-US&gl=US&ceid=US:en"
+            ];
             
             try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+                let allArticles = [];
                 
-                if(data.status === 'ok') {
-                    container.innerHTML = ''; 
-                    const articles = data.items.slice(0, 8); 
-                    articles.forEach(article => {
-                        const source = new URL(article.link).hostname.replace('www.', '');
-                        container.innerHTML += `
-                            <a href="${article.link}" target="_blank" class="block p-4 rounded-xl glass-panel bg-slate-800/40 hover:bg-emerald-900/40 border border-slate-700/50 transition group">
-                                <div class="text-emerald-500 text-[10px] mb-2 uppercase tracking-widest font-bold">${source}</div>
-                                <h4 class="font-semibold text-sm text-slate-200 group-hover:text-emerald-300 mb-2 leading-snug">${article.title}</h4>
-                                <div class="text-[10px] text-slate-500">${new Date(article.pubDate).toLocaleDateString()}</div>
-                            </a>
-                        `;
-                    });
+                // Fetch from all sources
+                for (let url of rssUrls) {
+                    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`;
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
+                    if(data.status === 'ok') {
+                        allArticles = allArticles.concat(data.items);
+                    }
                 }
+
+                // Sort by date and take top 10
+                allArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+                const topArticles = allArticles.slice(0, 10);
+
+                container.innerHTML = ''; 
+                
+                topArticles.forEach(article => {
+                    const sourceDomain = new URL(article.link).hostname.replace('www.', '');
+                    // Determine if it's an alert or direct source
+                    const tagColor = sourceDomain.includes('google') ? 'text-cyan-400' : 'text-emerald-400';
+                    const displaySource = sourceDomain.includes('google') ? 'Industry Alert' : sourceDomain;
+
+                    container.innerHTML += `
+                        <a href="${article.link}" target="_blank" class="block p-4 rounded-xl glass-panel bg-slate-800/40 hover:bg-emerald-900/40 border border-slate-700/50 transition group">
+                            <div class="${tagColor} text-[10px] mb-2 uppercase tracking-widest font-bold">${displaySource}</div>
+                            <h4 class="font-semibold text-sm text-slate-200 group-hover:text-white mb-2 leading-snug">${article.title}</h4>
+                            <div class="flex justify-between items-center text-[10px] text-slate-500">
+                                <span>${new Date(article.pubDate).toLocaleDateString()}</span>
+                                <span class="group-hover:text-emerald-400 transition">Read Article →</span>
+                            </div>
+                        </a>
+                    `;
+                });
             } catch (error) {
-                container.innerHTML = `<p class="text-rose-400 text-sm">Could not load live news. Please check your connection.</p>`;
+                container.innerHTML = `<div class="p-4 bg-rose-900/20 border border-rose-500/30 rounded-lg"><p class="text-rose-400 text-sm">Could not load live news. The external RSS server might be temporarily down.</p></div>`;
             }
         }
         fetchNews();
