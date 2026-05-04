@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V Gurunagaraj | Sustainable Infrastructure & Data Science</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Professional Odometer Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-minimal.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
 
@@ -26,6 +24,7 @@
         /* CHAMELEON MOUSE BLOB EFFECT               */
         /* ----------------------------------------- */
         #cursor-blob {
+            /* Default color: Emerald to Cyan */
             background: radial-gradient(circle, rgba(16,185,129,0.6) 0%, rgba(6,182,212,0.4) 100%);
             height: 450px;
             aspect-ratio: 1;
@@ -37,7 +36,7 @@
             filter: blur(100px);
             z-index: 0;
             pointer-events: none;
-            transition: background 0.8s ease;
+            transition: background 0.8s ease; /* Smoothly transitions between colors */
         }
         
         #blob-overlay {
@@ -134,21 +133,17 @@
 </head>
 <body class="antialiased min-h-screen relative">
 
-    <!-- DYNAMIC BACKGROUND LIGHT ELEMENTS -->
     <div id="cursor-blob"></div>
     <div id="blob-overlay"></div>
 
-    <!-- ========================================== -->
-    <!-- "BACKEND" CONFIGURATION                    -->
-    <!-- ========================================== -->
     <script>
         const PORTFOLIO_CONFIG = {
-            profilePhoto: "profile.jpg", 
+            profilePhoto: "profile.jpg.jpeg", 
             achievements: [
                 {
-                    title: "Data Science & Big Data (IBM/HP)",
-                    outerDesc: "Applying Python and Big Data analytics to modern infrastructure problems.",
-                    innerDesc: "Completed advanced professional certifications through IBM and HP focused on Python programming, data analytics, and big data management. This knowledge empowers me to process vast amounts of infrastructural telemetry data, translating raw numbers into actionable, eco-conscious civil engineering decisions.",
+                    title: "Python 101 for Data Science (IBM)",
+                    outerDesc: "Applying Python and Data analytics to modern infrastructure problems.",
+                    innerDesc: "Completed advanced professional certifications through IBM  focused on Python programming, data analytics, and big data management. This knowledge empowers me to process vast amounts of infrastructural telemetry data, translating raw numbers into actionable, eco-conscious civil engineering decisions.",
                     image: "project2.jpg.png",
                     rotation: "-rotate-90",
                     themeColor: "rgba(59, 130, 246, 0.6)" // Blue Blob
@@ -157,7 +152,7 @@
                     title: "AutoCAD & BIM Design",
                     outerDesc: "Advanced architectural drafting and building information modeling for smart cities.",
                     innerDesc: "Certified in Advanced AutoCAD and Introduction to Building Information Modeling (BIM) via REVA University. My design philosophy bridges traditional civil engineering drafting with modern 3D intelligence, ensuring sustainable materials and efficient structural layouts are planned from the ground up.",
-                    image: "project3.jpg.png",
+                    image: "project6.jpg.jpeg",
                     rotation: "-rotate-90",
                     themeColor: "rgba(234, 179, 8, 0.5)" // Yellow Blob
                 },
@@ -165,14 +160,30 @@
                     title: "Bio-Inspired Health Monitoring",
                     outerDesc: "Smart city models integrating bio-inspired health monitoring and sustainable materials.",
                     innerDesc: "Engineered a physical smart city infrastructure model demonstrating bio-inspired health monitoring. This project showcases the integration of high-throughput sensors that mimic biological nervous systems to track structural strain in real-time, preventing catastrophic failures and optimizing maintenance.",
-                    image: "project4.jpg.jpeg",
-                    rotation: "",
+                    image: "Project10.png",
+                    rotation: "-rotate-90",
                     themeColor: "rgba(16, 185, 129, 0.6)" // Emerald Blob
                 },
                 {
                     title: "Waste Water & Embedded Systems",
                     outerDesc: "Integrating embedded technology with water supply engineering.",
                     innerDesc: "Successfully completed specialized training in Waste Water and Water Supply Engineering integrated with Embedded Systems. This expertise allows me to design automated, highly efficient water treatment and recycling plants that actively conserve resources and protect local ecosystems from contamination.",
+                    image: "project5.jpg.jpeg",
+                    rotation: "-rotate-90",
+                    themeColor: "rgba(239, 68, 68, 0.6)" // Red Blob
+                },
+                {
+                    title: "Extensive Survey Camp",
+                    outerDesc: "As Team Lead, I managed an extensive survey camp involving the design of a 750m highway, Water Supply, NTP, and Village Planning. I oversaw all field data collection, topographical mapping, and final project designs..",
+                    innerDesc: "As Team Lead, I managed an extensive survey camp involving the design of a 750m highway, Water Supply, NTP, and Village Planning. I oversaw all field data collection, topographical mapping, and final project designs..",
+                    image: "project4.jpg.jpeg",
+                    rotation: "-rotate-90",
+                    themeColor: "rgba(239, 68, 68, 0.6)" // Red Blob
+                },
+                {
+                    title: "Waste Water & Embedded Systems",
+                    outerDesc: "Integrating embedded technology with water supply engineering.",
+                    innerDesc: "Thrilled to secure 2nd position at the REVA University Agri-Tech Exhibition! Bridging Civil Engineering with modern technology, I showcased an loT-integrated system for smart, sustainable sewage farming. This project transformed waste management by analyzing water quality, turning treated wastewater into a valuable agricultural resource.",
                     image: "project1.jpg.jpeg",
                     rotation: "-rotate-90",
                     themeColor: "rgba(239, 68, 68, 0.6)" // Red Blob
@@ -181,7 +192,6 @@
         };
     </script>
 
-    <!-- Navigation & Quote Ticker -->
     <nav class="fixed w-full z-40 glass-panel border-b-0 border-x-0 rounded-none bg-opacity-30">
         <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center h-20">
             <div class="max-w-md w-full relative flex flex-col justify-center h-full">
@@ -197,7 +207,6 @@
         </div>
     </nav>
 
-    <!-- SECTION 1: Hero & About Me -->
     <section id="about" class="min-h-screen flex items-center justify-center pt-20 px-4 relative z-10">
         <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center reveal">
             <div class="flex justify-center relative">
@@ -222,7 +231,6 @@
         </div>
     </section>
 
-    <!-- SECTION 2: Interactive Material Dashboard -->
     <section id="impact" class="py-24 px-4 relative border-t border-b border-gray-800/50 z-10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10 reveal">
@@ -236,7 +244,6 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8">
-                <!-- Left Column -->
                 <div class="space-y-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="glass-panel p-6 text-center reveal group">
@@ -251,7 +258,6 @@
                         </div>
                     </div>
 
-                    <!-- Dynamic Calculator -->
                     <div class="glass-panel p-6 reveal border-l-4 border-l-gray-300 relative z-30">
                         <h3 class="text-lg font-bold mb-1 text-white">Dynamic Carbon Offset Calculator</h3>
                         <p id="calc-material-type" class="text-[10px] text-gray-500 mb-4 uppercase tracking-widest font-bold">Currently Calculating: Heavy Materials</p>
@@ -264,9 +270,7 @@
                     </div>
                 </div>
 
-                <!-- Right Column -->
                 <div class="space-y-6">
-                    <!-- Global Tree API -->
                     <div class="glass-panel p-6 text-center reveal border border-gray-500/30">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="text-white text-sm font-bold tracking-widest uppercase">Global Trees Planted</h3>
@@ -278,7 +282,6 @@
                         <div class="text-gray-400 text-xs font-bold mt-2">Trees (Global 24h Avg Estimate)</div>
                     </div>
 
-                    <!-- Deficit Dashboard -->
                     <div class="glass-panel p-6 reveal border-t-4 border-t-red-900/50">
                         <h3 class="text-sm font-bold mb-4 text-gray-300 uppercase tracking-widest">Global Carbon Deficit Analysis</h3>
                         <p class="text-xs text-gray-400 mb-6 leading-relaxed">Comparing current material production vs. actual global reforestation efforts. The gap represents structural environmental debt.</p>
@@ -297,14 +300,12 @@
         </div>
     </section>
 
-    <!-- SECTION 3: Scrolling Achievements Carousel -->
     <section id="achievements" class="py-24 px-4 overflow-hidden relative z-10">
         <h2 class="text-3xl font-bold mb-16 text-center reveal text-white">Featured <span class="text-gray-400">Projects & Skills</span></h2>
         
         <div class="carousel-container reveal" id="carousel-grabbable-container">
             <div class="carousel-track" id="carousel-grabbable-track">
-                <!-- Javascript will inject sliding photos and text here -->
-            </div>
+                </div>
         </div>
     </section>
 
@@ -312,7 +313,6 @@
         <p>&copy; 2026 V Gurunagaraj. REVA University | Sustainable Engineering Specialist.</p>
     </footer>
 
-    <!-- MODAL POPUP LAYER -->
     <div id="achievement-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer" onclick="closeModal()"></div>
 
@@ -336,7 +336,6 @@
         </div>
     </div>
 
-    <!-- Interactive Logic & APIs -->
     <script>
         // ----------------------------------------------------
         // 1. LIQUID CURSOR BLOB LOGIC
@@ -374,7 +373,6 @@
         const quotes = [
             { text: "We cannot build the future with the materials of the past.", author: "Sustainable Engineering Principle" },
             { text: "Infrastructure is the foundation, sustainability is the blueprint.", author: "Green Tech Vision" },
-            { text: "Smart data transforms concrete jungles into living, breathing ecosystems.", author: "V Gurunagaraj" },
             { text: "The greatest threat to our planet is the belief that someone else will save it.", author: "Robert Swan" },
             { text: "Building responsibly today ensures we have a world to engineer tomorrow.", author: "Civil Eco-Mandate" },
             { text: "Sustainability is no longer about doing less harm. It’s about doing more good.", author: "Jochen Zeitz" },
@@ -383,7 +381,11 @@
             { text: "Progress is impossible without change, and those who cannot change their minds cannot change anything.", author: "George Bernard Shaw" },
             { text: "Earth provides enough to satisfy every man's needs, but not every man's greed.", author: "Mahatma Gandhi" },
             { text: "Good building is not about buying the right products, but making the right choices.", author: "Green Building Council" },
-            { text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs" }
+            { text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs" },
+            { text: "What we are doing to the forests of the world is but a mirror reflection of what we are doing to ourselves and to one another.", author: "Mahatma Gandhi" },
+            { text: "To build a better world, we must first build better infrastructure.", author: "Civil Engineering Proverb" },
+            { text: "We don't inherit the earth from our ancestors, we borrow it from our children.", author: "Native American Proverb" },
+            { text: "Every design decision is an environmental decision.", author: "Design Principle" }
         ];
         
         let currentQuoteIndex = 0;
@@ -627,4 +629,5 @@
         updateDeficitDashboard();
     </script>
 </body>
-                                                                                               </html>
+</html>
+
