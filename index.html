@@ -26,7 +26,6 @@
         /* CHAMELEON MOUSE BLOB EFFECT               */
         /* ----------------------------------------- */
         #cursor-blob {
-            /* Default color: Emerald to Cyan */
             background: radial-gradient(circle, rgba(16,185,129,0.6) 0%, rgba(6,182,212,0.4) 100%);
             height: 450px;
             aspect-ratio: 1;
@@ -38,7 +37,7 @@
             filter: blur(100px);
             z-index: 0;
             pointer-events: none;
-            transition: background 0.8s ease; /* Smoothly transitions between colors */
+            transition: background 0.8s ease;
         }
         
         #blob-overlay {
@@ -144,12 +143,12 @@
     <!-- ========================================== -->
     <script>
         const PORTFOLIO_CONFIG = {
-            profilePhoto: "profile.jpg.jpeg", 
+            profilePhoto: "profile.jpg", 
             achievements: [
                 {
-                    title: "Python 101 for Data Science (IBM)",
-                    outerDesc: "Applying Python and Data analytics to modern infrastructure problems.",
-                    innerDesc: "Completed advanced professional certifications through IBM  focused on Python programming, data analytics, and big data management. This knowledge empowers me to process vast amounts of infrastructural telemetry data, translating raw numbers into actionable, eco-conscious civil engineering decisions.",
+                    title: "Data Science & Big Data (IBM/HP)",
+                    outerDesc: "Applying Python and Big Data analytics to modern infrastructure problems.",
+                    innerDesc: "Completed advanced professional certifications through IBM and HP focused on Python programming, data analytics, and big data management. This knowledge empowers me to process vast amounts of infrastructural telemetry data, translating raw numbers into actionable, eco-conscious civil engineering decisions.",
                     image: "project2.jpg.png",
                     rotation: "-rotate-90",
                     themeColor: "rgba(59, 130, 246, 0.6)" // Blue Blob
@@ -158,7 +157,7 @@
                     title: "AutoCAD & BIM Design",
                     outerDesc: "Advanced architectural drafting and building information modeling for smart cities.",
                     innerDesc: "Certified in Advanced AutoCAD and Introduction to Building Information Modeling (BIM) via REVA University. My design philosophy bridges traditional civil engineering drafting with modern 3D intelligence, ensuring sustainable materials and efficient structural layouts are planned from the ground up.",
-                    image: "project6.jpg.jpeg",
+                    image: "project3.jpg.png",
                     rotation: "-rotate-90",
                     themeColor: "rgba(234, 179, 8, 0.5)" // Yellow Blob
                 },
@@ -166,35 +165,18 @@
                     title: "Bio-Inspired Health Monitoring",
                     outerDesc: "Smart city models integrating bio-inspired health monitoring and sustainable materials.",
                     innerDesc: "Engineered a physical smart city infrastructure model demonstrating bio-inspired health monitoring. This project showcases the integration of high-throughput sensors that mimic biological nervous systems to track structural strain in real-time, preventing catastrophic failures and optimizing maintenance.",
-                    image: "Project10.png",
-                    rotation: "-rotate-90",
+                    image: "project4.jpg.jpeg",
+                    rotation: "",
                     themeColor: "rgba(16, 185, 129, 0.6)" // Emerald Blob
                 },
                 {
                     title: "Waste Water & Embedded Systems",
                     outerDesc: "Integrating embedded technology with water supply engineering.",
                     innerDesc: "Successfully completed specialized training in Waste Water and Water Supply Engineering integrated with Embedded Systems. This expertise allows me to design automated, highly efficient water treatment and recycling plants that actively conserve resources and protect local ecosystems from contamination.",
-                    image: "project5.jpg.jpeg",
-                    rotation: "-rotate-90",
-                    themeColor: "rgba(239, 68, 68, 0.6)" // Red Blob
-                },
-                {
-                    title: "Extensive Survey Camp",
-                    outerDesc: "As Team Lead, I managed an extensive survey camp involving the design of a 750m highway, Water Supply, NTP, and Village Planning. I oversaw all field data collection, topographical mapping, and final project designs..",
-                    innerDesc: "As Team Lead, I managed an extensive survey camp involving the design of a 750m highway, Water Supply, NTP, and Village Planning. I oversaw all field data collection, topographical mapping, and final project designs..",
-                    image: "project4.jpg.jpeg",
-                    rotation: "-rotate-90",
-                    themeColor: "rgba(239, 68, 68, 0.6)" // Red Blob
-                },
-                {
-                    title: "Waste Water & Embedded Systems",
-                    outerDesc: "Integrating embedded technology with water supply engineering.",
-                    innerDesc: "Thrilled to secure 2nd position at the REVA University Agri-Tech Exhibition! Bridging Civil Engineering with modern technology, I showcased an loT-integrated system for smart, sustainable sewage farming. This project transformed waste management by analyzing water quality, turning treated wastewater into a valuable agricultural resource.".
                     image: "project1.jpg.jpeg",
                     rotation: "-rotate-90",
                     themeColor: "rgba(239, 68, 68, 0.6)" // Red Blob
                 }
-        
             ]
         };
     </script>
@@ -340,7 +322,6 @@
             </button>
             <div class="flex flex-col md:flex-row gap-8 items-center">
                 <div class="w-full md:w-1/2 rounded-xl overflow-hidden border border-gray-700 shadow-lg bg-black flex items-center justify-center min-h-[250px]">
-                    <!-- Removed grayscale class here so image is in color -->
                     <img id="modal-img" src="" alt="" class="w-full h-full max-h-80 object-cover">
                 </div>
                 <div class="w-full md:w-1/2">
@@ -380,7 +361,6 @@
         }
         animateBlob();
 
-        // Functions to change the blob color when hovering over projects
         function changeBlobColor(colorHex) {
             blob.style.background = `radial-gradient(circle, ${colorHex} 0%, transparent 80%)`;
         }
@@ -396,7 +376,14 @@
             { text: "Infrastructure is the foundation, sustainability is the blueprint.", author: "Green Tech Vision" },
             { text: "Smart data transforms concrete jungles into living, breathing ecosystems.", author: "V Gurunagaraj" },
             { text: "The greatest threat to our planet is the belief that someone else will save it.", author: "Robert Swan" },
-            { text: "Building responsibly today ensures we have a world to engineer tomorrow.", author: "Civil Eco-Mandate" }
+            { text: "Building responsibly today ensures we have a world to engineer tomorrow.", author: "Civil Eco-Mandate" },
+            { text: "Sustainability is no longer about doing less harm. It’s about doing more good.", author: "Jochen Zeitz" },
+            { text: "Design is not just what it looks like and feels like. Design is how it works.", author: "Steve Jobs" },
+            { text: "There is no such thing as 'away'. When we throw anything away it must go somewhere.", author: "Annie Leonard" },
+            { text: "Progress is impossible without change, and those who cannot change their minds cannot change anything.", author: "George Bernard Shaw" },
+            { text: "Earth provides enough to satisfy every man's needs, but not every man's greed.", author: "Mahatma Gandhi" },
+            { text: "Good building is not about buying the right products, but making the right choices.", author: "Green Building Council" },
+            { text: "Innovation distinguishes between a leader and a follower.", author: "Steve Jobs" }
         ];
         
         let currentQuoteIndex = 0;
@@ -425,7 +412,7 @@
         setInterval(cycleQuotes, 8000);
 
         // ----------------------------------------------------
-        // 3. PROFILE & CAROUSEL DRAG LOGIC (Fixed for clicking)
+        // 3. PROFILE & CAROUSEL DRAG LOGIC
         // ----------------------------------------------------
         const imgElement = document.getElementById('profile-img');
         imgElement.src = PORTFOLIO_CONFIG.profilePhoto;
@@ -435,14 +422,13 @@
         let isDragging = false;
         let startX;
         let scrollLeft;
-        let draggedDistance = 0; // Tracks how far mouse moves
+        let draggedDistance = 0; 
         let autoplayInterval;
 
         function buildCarousel() {
             let carouselHTML = '';
             PORTFOLIO_CONFIG.achievements.forEach((ach, index) => {
                 const rotateClass = ach.rotation ? ach.rotation : '';
-                // Removed grayscale, added dynamic blob hover color, added data-index
                 carouselHTML += `
                     <div data-index="${index}" onmouseenter="changeBlobColor('${ach.themeColor}')" onmouseleave="resetBlobColor()" class="achievement-card glass-panel p-5 w-80 inline-block whitespace-normal flex-shrink-0 transition hover:-translate-y-2 cursor-pointer bg-black/40 group border-gray-700/50">
                         <div class="overflow-hidden rounded-lg mb-5 border border-gray-700 shadow-lg h-52 flex items-center justify-center bg-black relative">
@@ -481,7 +467,7 @@
             e.preventDefault();
             const x = e.pageX - carouselContainer.offsetLeft;
             const walk = (x - startX) * 2; 
-            draggedDistance = Math.abs(x - startX); // Track movement distance
+            draggedDistance = Math.abs(x - startX); 
             carouselContainer.scrollLeft = scrollLeft - walk;
             checkInfiniteLoop();
         });
@@ -491,7 +477,6 @@
             startAutoplay();
             carouselContainer.classList.remove('grabbing');
 
-            // If the mouse barely moved, treat it as a CLICK and open the modal!
             if (draggedDistance < 10) {
                 const card = e.target.closest('.achievement-card');
                 if (card) {
@@ -523,7 +508,7 @@
         startAutoplay();
 
         // ----------------------------------------------------
-        // 4. MODAL LOGIC (Original Colors)
+        // 4. MODAL LOGIC
         // ----------------------------------------------------
         function openModal(index) {
             const ach = PORTFOLIO_CONFIG.achievements[index];
@@ -534,7 +519,6 @@
             document.getElementById('modal-title').innerText = ach.title;
             document.getElementById('modal-desc').innerText = ach.innerDesc;
             img.src = ach.image;
-            // Removed grayscale here as well
             img.className = `w-full h-full max-h-80 object-cover ${ach.rotation ? ach.rotation : ''}`;
 
             modal.classList.remove('hidden');
@@ -643,4 +627,4 @@
         updateDeficitDashboard();
     </script>
 </body>
-</html>
+                                                                                               </html>
