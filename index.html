@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>V Gurunagaraj | Sustainable Infrastructure & Data Science</title>
+    <title>V Gurunagaraj | Sustainable Infrastructure Engineering</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -41,10 +41,11 @@
         #intro-city {
             position: absolute;
             inset: -10%; 
-            background-image: url('https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1920&q=80'); 
+            /* Big Building / Urbanization Photo */
+            background-image: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center;
-            opacity: 0.5;
+            opacity: 0.6;
             transition: transform 3s cubic-bezier(0.25, 1, 0.5, 1), filter 3s ease, opacity 2.5s ease;
         }
         
@@ -199,7 +200,7 @@
         .cost-carousel {
             position: relative;
             width: 100%;
-            height: 250px; /* Fixed height for the rotating cards */
+            height: 250px; 
             overflow: hidden;
         }
         .cost-card {
@@ -208,8 +209,8 @@
             left: 0;
             width: 100%;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
-            pointer-events: none; /* Only the active card should be clickable if needed */
+            transition: opacity 0.8s ease-in-out;
+            pointer-events: none; 
         }
         .cost-card.active {
             opacity: 1;
@@ -226,7 +227,7 @@
 </head>
 <body class="antialiased min-h-screen relative">
 
-    <!-- INTRO ANIMATION SCREEN (Sound removed) -->
+    <!-- INTRO ANIMATION SCREEN -->
     <div id="intro-screen">
         <div id="intro-city"></div>
         <div id="intro-forest"></div>
@@ -315,7 +316,6 @@
     </nav>
 
     <!-- SECTION 1: Hero & About Me -->
-    <!-- Reduced vertical padding for mobile: py-16 md:py-24 -->
     <section id="about" class="min-h-screen flex items-center justify-center pt-24 pb-16 md:pt-32 md:pb-24 px-4 relative z-10">
         <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center reveal">
             <div class="flex justify-center relative">
@@ -324,14 +324,17 @@
             </div>
             
             <div class="glass-panel p-8 relative z-20">
-                <h2 class="text-gray-400 font-bold tracking-widest uppercase mb-2 text-sm">Civil Engineer & Data Analyst</h2>
-                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white">Bridging <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-white">Infrastructure</span> & Intelligence.</h1>
+                <h2 class="text-gray-400 font-bold tracking-widest uppercase mb-2 text-sm">Civil Engineering Professional</h2>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white">Bridging <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-white">Infrastructure</span> & Ecology.</h1>
+                
+                <!-- NEW PROFESSIONAL BIO -->
                 <p class="text-gray-300 text-base mb-4 leading-relaxed">
-                    I am a driven Civil Engineering and Data Analytics professional, formed at <strong>REVA University</strong>, with a deep passion for redefining how we build the world. My core mission is environmental protection through smart data and sustainable technology.
+                    I am a dedicated Civil Engineering professional with a deep passion for redefining how we build the world. My core mission is environmental protection through sustainable infrastructure and innovative technology.
                 </p>
                 <p class="text-gray-300 text-base mb-8 leading-relaxed">
-                    By bridging the gap between traditional infrastructure and next-generation intelligence—leveraging IoT, Big Data, and embedded systems—I engineer eco-conscious smart cities designed to actively reduce carbon footprints and revitalize our natural ecosystems.
+                    By bridging the gap between traditional construction and next-generation green practices, I engineer eco-conscious systems—from smart wastewater management to sustainable city planning—designed to actively reduce carbon footprints and revitalize our natural ecosystems.
                 </p>
+
                 <div class="flex flex-wrap gap-4 relative z-30">
                     <a href="https://www.linkedin.com/in/vgurunagarajcivilengineer/" target="_blank" class="glass-btn" onclick="vibrateBtn()">LinkedIn Profile</a>
                     <a href="https://github.com/GURUNAGARAJ-V" target="_blank" class="glass-btn" onclick="vibrateBtn()">GitHub Vault</a>
@@ -369,7 +372,6 @@
                         </div>
                     </div>
 
-                    <!-- Dynamic Calculator -->
                     <div class="glass-panel p-6 reveal border-l-4 border-l-gray-300 relative z-30">
                         <h3 class="text-lg font-bold mb-1 text-white">Dynamic Carbon Offset Calculator</h3>
                         <p id="calc-material-type" class="text-[10px] text-gray-500 mb-4 uppercase tracking-widest font-bold">Currently Calculating: Heavy Materials</p>
@@ -413,20 +415,18 @@
         </div>
     </section>
 
-    <!-- NEW SECTION 3: ENDLESS API TRIVIA GAME -->
+    <!-- NEW SECTION 3: CUSTOM ENDLESS CIVIL TRIVIA GAME -->
     <section id="game-section" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10 bg-black/40">
         <div class="max-w-4xl mx-auto glass-panel p-8 reveal text-center min-h-[450px] flex flex-col">
             <h2 class="text-3xl font-bold mb-2 text-white">Eco-Intelligence <span class="text-gray-400">Challenge</span></h2>
-            <p class="text-gray-400 text-sm mb-8">Test your knowledge with endless questions fetched from the OpenTDB API.</p>
+            <p class="text-gray-400 text-sm mb-8">Test your knowledge on sustainable infrastructure and environmental engineering.</p>
             
             <div id="game-container" class="max-w-lg mx-auto text-left w-full flex-1 flex flex-col justify-center">
-                <!-- Loading State -->
-                <div id="game-loading" class="text-center text-emerald-400 font-mono animate-pulse">Initializing API...</div>
                 
                 <!-- Game Board -->
-                <div id="game-board" class="hidden">
+                <div id="game-board">
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-xs font-bold text-gray-500 tracking-widest uppercase">Live Challenge</span>
+                        <span class="text-xs font-bold text-gray-500 tracking-widest uppercase">Endless Trivia</span>
                         <span id="score-counter" class="text-xs font-bold text-emerald-400 bg-emerald-900/30 px-2 py-1 rounded">Streak: 0</span>
                     </div>
                     <h3 id="game-question" class="text-xl font-semibold text-white mb-6">Question goes here?</h3>
@@ -435,12 +435,12 @@
                     </div>
                 </div>
 
-                <!-- Explanation/Result Card (Hidden initially) -->
+                <!-- Explanation/Result Card -->
                 <div id="game-explanation" class="hidden text-center py-4">
                     <div id="explain-icon" class="text-5xl mb-4"></div>
                     <h3 class="text-2xl font-bold mb-2" id="explain-title">Correct!</h3>
-                    <p class="text-gray-300 text-sm mb-6 bg-black/40 p-4 rounded-lg border border-gray-700">
-                        The correct answer is: <strong id="explain-correct-answer" class="text-white"></strong>
+                    <p class="text-gray-300 text-sm mb-6 bg-black/40 p-4 rounded-lg border border-gray-700 leading-relaxed">
+                        <span id="explain-reasoning"></span>
                     </p>
                     <button onclick="displayNextQuestion(); vibrateBtn()" class="glass-btn">Next Question →</button>
                 </div>
@@ -448,7 +448,7 @@
         </div>
     </section>
 
-    <!-- NEW SECTION 4: THE ENVIRONMENTAL COST (Interactive Carousel) -->
+    <!-- NEW SECTION 4: THE ENVIRONMENTAL COST (Fast Unlimited Carousel) -->
     <section id="cost-section" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10 overflow-hidden">
         <!-- Background Video Loop -->
         <video class="video-bg" autoplay loop muted playsinline>
@@ -461,46 +461,38 @@
                 <p class="text-gray-300 max-w-2xl mx-auto drop-shadow-md text-sm md:text-base">When traditional infrastructure scales without ecological foresight, the damage is catastrophic. We must engineer against these realities.</p>
             </div>
 
-            <!-- Automated Carousel for Cost Cards -->
-            <div class="cost-carousel reveal">
-                <!-- Card 1 -->
+            <!-- Fast Automated Carousel (Changes every 2s) -->
+            <div class="cost-carousel reveal" id="fast-carousel">
                 <div class="cost-card active glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">🏭</div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Urban Heat Islands</h3>
-                    <p class="text-sm md:text-base text-gray-400">Excessive concrete and asphalt trap heat, raising city temperatures by up to 5°F and drastically increasing energy consumption for cooling systems.</p>
+                    <div class="text-5xl mb-4">🏭</div><h3 class="text-2xl font-bold text-white mb-2">Urban Heat Islands</h3><p class="text-sm md:text-base text-gray-400">Concrete and asphalt trap heat, raising city temps drastically.</p>
                 </div>
-                <!-- Card 2 -->
                 <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">🌊</div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Wastewater Runoff</h3>
-                    <p class="text-sm md:text-base text-gray-400">Poor drainage planning causes untreated stormwater to flood local ecosystems, destroying aquatic life and contaminating drinking supplies with heavy metals.</p>
+                    <div class="text-5xl mb-4">🌊</div><h3 class="text-2xl font-bold text-white mb-2">Wastewater Runoff</h3><p class="text-sm md:text-base text-gray-400">Poor drainage floods ecosystems, contaminating drinking supplies.</p>
                 </div>
-                <!-- Card 3 -->
                 <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">🗑️</div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Material Waste Crisis</h3>
-                    <p class="text-sm md:text-base text-gray-400">The construction sector contributes to 30% of total global waste. Without BIM and smart planning, millions of tons of reusable material rot in landfills.</p>
+                    <div class="text-5xl mb-4">🗑️</div><h3 class="text-2xl font-bold text-white mb-2">Material Waste Crisis</h3><p class="text-sm md:text-base text-gray-400">Construction contributes to 30% of global waste in landfills.</p>
                 </div>
-                <!-- Card 4 -->
                 <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">🌲</div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Habitat Fragmentation</h3>
-                    <p class="text-sm md:text-base text-gray-400">Unchecked highway expansion cuts through critical biodiversity zones, leading to species decline and disrupting natural migration patterns permanently.</p>
+                    <div class="text-5xl mb-4">🌲</div><h3 class="text-2xl font-bold text-white mb-2">Habitat Fragmentation</h3><p class="text-sm md:text-base text-gray-400">Highway expansion disrupts natural migration patterns permanently.</p>
                 </div>
-                <!-- Card 5 -->
                 <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">💨</div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Particulate Pollution</h3>
-                    <p class="text-sm md:text-base text-gray-400">Inefficient construction zones release massive amounts of PM2.5 dust, severely degrading local air quality and increasing respiratory diseases in urban centers.</p>
+                    <div class="text-5xl mb-4">💨</div><h3 class="text-2xl font-bold text-white mb-2">Particulate Pollution</h3><p class="text-sm md:text-base text-gray-400">Inefficient construction zones release massive PM2.5 dust clouds.</p>
                 </div>
-            </div>
-            <!-- Progress indicator for carousel -->
-            <div class="flex justify-center gap-2 mt-6" id="carousel-indicators">
-                <div class="w-2 h-2 rounded-full bg-white transition-opacity duration-300"></div>
-                <div class="w-2 h-2 rounded-full bg-gray-600 transition-opacity duration-300"></div>
-                <div class="w-2 h-2 rounded-full bg-gray-600 transition-opacity duration-300"></div>
-                <div class="w-2 h-2 rounded-full bg-gray-600 transition-opacity duration-300"></div>
-                <div class="w-2 h-2 rounded-full bg-gray-600 transition-opacity duration-300"></div>
+                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
+                    <div class="text-5xl mb-4">💧</div><h3 class="text-2xl font-bold text-white mb-2">Groundwater Depletion</h3><p class="text-sm md:text-base text-gray-400">Over-extraction for urban use leads to severe land subsidence.</p>
+                </div>
+                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
+                    <div class="text-5xl mb-4">🚗</div><h3 class="text-2xl font-bold text-white mb-2">Traffic Congestion</h3><p class="text-sm md:text-base text-gray-400">Poor civil layouts exponentially increase idle vehicle emissions.</p>
+                </div>
+                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
+                    <div class="text-5xl mb-4">🏜️</div><h3 class="text-2xl font-bold text-white mb-2">Soil Degradation</h3><p class="text-sm md:text-base text-gray-400">Urban sprawl strips topsoil, destroying natural agricultural viability.</p>
+                </div>
+                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
+                    <div class="text-5xl mb-4">🔊</div><h3 class="text-2xl font-bold text-white mb-2">Noise Pollution</h3><p class="text-sm md:text-base text-gray-400">Unbuffered infrastructure leads to severe urban psychological stress.</p>
+                </div>
+                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
+                    <div class="text-5xl mb-4">💡</div><h3 class="text-2xl font-bold text-white mb-2">Light Pollution</h3><p class="text-sm md:text-base text-gray-400">Over-illumination disrupts nocturnal wildlife and wastes immense energy.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -520,19 +512,15 @@
     <footer class="relative z-10 bg-black pt-12 pb-6 border-t border-gray-800">
         <div class="max-w-6xl mx-auto px-4 mb-8">
             <div class="glass-panel p-6 bg-white/5 text-left border-gray-700">
-                <h4 class="text-xs font-bold text-emerald-400 tracking-widest uppercase mb-4">Live Data Integrations & Sources</h4>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-gray-400">
+                <h4 class="text-xs font-bold text-emerald-400 tracking-widest uppercase mb-4">Data Integrations & Sources</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-gray-400">
                     <div>
                         <strong class="text-gray-200 block mb-1">Impact Dashboard Math:</strong>
-                        Based on annual material production algorithms derived from UN Environment Programme & IEA averages, divided by millisecond.
+                        Based on annual material production algorithms derived from UN Environment Programme & IEA averages.
                     </div>
                     <div>
                         <strong class="text-gray-200 block mb-1">Global Tree Counter:</strong>
-                        Simulated live pacing based on 2025 cumulative data from global NGO reforestation counters (approx 120-150M trees/year).
-                    </div>
-                    <div>
-                        <strong class="text-gray-200 block mb-1">Eco-Intelligence API:</strong>
-                        Questions fetched dynamically via the Open Trivia Database (OpenTDB), Category 17 (Science & Nature).
+                        Simulated live pacing based on cumulative data from global NGO reforestation counters.
                     </div>
                 </div>
             </div>
@@ -575,18 +563,16 @@
             if (navigator.vibrate) navigator.vibrate(15); 
         }
         function vibrateRollingWin() {
-            // Complex rolling pattern for correct answer
             if (navigator.vibrate) {
                 navigator.vibrate([50, 50, 100, 50, 150, 50, 200, 50, 250, 50, 200, 50, 150, 50, 100, 50, 50]); 
             }
         }
         function vibrateError() {
-            // Short sharp buzz for wrong answer
             if (navigator.vibrate) navigator.vibrate([100, 50, 100]); 
         }
 
         // ----------------------------------------------------
-        // 0.5 CINEMATIC INTRO ANIMATION (No Sound)
+        // 0.5 CINEMATIC INTRO ANIMATION
         // ----------------------------------------------------
         function startExperience() {
             vibrateBtn();
@@ -595,23 +581,14 @@
             const forestBg = document.getElementById('intro-forest');
             const ui = document.getElementById('intro-ui');
             
-            // Hide UI text instantly
             ui.style.opacity = '0';
-
-            // Trigger Fast Zoom on City
             cityBg.classList.add('zoom-city');
 
-            // Wait a moment, then reveal the lush forest
-            setTimeout(() => {
-                forestBg.classList.add('reveal-forest');
-            }, 800);
+            setTimeout(() => { forestBg.classList.add('reveal-forest'); }, 800);
 
-            // Fade entire overlay away into the portfolio
             setTimeout(() => {
                 introScreen.style.opacity = '0';
-                setTimeout(() => {
-                    introScreen.style.display = 'none';
-                }, 1500);
+                setTimeout(() => { introScreen.style.display = 'none'; }, 1500);
             }, 3500);
         }
 
@@ -653,7 +630,8 @@
             { text: "Infrastructure is the foundation, sustainability is the blueprint.", author: "Green Tech Vision" },
             { text: "The greatest threat to our planet is the belief that someone else will save it.", author: "Robert Swan" },
             { text: "Building responsibly today ensures we have a world to engineer tomorrow.", author: "Civil Eco-Mandate" },
-            { text: "Sustainability is no longer about doing less harm. It’s about doing more good.", author: "Jochen Zeitz" }
+            { text: "Sustainability is no longer about doing less harm. It’s about doing more good.", author: "Jochen Zeitz" },
+            { text: "Design is not just what it looks like and feels like. Design is how it works.", author: "Steve Jobs" }
         ];
         
         let currentQuoteIndex = 0;
@@ -682,31 +660,18 @@
         setInterval(cycleQuotes, 8000);
 
         // ----------------------------------------------------
-        // 3. COST OF POOR PLANNING CAROUSEL LOGIC
+        // 3. FAST COST OF POOR PLANNING CAROUSEL LOGIC (2s)
         // ----------------------------------------------------
-        const costCards = document.querySelectorAll('.cost-card');
-        const indicators = document.querySelectorAll('#carousel-indicators div');
+        const costCards = document.querySelectorAll('#fast-carousel .cost-card');
         let currentCardIndex = 0;
 
         function rotateCostCards() {
-            // Remove active from all
             costCards.forEach(card => card.classList.remove('active'));
-            indicators.forEach(dot => {
-                dot.classList.remove('bg-white');
-                dot.classList.add('bg-gray-600');
-            });
-            
-            // Increment index
             currentCardIndex = (currentCardIndex + 1) % costCards.length;
-            
-            // Add active to new current
             costCards[currentCardIndex].classList.add('active');
-            indicators[currentCardIndex].classList.remove('bg-gray-600');
-            indicators[currentCardIndex].classList.add('bg-white');
         }
-
-        // Rotate every 4.5 seconds (estimated reading time)
-        setInterval(rotateCostCards, 4500);
+        // Change card every 2 seconds
+        setInterval(rotateCostCards, 2000);
 
 
         // ----------------------------------------------------
@@ -926,85 +891,93 @@
         updateDeficitDashboard();
 
         // ----------------------------------------------------
-        // 6. ENDLESS API TRIVIA GAME LOGIC (Pre-fetched for speed)
+        // 6. CUSTOM CIVIL ENGINEERING TRIVIA LOGIC (Fast & Explanatory)
         // ----------------------------------------------------
-        let questionPool = [];
-        let currentQuestion = null;
+        const ecoQuestions = [
+            {
+                q: "Which material is a highly sustainable, recycled alternative often added to traditional Portland cement?",
+                options: ["Fly Ash", "Asphalt", "PVC Plastics", "Fiberglass"],
+                correct: "Fly Ash",
+                explanation: "Fly ash is an industrial byproduct that, when mixed with cement, dramatically reduces the carbon footprint of concrete while improving its long-term durability."
+            },
+            {
+                q: "What is the primary ecological goal of installing a 'Green Roof' on urban infrastructure?",
+                options: ["Reduce building weight", "Mitigate the urban heat island effect", "Increase aerodynamic wind resistance", "Provide outdoor storage"],
+                correct: "Mitigate the urban heat island effect",
+                explanation: "Green roofs absorb heat, provide natural insulation, lower urban temperatures, and act as a sponge to manage hazardous stormwater runoff."
+            },
+            {
+                q: "In civil engineering, what does 'BIM' stand for?",
+                options: ["Building Information Modeling", "Basic Infrastructure Metrics", "Base Interior Materials", "Bridge Integration Management"],
+                correct: "Building Information Modeling",
+                explanation: "BIM is a digital representation of physical and functional characteristics of a facility. It allows engineers to optimize material usage and reduce waste before construction even begins."
+            },
+            {
+                q: "Which urban planning strategy focuses on creating walkable, mixed-use areas to reduce car dependency?",
+                options: ["Urban Sprawl", "Transit-Oriented Development (TOD)", "Zoning Isolation", "Suburban Tracts"],
+                correct: "Transit-Oriented Development (TOD)",
+                explanation: "TOD maximizes the amount of residential, business, and leisure space within walking distance of public transport, heavily reducing carbon emissions from idle traffic."
+            },
+            {
+                q: "What is 'Permeable Pavement' designed to prevent?",
+                options: ["Traffic accidents", "Stormwater runoff and flooding", "Potholes", "Heat absorption"],
+                correct: "Stormwater runoff and flooding",
+                explanation: "Permeable pavement allows water to seep through its surface into the ground below, filtering out pollutants and preventing local sewer systems from overflowing during storms."
+            }
+        ];
+
+        let currentEcoQuestion = null;
         let gameStreak = 0;
 
-        function decodeHtml(html) {
-            var txt = document.createElement("textarea");
-            txt.innerHTML = html;
-            return txt.value;
-        }
-
-        // Pre-fetch 10 questions at once to eliminate loading lag between questions
-        async function fetchQuestionPool() {
-            const loading = document.getElementById('game-loading');
-            try {
-                const response = await fetch('https://opentdb.com/api.php?amount=10&category=17&type=multiple');
-                const data = await response.json();
-                
-                if (data.response_code === 0) {
-                    questionPool = data.results;
-                    displayNextQuestion();
-                } else {
-                    loading.innerText = "Error loading API. Retrying...";
-                    setTimeout(fetchQuestionPool, 2000);
-                }
-            } catch (error) {
-                loading.innerText = "Connection error. Please check your internet.";
+        // Shuffle array so it's different every time
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
             }
         }
+        shuffle(ecoQuestions);
 
         function displayNextQuestion() {
-            const loading = document.getElementById('game-loading');
             const board = document.getElementById('game-board');
             const explanation = document.getElementById('game-explanation');
             
             explanation.classList.add('hidden');
             
-            // If pool is empty, fetch more
-            if (questionPool.length === 0) {
-                board.classList.add('hidden');
-                loading.classList.remove('hidden');
-                fetchQuestionPool();
-                return;
-            }
+            // Endless loop logic
+            currentEcoQuestion = ecoQuestions.pop();
+            // Put it back at the beginning of the array so we never run out
+            ecoQuestions.unshift(currentEcoQuestion);
 
-            // Get next question
-            currentQuestion = questionPool.pop();
-            const correctAns = decodeHtml(currentQuestion.correct_answer);
+            document.getElementById('game-question').innerText = currentEcoQuestion.q;
             
-            document.getElementById('game-question').innerText = decodeHtml(currentQuestion.question);
-            
-            let answers = [...currentQuestion.incorrect_answers.map(decodeHtml), correctAns];
-            answers.sort(() => Math.random() - 0.5); 
+            // Shuffle options
+            let answers = [...currentEcoQuestion.options];
+            shuffle(answers);
             
             const optionsContainer = document.getElementById('game-options');
             optionsContainer.innerHTML = ''; 
             
             answers.forEach(answer => {
-                const isCorrect = (answer === correctAns);
+                const isCorrect = (answer === currentEcoQuestion.correct);
                 optionsContainer.innerHTML += `
-                    <div class="game-option" onclick="checkAnswer(this, ${isCorrect}, '${correctAns.replace(/'/g, "\\'")}')">
+                    <div class="game-option" onclick="checkAnswer(this, ${isCorrect}, '${currentEcoQuestion.correct.replace(/'/g, "\\'")}', '${currentEcoQuestion.explanation.replace(/'/g, "\\'")}')">
                         ${answer}
                     </div>
                 `;
             });
             
-            loading.classList.add('hidden');
             board.classList.remove('hidden');
         }
 
-        function checkAnswer(element, isCorrect, correctAnswerText) {
+        function checkAnswer(element, isCorrect, correctAnswerText, explanationText) {
             document.querySelectorAll('.game-option').forEach(el => el.style.pointerEvents = 'none');
             
             const board = document.getElementById('game-board');
             const explanation = document.getElementById('game-explanation');
             const explainTitle = document.getElementById('explain-title');
             const explainIcon = document.getElementById('explain-icon');
-            const explainAnswer = document.getElementById('explain-correct-answer');
+            const explainReasoning = document.getElementById('explain-reasoning');
 
             if (isCorrect) {
                 element.classList.add('correct');
@@ -1017,7 +990,7 @@
                     explainIcon.innerText = "🌟";
                     explainTitle.innerText = "Correct!";
                     explainTitle.classList.replace('text-red-400', 'text-emerald-400');
-                    explainAnswer.innerText = correctAnswerText;
+                    explainReasoning.innerHTML = `<strong>Answer: ${correctAnswerText}</strong><br><br>${explanationText}`;
                     explanation.classList.remove('hidden');
                 }, 600);
             } else {
@@ -1035,14 +1008,14 @@
                     explainIcon.innerText = "❌";
                     explainTitle.innerText = "Incorrect";
                     explainTitle.classList.replace('text-emerald-400', 'text-red-400');
-                    explainAnswer.innerText = correctAnswerText;
+                    explainReasoning.innerHTML = `<strong>The correct answer was: ${correctAnswerText}</strong><br><br>${explanationText}`;
                     explanation.classList.remove('hidden');
                 }, 1200);
             }
         }
         
-        // Start the game initialization
-        fetchQuestionPool();
+        // Start the game immediately
+        displayNextQuestion();
 
     </script>
 </body>
