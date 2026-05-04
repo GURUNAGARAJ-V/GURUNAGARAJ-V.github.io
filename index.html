@@ -41,7 +41,6 @@
         #intro-city {
             position: absolute;
             inset: -10%; 
-            /* Big Building / Urbanization Photo */
             background-image: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center;
@@ -114,25 +113,47 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Monochrome Glass Buttons */
+        /* ----------------------------------------- */
+        /* UPGRADED: PREMIUM LIQUID GLASS BUTTONS    */
+        /* ----------------------------------------- */
         .glass-btn {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.4);
             color: #ffffff;
             padding: 0.5rem 1.5rem;
             border-radius: 9999px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
             z-index: 50;
             position: relative;
+            overflow: hidden;
         }
+        
+        /* The liquid sheen sweep */
+        .glass-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: all 0.6s ease;
+        }
+        
+        .glass-btn:hover::before {
+            left: 200%;
+        }
+
         .glass-btn:hover, .glass-btn.active {
-            background: rgba(255, 255, 255, 0.9);
-            color: #000000;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+            box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px) scale(1.02);
+            color: #ffffff;
         }
 
         /* Scroll Animations */
@@ -209,7 +230,6 @@
             left: 0;
             width: 100%;
             opacity: 0;
-            /* SMOOTHER TRANSITION ADDED HERE (1.2s ease-in-out) */
             transition: opacity 1.2s ease-in-out;
             pointer-events: none; 
         }
@@ -372,7 +392,6 @@
                         </div>
                     </div>
 
-                    <!-- Dynamic Calculator -->
                     <div class="glass-panel p-6 reveal border-l-4 border-l-gray-300 relative z-30">
                         <h3 class="text-lg font-bold mb-1 text-white">Dynamic Carbon Offset Calculator</h3>
                         <p id="calc-material-type" class="text-[10px] text-gray-500 mb-4 uppercase tracking-widest font-bold">Currently Calculating: Heavy Materials</p>
@@ -416,7 +435,7 @@
         </div>
     </section>
 
-    <!-- NEW SECTION 3: CUSTOM ENDLESS CIVIL TRIVIA GAME -->
+    <!-- SECTION 3: CUSTOM ENDLESS CIVIL TRIVIA GAME -->
     <section id="game-section" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10 bg-black/40">
         <div class="max-w-4xl mx-auto glass-panel p-8 reveal text-center min-h-[450px] flex flex-col">
             <h2 class="text-3xl font-bold mb-2 text-white">Eco-Intelligence <span class="text-gray-400">Challenge</span></h2>
@@ -424,7 +443,6 @@
             
             <div id="game-container" class="max-w-lg mx-auto text-left w-full flex-1 flex flex-col justify-center">
                 
-                <!-- Game Board -->
                 <div id="game-board">
                     <div class="flex justify-between items-center mb-4">
                         <span class="text-xs font-bold text-gray-500 tracking-widest uppercase">Endless Trivia</span>
@@ -436,7 +454,6 @@
                     </div>
                 </div>
 
-                <!-- Explanation/Result Card -->
                 <div id="game-explanation" class="hidden text-center py-4">
                     <div id="explain-icon" class="text-5xl mb-4"></div>
                     <h3 class="text-2xl font-bold mb-2" id="explain-title">Correct!</h3>
@@ -449,7 +466,7 @@
         </div>
     </section>
 
-    <!-- NEW SECTION 4: THE ENVIRONMENTAL COST (Fast Unlimited Carousel) -->
+    <!-- SECTION 4: THE ENVIRONMENTAL COST (Interactive Expandable Cards) -->
     <section id="cost-section" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10 overflow-hidden">
         <!-- Background Video Loop -->
         <video class="video-bg" autoplay loop muted playsinline>
@@ -459,42 +476,15 @@
         <div class="max-w-3xl mx-auto relative z-10 text-center">
             <div class="mb-10 reveal">
                 <h2 class="text-3xl font-bold mb-4 text-white">The Cost of <span class="text-red-400">Poor Planning</span></h2>
-                <p class="text-gray-300 max-w-2xl mx-auto drop-shadow-md text-sm md:text-base">When traditional infrastructure scales without ecological foresight, the damage is catastrophic. We must engineer against these realities.</p>
+                <p class="text-gray-300 max-w-2xl mx-auto drop-shadow-md text-sm md:text-base">When traditional infrastructure scales without ecological foresight, the damage is catastrophic. Click any active scenario to see how we engineer the solution.</p>
             </div>
 
             <!-- Fast Automated Carousel (Changes every 4s) -->
-            <div class="cost-carousel reveal" id="fast-carousel">
-                <div class="cost-card active glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">🏭</div><h3 class="text-2xl font-bold text-white mb-2">Urban Heat Islands</h3><p class="text-sm md:text-base text-gray-400">Concrete and asphalt trap heat, raising city temps drastically.</p>
-                </div>
-                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">🌊</div><h3 class="text-2xl font-bold text-white mb-2">Wastewater Runoff</h3><p class="text-sm md:text-base text-gray-400">Poor drainage floods ecosystems, contaminating drinking supplies.</p>
-                </div>
-                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">🗑️</div><h3 class="text-2xl font-bold text-white mb-2">Material Waste Crisis</h3><p class="text-sm md:text-base text-gray-400">Construction contributes to 30% of global waste in landfills.</p>
-                </div>
-                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">🌲</div><h3 class="text-2xl font-bold text-white mb-2">Habitat Fragmentation</h3><p class="text-sm md:text-base text-gray-400">Highway expansion disrupts natural migration patterns permanently.</p>
-                </div>
-                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">💨</div><h3 class="text-2xl font-bold text-white mb-2">Particulate Pollution</h3><p class="text-sm md:text-base text-gray-400">Inefficient construction zones release massive PM2.5 dust clouds.</p>
-                </div>
-                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">💧</div><h3 class="text-2xl font-bold text-white mb-2">Groundwater Depletion</h3><p class="text-sm md:text-base text-gray-400">Over-extraction for urban use leads to severe land subsidence.</p>
-                </div>
-                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">🚗</div><h3 class="text-2xl font-bold text-white mb-2">Traffic Congestion</h3><p class="text-sm md:text-base text-gray-400">Poor civil layouts exponentially increase idle vehicle emissions.</p>
-                </div>
-                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">🏜️</div><h3 class="text-2xl font-bold text-white mb-2">Soil Degradation</h3><p class="text-sm md:text-base text-gray-400">Urban sprawl strips topsoil, destroying natural agricultural viability.</p>
-                </div>
-                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">🔊</div><h3 class="text-2xl font-bold text-white mb-2">Noise Pollution</h3><p class="text-sm md:text-base text-gray-400">Unbuffered infrastructure leads to severe urban psychological stress.</p>
-                </div>
-                <div class="cost-card glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center">
-                    <div class="text-5xl mb-4">💡</div><h3 class="text-2xl font-bold text-white mb-2">Light Pollution</h3><p class="text-sm md:text-base text-gray-400">Over-illumination disrupts nocturnal wildlife and wastes immense energy.</p>
-                </div>
+            <div class="cost-carousel reveal group" id="fast-carousel">
+                <!-- Javascript will inject the endless cost cards here -->
             </div>
+            
+            <p class="text-xs text-gray-500 mt-6 tracking-widest uppercase animate-pulse">Click the active card to view the solution</p>
         </div>
     </section>
 
@@ -509,7 +499,7 @@
         </div>
     </section>
 
-    <!-- NEW SECTION 6: API Data Transparency Footer -->
+    <!-- SECTION 6: API Data Transparency Footer -->
     <footer class="relative z-10 bg-black pt-12 pb-6 border-t border-gray-800">
         <div class="max-w-6xl mx-auto px-4 mb-8">
             <div class="glass-panel p-6 bg-white/5 text-left border-gray-700">
@@ -531,7 +521,7 @@
         </div>
     </footer>
 
-    <!-- MODAL POPUP LAYER -->
+    <!-- MODAL 1: ACHIEVEMENT POPUP LAYER -->
     <div id="achievement-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer" onclick="closeModal(); vibrateBtn()"></div>
 
@@ -551,6 +541,28 @@
                         <span>← Back to Portfolio</span>
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: COST OF PLANNING SOLUTIONS (Deep Blur) -->
+    <div id="cost-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <!-- Deep Blur Overlay -->
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-[40px] cursor-pointer" onclick="closeCostModal(); vibrateBtn()"></div>
+
+        <div class="relative z-10 glass-panel p-6 md:p-10 max-w-2xl w-full mx-4 transform scale-95 transition-transform duration-300 bg-black/70 border-emerald-900/50 shadow-2xl" id="cost-modal-box">
+            <div class="text-center">
+                <div id="cost-modal-icon" class="text-6xl mb-4"></div>
+                <h2 id="cost-modal-title" class="text-3xl font-bold text-white mb-2 leading-tight"></h2>
+                <div class="w-16 h-1 bg-red-500 mx-auto mb-4 rounded-full"></div>
+                <p id="cost-modal-desc" class="text-gray-400 text-sm mb-6"></p>
+                
+                <h3 class="text-lg font-bold text-emerald-400 mb-2 uppercase tracking-widest">How to Overcome</h3>
+                <p id="cost-modal-solution" class="text-gray-200 text-base leading-relaxed mb-8 bg-emerald-900/20 p-4 rounded-lg border border-emerald-800/50 shadow-inner"></p>
+                
+                <button onclick="closeCostModal(); vibrateBtn()" class="glass-btn w-full flex justify-center items-center gap-2">
+                    <span>← Back to Dashboard</span>
+                </button>
             </div>
         </div>
     </div>
@@ -661,18 +673,88 @@
         setInterval(cycleQuotes, 8000);
 
         // ----------------------------------------------------
-        // 3. COST OF POOR PLANNING CAROUSEL LOGIC (4s, Smooth)
+        // 3. EXPANDABLE "COST OF POOR PLANNING" CAROUSEL
         // ----------------------------------------------------
-        const costCards = document.querySelectorAll('#fast-carousel .cost-card');
-        let currentCardIndex = 0;
+        const costData = [
+            { icon: "🏭", title: "Urban Heat Islands", desc: "Concrete and asphalt trap heat, raising city temps drastically.", solution: "Implement green roofs, utilize high-albedo (reflective) materials, and integrate widespread urban canopy covers to naturally cool microclimates." },
+            { icon: "🌊", title: "Wastewater Runoff", desc: "Poor drainage floods ecosystems, contaminating drinking supplies.", solution: "Deploy permeable pavements, bioswales, and decentralized rainwater harvesting systems to absorb and filter runoff at the source." },
+            { icon: "🗑️", title: "Material Waste Crisis", desc: "Construction contributes to 30% of global waste in landfills.", solution: "Adopt Building Information Modeling (BIM) to optimize material quantities and enforce circular economy practices like concrete recycling." },
+            { icon: "🌲", title: "Habitat Fragmentation", desc: "Highway expansion disrupts natural migration patterns permanently.", solution: "Construct wildlife overpasses/underpasses and integrate bio-corridors into initial highway planning phases." },
+            { icon: "💨", title: "Particulate Pollution", desc: "Inefficient construction zones release massive PM2.5 dust clouds.", solution: "Mandate wet-suppression techniques, enclose dust-generating activities, and utilize prefabricated modular construction to minimize on-site cutting." },
+            { icon: "💧", title: "Groundwater Depletion", desc: "Over-extraction for urban use leads to severe land subsidence.", solution: "Mandate dual-plumbing networks for greywater recycling and enforce strict aquifer-recharge zoning laws." },
+            { icon: "🚗", title: "Traffic Congestion", desc: "Poor civil layouts exponentially increase idle vehicle emissions.", solution: "Transition to Transit-Oriented Development (TOD), implement smart traffic light algorithms, and prioritize dedicated non-motorized lanes." },
+            { icon: "🏜️", title: "Soil Degradation", desc: "Urban sprawl strips topsoil, destroying natural agricultural viability.", solution: "Promote high-density vertical development instead of outward sprawl, and mandate topsoil preservation/re-application protocols." },
+            { icon: "🔊", title: "Noise Pollution", desc: "Unbuffered infrastructure leads to severe urban psychological stress.", solution: "Integrate acoustic barriers using recycled materials, plant dense vegetation buffers, and specify noise-reducing asphalt mixes." },
+            { icon: "💡", title: "Light Pollution", desc: "Over-illumination disrupts nocturnal wildlife and wastes immense energy.", solution: "Install smart, motion-activated LED streetlights with full-cutoff fixtures that direct light exclusively downward." }
+        ];
+
+        let currentCostIndex = 0;
+        let costCarouselInterval;
+
+        function buildCostCarousel() {
+            const carousel = document.getElementById('fast-carousel');
+            let html = '';
+            costData.forEach((data, index) => {
+                let activeClass = index === 0 ? 'active' : '';
+                html += `
+                    <div class="cost-card ${activeClass} glass-panel p-8 bg-black/70 border-red-900/50 flex flex-col items-center justify-center cursor-pointer transition-all hover:border-red-500/80 group" onclick="openCostModal(${index}); vibrateBtn()">
+                        <div class="text-5xl mb-4 transition-transform group-hover:scale-110">${data.icon}</div>
+                        <h3 class="text-2xl font-bold text-white mb-2">${data.title}</h3>
+                        <p class="text-sm md:text-base text-gray-400">${data.desc}</p>
+                        <div class="mt-4 text-xs font-bold tracking-widest text-emerald-400 uppercase opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-emerald-900/40 px-3 py-1 rounded-full">Click for solution</div>
+                    </div>
+                `;
+            });
+            carousel.innerHTML = html;
+        }
+        buildCostCarousel();
 
         function rotateCostCards() {
+            const costCards = document.querySelectorAll('#fast-carousel .cost-card');
             costCards.forEach(card => card.classList.remove('active'));
-            currentCardIndex = (currentCardIndex + 1) % costCards.length;
-            costCards[currentCardIndex].classList.add('active');
+            currentCostIndex = (currentCostIndex + 1) % costCards.length;
+            costCards[currentCostIndex].classList.add('active');
         }
-        // Change card every 4 seconds (4000ms)
-        setInterval(rotateCostCards, 4000);
+        
+        // Start infinite 4s rotation
+        costCarouselInterval = setInterval(rotateCostCards, 4000);
+
+        // --- COST MODAL LOGIC ---
+        function openCostModal(index) {
+            clearInterval(costCarouselInterval); // Pause rotation while reading
+            const data = costData[index];
+            
+            document.getElementById('cost-modal-icon').innerText = data.icon;
+            document.getElementById('cost-modal-title').innerText = data.title;
+            document.getElementById('cost-modal-desc').innerText = data.desc;
+            document.getElementById('cost-modal-solution').innerText = data.solution;
+            
+            const modal = document.getElementById('cost-modal');
+            const contentBox = document.getElementById('cost-modal-box');
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                contentBox.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeCostModal() {
+            const modal = document.getElementById('cost-modal');
+            const contentBox = document.getElementById('cost-modal-box');
+            
+            modal.classList.add('opacity-0');
+            contentBox.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto'; 
+                // Resume rotation
+                costCarouselInterval = setInterval(rotateCostCards, 4000);
+            }, 300);
+        }
 
 
         // ----------------------------------------------------
@@ -689,7 +771,7 @@
         let draggedDistance = 0; 
         let autoplayInterval;
 
-        function buildCarousel() {
+        function buildPortfolioCarousel() {
             let carouselHTML = '';
             PORTFOLIO_CONFIG.achievements.forEach((ach, index) => {
                 const rotateClass = ach.rotation ? ach.rotation : '';
@@ -708,7 +790,7 @@
             });
             track.innerHTML = carouselHTML + carouselHTML + carouselHTML;
         }
-        buildCarousel();
+        buildPortfolioCarousel();
 
         carouselContainer.addEventListener('mousedown', (e) => {
             isDragging = true;
@@ -892,7 +974,7 @@
         updateDeficitDashboard();
 
         // ----------------------------------------------------
-        // 6. CUSTOM CIVIL ENGINEERING TRIVIA LOGIC (Fast & Explanatory)
+        // 6. CUSTOM CIVIL ENGINEERING TRIVIA LOGIC
         // ----------------------------------------------------
         const ecoQuestions = [
             {
@@ -930,7 +1012,6 @@
         let currentEcoQuestion = null;
         let gameStreak = 0;
 
-        // Shuffle array so it's different every time
         function shuffle(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -945,14 +1026,11 @@
             
             explanation.classList.add('hidden');
             
-            // Endless loop logic
             currentEcoQuestion = ecoQuestions.pop();
-            // Put it back at the beginning of the array so we never run out
-            ecoQuestions.unshift(currentEcoQuestion);
+            ecoQuestions.unshift(currentEcoQuestion); // Put back to bottom of stack
 
             document.getElementById('game-question').innerText = currentEcoQuestion.q;
             
-            // Shuffle options
             let answers = [...currentEcoQuestion.options];
             shuffle(answers);
             
@@ -1015,7 +1093,6 @@
             }
         }
         
-        // Start the game immediately
         displayNextQuestion();
 
     </script>
