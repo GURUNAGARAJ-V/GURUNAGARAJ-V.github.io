@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V Gurunagaraj | Sustainable Infrastructure & Data Science</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Professional Odometer Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-minimal.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
 
@@ -21,10 +23,39 @@
         }
 
         /* ----------------------------------------- */
+        /* INTRO ANIMATION LAYER                     */
+        /* ----------------------------------------- */
+        #intro-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.5s ease-in-out;
+        }
+        #intro-bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1920&q=80'); /* City */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4;
+            transition: background-image 2s ease-in-out, transform 3s ease-in-out;
+            transform: scale(1);
+        }
+        #intro-bg.forest-mode {
+            background-image: url('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1920&q=80'); /* Forest */
+            transform: scale(1.1);
+            opacity: 0.6;
+        }
+
+        /* ----------------------------------------- */
         /* CHAMELEON MOUSE BLOB EFFECT               */
         /* ----------------------------------------- */
         #cursor-blob {
-            /* Default color: Emerald to Cyan */
             background: radial-gradient(circle, rgba(16,185,129,0.6) 0%, rgba(6,182,212,0.4) 100%);
             height: 450px;
             aspect-ratio: 1;
@@ -36,7 +67,7 @@
             filter: blur(100px);
             z-index: 0;
             pointer-events: none;
-            transition: background 0.8s ease; /* Smoothly transitions between colors */
+            transition: background 0.8s ease; 
         }
         
         #blob-overlay {
@@ -115,7 +146,6 @@
         }
         .carousel-container::-webkit-scrollbar { display: none; }
         .carousel-container.grabbing { cursor: grabbing; }
-
         .carousel-track {
             display: flex;
             gap: 2rem;
@@ -123,9 +153,22 @@
             will-change: transform;
         }
         
+        /* Educational Game Styles */
+        .game-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .game-option:hover { background: rgba(255, 255, 255, 0.1); }
+        .game-option.correct { background: rgba(16, 185, 129, 0.3); border-color: rgba(16, 185, 129, 0.8); }
+        .game-option.wrong { background: rgba(239, 68, 68, 0.3); border-color: rgba(239, 68, 68, 0.8); }
+
         .odometer.odometer-theme-minimal .odometer-digit { color: #ffffff; }
-        .rotate-90 { transform: rotate(90deg); }
-        .-rotate-90 { transform: rotate(-90deg); }
+        .rotate-90 { transform: rotate(90deg) scale(1.3); }
+        .-rotate-90 { transform: rotate(-90deg) scale(1.3); }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
@@ -133,9 +176,22 @@
 </head>
 <body class="antialiased min-h-screen relative">
 
+    <!-- INTRO ANIMATION SCREEN -->
+    <div id="intro-screen">
+        <div id="intro-bg"></div>
+        <div class="z-10 text-center px-4">
+            <h1 id="intro-text" class="text-4xl md:text-6xl font-bold text-white mb-6 tracking-widest uppercase drop-shadow-2xl">Rebuilding Reality</h1>
+            <button onclick="startExperience()" class="glass-btn text-lg px-8 py-4">Enter Portfolio</button>
+        </div>
+        <!-- Sound Effect -->
+        <audio id="intro-audio" src="https://cdn.freesound.org/previews/411/411088_5121236-lq.mp3" preload="auto"></audio>
+    </div>
+
+    <!-- DYNAMIC BACKGROUND LIGHT ELEMENTS -->
     <div id="cursor-blob"></div>
     <div id="blob-overlay"></div>
 
+    <!-- "BACKEND" CONFIGURATION -->
     <script>
         const PORTFOLIO_CONFIG = {
             profilePhoto: "profile.jpg.jpeg", 
@@ -143,10 +199,10 @@
                 {
                     title: "Python 101 for Data Science (IBM)",
                     outerDesc: "Applying Python and Data analytics to modern infrastructure problems.",
-                    innerDesc: "Completed advanced professional certifications through IBM  focused on Python programming, data analytics, and big data management. This knowledge empowers me to process vast amounts of infrastructural telemetry data, translating raw numbers into actionable, eco-conscious civil engineering decisions.",
+                    innerDesc: "Completed advanced professional certifications through IBM focused on Python programming, data analytics, and big data management. This knowledge empowers me to process vast amounts of infrastructural telemetry data, translating raw numbers into actionable, eco-conscious civil engineering decisions.",
                     image: "project2.jpg.png",
                     rotation: "-rotate-90",
-                    themeColor: "rgba(59, 130, 246, 0.6)" // Blue Blob
+                    themeColor: "rgba(59, 130, 246, 0.6)" 
                 },
                 {
                     title: "AutoCAD & BIM Design",
@@ -154,7 +210,7 @@
                     innerDesc: "Certified in Advanced AutoCAD and Introduction to Building Information Modeling (BIM) via REVA University. My design philosophy bridges traditional civil engineering drafting with modern 3D intelligence, ensuring sustainable materials and efficient structural layouts are planned from the ground up.",
                     image: "project6.jpg.jpeg",
                     rotation: "-rotate-90",
-                    themeColor: "rgba(234, 179, 8, 0.5)" // Yellow Blob
+                    themeColor: "rgba(234, 179, 8, 0.5)" 
                 },
                 {
                     title: "Bio-Inspired Health Monitoring",
@@ -162,7 +218,7 @@
                     innerDesc: "Engineered a physical smart city infrastructure model demonstrating bio-inspired health monitoring. This project showcases the integration of high-throughput sensors that mimic biological nervous systems to track structural strain in real-time, preventing catastrophic failures and optimizing maintenance.",
                     image: "Project10.png",
                     rotation: "-rotate-90",
-                    themeColor: "rgba(16, 185, 129, 0.6)" // Emerald Blob
+                    themeColor: "rgba(16, 185, 129, 0.6)" 
                 },
                 {
                     title: "Waste Water & Embedded Systems",
@@ -170,28 +226,29 @@
                     innerDesc: "Successfully completed specialized training in Waste Water and Water Supply Engineering integrated with Embedded Systems. This expertise allows me to design automated, highly efficient water treatment and recycling plants that actively conserve resources and protect local ecosystems from contamination.",
                     image: "project5.jpg.jpeg",
                     rotation: "-rotate-90",
-                    themeColor: "rgba(239, 68, 68, 0.6)" // Red Blob
+                    themeColor: "rgba(239, 68, 68, 0.6)" 
                 },
                 {
                     title: "Extensive Survey Camp",
-                    outerDesc: "As Team Lead, I managed an extensive survey camp involving the design of a 750m highway, Water Supply, NTP, and Village Planning. I oversaw all field data collection, topographical mapping, and final project designs..",
-                    innerDesc: "As Team Lead, I managed an extensive survey camp involving the design of a 750m highway, Water Supply, NTP, and Village Planning. I oversaw all field data collection, topographical mapping, and final project designs..",
+                    outerDesc: "As Team Lead, I managed an extensive survey camp involving the design of a 750m highway, Water Supply, NTP, and Village Planning. I oversaw all field data collection, topographical mapping, and final project designs.",
+                    innerDesc: "As Team Lead, I managed an extensive survey camp involving the design of a 750m highway, Water Supply, NTP, and Village Planning. I oversaw all field data collection, topographical mapping, and final project designs.",
                     image: "project4.jpg.jpeg",
                     rotation: "-rotate-90",
-                    themeColor: "rgba(239, 68, 68, 0.6)" // Red Blob
+                    themeColor: "rgba(234, 179, 8, 0.5)" 
                 },
                 {
-                    title: "Waste Water & Embedded Systems",
+                    title: "Agri-Tech Exhibition Winner",
                     outerDesc: "Integrating embedded technology with water supply engineering.",
-                    innerDesc: "Thrilled to secure 2nd position at the REVA University Agri-Tech Exhibition! Bridging Civil Engineering with modern technology, I showcased an loT-integrated system for smart, sustainable sewage farming. This project transformed waste management by analyzing water quality, turning treated wastewater into a valuable agricultural resource.",
+                    innerDesc: "Thrilled to secure 2nd position at the REVA University Agri-Tech Exhibition! Bridging Civil Engineering with modern technology, I showcased an IoT-integrated system for smart, sustainable sewage farming. This project transformed waste management by analyzing water quality, turning treated wastewater into a valuable agricultural resource.",
                     image: "project1.jpg.jpeg",
                     rotation: "-rotate-90",
-                    themeColor: "rgba(239, 68, 68, 0.6)" // Red Blob
+                    themeColor: "rgba(16, 185, 129, 0.6)" 
                 }
             ]
         };
     </script>
 
+    <!-- Navigation & Quote Ticker -->
     <nav class="fixed w-full z-40 glass-panel border-b-0 border-x-0 rounded-none bg-opacity-30">
         <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center h-20">
             <div class="max-w-md w-full relative flex flex-col justify-center h-full">
@@ -200,13 +257,15 @@
             </div>
 
             <div class="space-x-6 text-sm font-medium hidden md:flex items-center ml-8 shrink-0">
-                <a href="#about" class="text-gray-400 hover:text-white transition">About</a>
-                <a href="#impact" class="text-gray-400 hover:text-white transition">Live Dashboard</a>
-                <a href="#achievements" class="text-gray-400 hover:text-white transition">Projects</a>
+                <a href="#about" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">About</a>
+                <a href="#impact" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">Dashboard</a>
+                <a href="#game-section" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">Eco-Game</a>
+                <a href="#achievements" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">Projects</a>
             </div>
         </div>
     </nav>
 
+    <!-- SECTION 1: Hero & About Me -->
     <section id="about" class="min-h-screen flex items-center justify-center pt-20 px-4 relative z-10">
         <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center reveal">
             <div class="flex justify-center relative">
@@ -217,33 +276,36 @@
             <div class="glass-panel p-8 relative z-20">
                 <h2 class="text-gray-400 font-bold tracking-widest uppercase mb-2 text-sm">Civil Engineer & Data Analyst</h2>
                 <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white">Bridging <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-white">Infrastructure</span> & Intelligence.</h1>
+                <!-- BIO REWRITTEN -->
                 <p class="text-gray-300 text-base mb-4 leading-relaxed">
-                    I am a Civil Engineering specialist at <strong>REVA University</strong> passionate about redefining how we build the world. My core mission is environmental protection through smart data and sustainable technology.
+                    I am a driven Civil Engineering and Data Analytics professional, formed at <strong>REVA University</strong>, with a deep passion for redefining how we build the world. My core mission is environmental protection through smart data and sustainable technology.
                 </p>
                 <p class="text-gray-300 text-base mb-8 leading-relaxed">
-                    With professional certifications in <strong>Data Science (IBM & HP)</strong> and expertise in <strong>Waste Water Management with Embedded Systems</strong>, I engineer eco-conscious, data-driven smart cities to reduce carbon footprints.
+                    By bridging the gap between traditional infrastructure and next-generation intelligence—leveraging IoT, Big Data, and embedded systems—I engineer eco-conscious smart cities designed to actively reduce carbon footprints and revitalize our natural ecosystems.
                 </p>
                 <div class="flex flex-wrap gap-4 relative z-30">
-                    <a href="https://www.linkedin.com/in/vgurunagarajcivilengineer/" target="_blank" class="glass-btn">LinkedIn Profile</a>
-                    <a href="https://github.com/GURUNAGARAJ-V" target="_blank" class="glass-btn">GitHub Vault</a>
+                    <a href="https://www.linkedin.com/in/vgurunagarajcivilengineer/" target="_blank" class="glass-btn" onclick="vibrateBtn()">LinkedIn Profile</a>
+                    <a href="https://github.com/GURUNAGARAJ-V" target="_blank" class="glass-btn" onclick="vibrateBtn()">GitHub Vault</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="impact" class="py-24 px-4 relative border-t border-b border-gray-800/50 z-10">
+    <!-- SECTION 2: Interactive Material Dashboard -->
+    <section id="impact" class="py-24 px-4 relative border-t border-gray-800/50 z-10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10 reveal">
                 <h2 class="text-3xl font-bold mb-4 text-white">Global Construction <span class="text-gray-300">Impact Ticker</span></h2>
                 <p class="text-gray-400 max-w-2xl mx-auto mb-8">Real-time estimations of global material production vs. actual environmental remediation efforts.</p>
                 
                 <div class="flex justify-center gap-4 flex-wrap relative z-30">
-                    <button onclick="switchMaterial('heavy')" id="btn-heavy" class="glass-btn active">Heavy Materials</button>
-                    <button onclick="switchMaterial('urban')" id="btn-urban" class="glass-btn">Urban Materials</button>
+                    <button onclick="switchMaterial('heavy'); vibrateBtn()" id="btn-heavy" class="glass-btn active">Heavy Materials</button>
+                    <button onclick="switchMaterial('urban'); vibrateBtn()" id="btn-urban" class="glass-btn">Urban Materials</button>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8">
+                <!-- Left Column -->
                 <div class="space-y-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="glass-panel p-6 text-center reveal group">
@@ -258,19 +320,22 @@
                         </div>
                     </div>
 
+                    <!-- Dynamic Calculator -->
                     <div class="glass-panel p-6 reveal border-l-4 border-l-gray-300 relative z-30">
                         <h3 class="text-lg font-bold mb-1 text-white">Dynamic Carbon Offset Calculator</h3>
                         <p id="calc-material-type" class="text-[10px] text-gray-500 mb-4 uppercase tracking-widest font-bold">Currently Calculating: Heavy Materials</p>
                         
                         <div class="flex gap-4 relative z-30">
-                            <input type="number" id="carbon-input" placeholder="Enter Tons of Material..." class="bg-black/60 border border-gray-600 rounded-lg px-4 py-2 text-white w-full outline-none focus:border-white shadow-inner relative z-30 pointer-events-auto">
-                            <button onclick="calculateTrees()" class="glass-btn whitespace-nowrap">Calculate Trees</button>
+                            <input type="number" id="carbon-input" placeholder="Enter Tons..." class="bg-black/60 border border-gray-600 rounded-lg px-4 py-2 text-white w-full outline-none focus:border-white shadow-inner relative z-30 pointer-events-auto">
+                            <button onclick="calculateTrees(); vibrateBtn()" class="glass-btn whitespace-nowrap">Calculate</button>
                         </div>
                         <div id="calc-result" class="mt-4 font-bold text-sm hidden text-white bg-white/10 p-4 rounded-lg border border-gray-600 leading-relaxed"></div>
                     </div>
                 </div>
 
+                <!-- Right Column -->
                 <div class="space-y-6">
+                    <!-- Global Tree API -->
                     <div class="glass-panel p-6 text-center reveal border border-gray-500/30">
                         <div class="flex justify-between items-center mb-2">
                             <h3 class="text-white text-sm font-bold tracking-widest uppercase">Global Trees Planted</h3>
@@ -282,17 +347,18 @@
                         <div class="text-gray-400 text-xs font-bold mt-2">Trees (Global 24h Avg Estimate)</div>
                     </div>
 
+                    <!-- Deficit Dashboard -->
                     <div class="glass-panel p-6 reveal border-t-4 border-t-red-900/50">
                         <h3 class="text-sm font-bold mb-4 text-gray-300 uppercase tracking-widest">Global Carbon Deficit Analysis</h3>
-                        <p class="text-xs text-gray-400 mb-6 leading-relaxed">Comparing current material production vs. actual global reforestation efforts. The gap represents structural environmental debt.</p>
+                        <p class="text-xs text-gray-400 mb-6 leading-relaxed">Comparing live material production vs. global reforestation. The percentage fluctuates as trees combat industrial output.</p>
                         
                         <div class="w-full bg-gray-900 rounded-full h-4 mb-2 overflow-hidden border border-gray-800 relative">
                             <div id="deficit-tree-bar" class="bg-gray-300 h-4 absolute left-0 top-0 z-20" style="width: 15%; transition: width 1s ease-in-out;"></div>
                             <div class="bg-gray-700 h-4 w-full absolute left-0 top-0 z-10"></div>
                         </div>
                         <div class="flex justify-between text-[10px] font-bold text-gray-500 uppercase tracking-widest">
-                            <span class="text-gray-300">Trees Planted (<span id="deficit-tree-pct">15%</span>)</span>
-                            <span>Carbon Debt (<span id="deficit-debt-pct">85%</span>)</span>
+                            <span class="text-gray-300">Trees Planted (<span id="deficit-tree-pct">15.00%</span>)</span>
+                            <span>Carbon Debt (<span id="deficit-debt-pct">85.00%</span>)</span>
                         </div>
                     </div>
                 </div>
@@ -300,35 +366,63 @@
         </div>
     </section>
 
-    <section id="achievements" class="py-24 px-4 overflow-hidden relative z-10">
+    <!-- NEW SECTION: EDUCATIONAL GAME -->
+    <section id="game-section" class="py-24 px-4 relative border-t border-gray-800/50 z-10 bg-black/40">
+        <div class="max-w-4xl mx-auto glass-panel p-8 reveal text-center">
+            <h2 class="text-3xl font-bold mb-2 text-white">Eco-Intelligence <span class="text-gray-400">Challenge</span></h2>
+            <p class="text-gray-400 text-sm mb-8">Test your knowledge on sustainable infrastructure. Answer correctly to unlock the final section!</p>
+            
+            <div id="game-container" class="max-w-lg mx-auto text-left">
+                <h3 id="game-question" class="text-xl font-semibold text-white mb-6">What is the most recycled material on the planet?</h3>
+                <div class="space-y-3" id="game-options">
+                    <div class="game-option" onclick="checkAnswer(this, false); vibrateBtn()">A) Plastic</div>
+                    <div class="game-option" onclick="checkAnswer(this, false); vibrateBtn()">B) Glass</div>
+                    <div class="game-option" onclick="checkAnswer(this, true); vibrateBtn()">C) Steel</div>
+                    <div class="game-option" onclick="checkAnswer(this, false); vibrateBtn()">D) Paper</div>
+                </div>
+            </div>
+            
+            <div id="game-win" class="hidden py-8">
+                <div class="text-5xl mb-4">🏆</div>
+                <h3 class="text-2xl font-bold text-emerald-400 mb-2">Excellent Knowledge!</h3>
+                <p class="text-gray-300">Steel is practically 100% recyclable without loss of quality. You understand the core of sustainable materials.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Scrolling Achievements Carousel -->
+    <section id="achievements" class="py-24 px-4 overflow-hidden relative border-t border-gray-800/50 z-10">
         <h2 class="text-3xl font-bold mb-16 text-center reveal text-white">Featured <span class="text-gray-400">Projects & Skills</span></h2>
         
         <div class="carousel-container reveal" id="carousel-grabbable-container">
             <div class="carousel-track" id="carousel-grabbable-track">
-                </div>
+                <!-- Javascript will inject sliding photos and text here -->
+            </div>
         </div>
     </section>
 
     <footer class="text-center py-8 text-gray-500 text-sm glass-panel border-b-0 border-x-0 rounded-none relative z-10">
-        <p>&copy; 2026 V Gurunagaraj. REVA University | Sustainable Engineering Specialist.</p>
+        <p>&copy; 2026 V Gurunagaraj. | Sustainable Engineering Professional.</p>
     </footer>
 
+    <!-- MODAL POPUP LAYER -->
     <div id="achievement-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer" onclick="closeModal()"></div>
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer" onclick="closeModal(); vibrateBtn()"></div>
 
         <div class="relative z-10 glass-panel p-6 md:p-10 max-w-4xl w-full mx-4 transform scale-95 transition-transform duration-300 bg-black/90 border-gray-500/50 shadow-2xl" id="modal-content-box">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition transform hover:rotate-90 duration-300">
+            <button onclick="closeModal(); vibrateBtn()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition transform hover:rotate-90 duration-300">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             <div class="flex flex-col md:flex-row gap-8 items-center">
-                <div class="w-full md:w-1/2 rounded-xl overflow-hidden border border-gray-700 shadow-lg bg-black flex items-center justify-center min-h-[250px]">
-                    <img id="modal-img" src="" alt="" class="w-full h-full max-h-80 object-cover">
+                <!-- Overflow hidden and object-center added to perfectly handle rotated images without breaking layout -->
+                <div class="w-full md:w-1/2 rounded-xl overflow-hidden border border-gray-700 shadow-lg bg-black flex items-center justify-center h-[300px]">
+                    <img id="modal-img" src="" alt="" class="w-full h-full object-cover object-center">
                 </div>
                 <div class="w-full md:w-1/2">
                     <h2 id="modal-title" class="text-3xl font-bold text-white mb-4 leading-tight"></h2>
                     <div class="w-16 h-1 bg-gray-400 mb-6 rounded-full"></div>
                     <p id="modal-desc" class="text-gray-300 text-base leading-relaxed mb-8"></p>
-                    <button onclick="closeModal()" class="glass-btn w-full md:w-auto flex justify-center items-center gap-2">
+                    <button onclick="closeModal(); vibrateBtn()" class="glass-btn w-full md:w-auto flex justify-center items-center gap-2">
                         <span>← Back to Portfolio</span>
                     </button>
                 </div>
@@ -336,7 +430,49 @@
         </div>
     </div>
 
+    <!-- Interactive Logic & APIs -->
     <script>
+        // ----------------------------------------------------
+        // 0. HAPTIC FEEDBACK (Vibration)
+        // ----------------------------------------------------
+        function vibrateBtn() {
+            if (navigator.vibrate) {
+                navigator.vibrate(15); // Smooth, subtle click
+            }
+        }
+        function vibrateWin() {
+            if (navigator.vibrate) {
+                navigator.vibrate(2500); // Long 2.5 sec feedback
+            }
+        }
+
+        // ----------------------------------------------------
+        // 0.5 INTRO ANIMATION LOGIC
+        // ----------------------------------------------------
+        function startExperience() {
+            vibrateBtn();
+            const introScreen = document.getElementById('intro-screen');
+            const introBg = document.getElementById('intro-bg');
+            const introText = document.getElementById('intro-text');
+            const audio = document.getElementById('intro-audio');
+            
+            // Play sound
+            audio.volume = 0.5;
+            audio.play().catch(e => console.log("Audio autoplay prevented"));
+
+            // Change Text & trigger forest transition
+            introText.innerText = "Rebuilding Nature";
+            introBg.classList.add('forest-mode');
+
+            // Fade out the whole screen after animation
+            setTimeout(() => {
+                introScreen.style.opacity = '0';
+                setTimeout(() => {
+                    introScreen.style.display = 'none';
+                }, 1500);
+            }, 2500);
+        }
+
         // ----------------------------------------------------
         // 1. LIQUID CURSOR BLOB LOGIC
         // ----------------------------------------------------
@@ -414,7 +550,7 @@
         setInterval(cycleQuotes, 8000);
 
         // ----------------------------------------------------
-        // 3. PROFILE & CAROUSEL DRAG LOGIC
+        // 3. PROFILE & CAROUSEL DRAG LOGIC (Images Centered & Rotated correctly)
         // ----------------------------------------------------
         const imgElement = document.getElementById('profile-img');
         imgElement.src = PORTFOLIO_CONFIG.profilePhoto;
@@ -437,7 +573,7 @@
                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors z-10 flex items-center justify-center backdrop-blur-0 group-hover:backdrop-blur-sm">
                                 <span class="opacity-0 group-hover:opacity-100 glass-btn pointer-events-none transform scale-90 group-hover:scale-100 transition-all text-xs">Click to Expand</span>
                             </div>
-                            <img src="${ach.image}" alt="${ach.title}" onerror="this.src='https://via.placeholder.com/400x300.png?text=Photo+Error'" class="w-full h-full object-cover ${rotateClass}">
+                            <img src="${ach.image}" alt="${ach.title}" onerror="this.src='https://via.placeholder.com/400x300.png?text=Photo+Error'" class="w-full h-full object-cover object-center ${rotateClass}">
                         </div>
                         <h4 class="font-bold text-white text-lg mb-3 leading-tight truncate">${ach.title}</h4>
                         <p class="text-gray-400 text-sm leading-relaxed whitespace-normal line-clamp-3">${ach.outerDesc}</p>
@@ -483,6 +619,7 @@
                 const card = e.target.closest('.achievement-card');
                 if (card) {
                     const index = card.getAttribute('data-index');
+                    vibrateBtn();
                     openModal(index);
                 }
             }
@@ -521,7 +658,7 @@
             document.getElementById('modal-title').innerText = ach.title;
             document.getElementById('modal-desc').innerText = ach.innerDesc;
             img.src = ach.image;
-            img.className = `w-full h-full max-h-80 object-cover ${ach.rotation ? ach.rotation : ''}`;
+            img.className = `w-full h-full object-cover object-center ${ach.rotation ? ach.rotation : ''}`;
 
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -544,7 +681,7 @@
         }
 
         // ----------------------------------------------------
-        // 5. DATA, DASHBOARD, & DEFICIT LOGIC
+        // 5. DATA, DASHBOARD, & DEFICIT LOGIC (FIXED MATH)
         // ----------------------------------------------------
         const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
@@ -587,24 +724,30 @@
             const totalEmissions = totalMaterial * multiplier;
             const treesNeeded = Math.ceil(totalEmissions / 0.02);
             
-            let treePct = (globalTrees / treesNeeded) * 100;
+            // Add a visual dynamic variance to the percentage so it visibly breathes and updates live
+            let baseTreePct = (globalTrees / treesNeeded) * 100;
+            let dynamicJitter = Math.sin(Date.now() / 1000) * 0.4; // +/- 0.4% swing
+            let treePct = baseTreePct + dynamicJitter;
+
             if (treePct > 100) treePct = 100; 
+            if (treePct < 0) treePct = 0;
             const debtPct = 100 - treePct;
 
             document.getElementById('deficit-tree-bar').style.width = `${treePct}%`;
-            document.getElementById('deficit-tree-pct').innerText = `${treePct.toFixed(1)}%`;
-            document.getElementById('deficit-debt-pct').innerText = `${debtPct.toFixed(1)}%`;
+            document.getElementById('deficit-tree-pct').innerText = `${treePct.toFixed(2)}%`;
+            document.getElementById('deficit-debt-pct').innerText = `${debtPct.toFixed(2)}%`;
         }
 
+        // Increased the random additions heavily so the UI moves aggressively over time
         setInterval(() => {
             if(currentMaterial === 'heavy') {
-                val1 += Math.floor(Math.random() * 8); 
-                val2 += Math.floor(Math.random() * 4);
+                val1 += Math.floor(Math.random() * 80) + 10; 
+                val2 += Math.floor(Math.random() * 40) + 5;
             } else {
-                val1 += Math.floor(Math.random() * 3); 
-                val2 += Math.floor(Math.random() * 2);
+                val1 += Math.floor(Math.random() * 30) + 5; 
+                val2 += Math.floor(Math.random() * 20) + 2;
             }
-            globalTrees += Math.floor(Math.random() * 3) + 1; 
+            globalTrees += Math.floor(Math.random() * 60) + 10; 
 
             document.getElementById('metric1-counter').innerHTML = val1;
             document.getElementById('metric2-counter').innerHTML = val2;
@@ -627,7 +770,22 @@
             }
         }
         updateDeficitDashboard();
+
+        // ----------------------------------------------------
+        // 6. ECO-GAME LOGIC
+        // ----------------------------------------------------
+        function checkAnswer(element, isCorrect) {
+            if (isCorrect) {
+                element.classList.add('correct');
+                vibrateWin(); // Trigger long 2500ms vibration
+                document.getElementById('game-container').style.display = 'none';
+                document.getElementById('game-win').classList.remove('hidden');
+            } else {
+                element.classList.add('wrong');
+                // Optional: remove wrong class after short delay
+                setTimeout(() => { element.classList.remove('wrong'); }, 800);
+            }
+        }
     </script>
 </body>
 </html>
-
