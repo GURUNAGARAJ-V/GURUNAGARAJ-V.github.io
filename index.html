@@ -15,7 +15,7 @@
     <style>
         /* Base Deep Black Body */
         body {
-            background-color: #050505;
+            background-color: #030303;
             color: #f8fafc;
             font-family: 'Inter', system-ui, sans-serif;
             overflow-x: hidden;
@@ -91,69 +91,170 @@
             position: fixed;
             inset: 0;
             background: rgba(5, 5, 5, 0.85); 
-            backdrop-filter: blur(40px);
+            backdrop-filter: blur(50px);
             z-index: 1;
             pointer-events: none;
         }
 
-        /* Ultra-Glassmorphism */
+        /* ----------------------------------------- */
+        /* PREMIUM LIQUID GLASS PANELS               */
+        /* ----------------------------------------- */
         .glass-panel {
             background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            backdrop-filter: blur(30px) saturate(120%);
+            -webkit-backdrop-filter: blur(30px) saturate(120%);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
-            border-radius: 1.2rem;
-            transition: all 0.3s ease;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                0 20px 40px -10px rgba(0, 0, 0, 0.7),
+                inset 0 1px 2px rgba(255, 255, 255, 0.2);
+            border-radius: 1.5rem;
+            transition: all 0.4s ease;
             position: relative;
             z-index: 10;
         }
         .glass-panel:hover {
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
         }
 
         /* ----------------------------------------- */
-        /* UPGRADED: PREMIUM LIQUID GLASS BUTTONS    */
+        /* ULTIMATE LIQUID GLASS BUTTONS (PILLS)     */
         /* ----------------------------------------- */
         .glass-btn {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(40px) saturate(150%);
+            -webkit-backdrop-filter: blur(40px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.6); /* Strong top rim light */
+            border-left: 1px solid rgba(255, 255, 255, 0.3); /* Soft left rim light */
+            box-shadow: 
+                0 10px 30px -10px rgba(0, 0, 0, 0.8), /* Outer drop shadow */
+                inset 0 4px 6px -2px rgba(255, 255, 255, 0.5), /* Inner top reflection */
+                inset 0 -4px 6px -2px rgba(0, 0, 0, 0.4); /* Inner bottom shadow for 3D depth */
             color: #ffffff;
-            padding: 0.5rem 1.5rem;
-            border-radius: 9999px;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px; /* Perfect pill shape */
             font-weight: 600;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             cursor: pointer;
             z-index: 50;
             position: relative;
             overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
-        
-        /* The liquid sheen sweep */
+
+        /* The sweeping animated gloss reflection */
         .glass-btn::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg);
-            transition: all 0.6s ease;
+            top: 0; left: -150%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            transition: all 0.7s ease;
+            z-index: 0;
         }
-        
         .glass-btn:hover::before {
-            left: 200%;
+            left: 150%;
+        }
+
+        .glass-btn span {
+            position: relative;
+            z-index: 10;
         }
 
         .glass-btn:hover, .glass-btn.active {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
-            box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.8);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-2px) scale(1.02);
-            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 15px 35px -10px rgba(0, 0, 0, 0.9),
+                inset 0 4px 8px -2px rgba(255, 255, 255, 0.7),
+                inset 0 -4px 6px -2px rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        
+        .glass-btn:active {
+            transform: translateY(1px);
+            box-shadow: 
+                0 5px 15px -5px rgba(0, 0, 0, 0.8),
+                inset 0 2px 4px -1px rgba(255, 255, 255, 0.4),
+                inset 0 -2px 4px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Liquid Glass Input Field */
+        .glass-input {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(0, 0, 0, 0.5);
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.6), 0 2px 4px rgba(255,255,255,0.05);
+            color: white;
+            border-radius: 9999px; 
+            padding: 0.75rem 1.5rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .glass-input:focus {
+            border-color: rgba(16, 185, 129, 0.5);
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.6), 0 0 15px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Educational Game Styles (Glass Tiles) */
+        .game-option {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(30px) saturate(150%);
+            -webkit-backdrop-filter: blur(30px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 
+                0 10px 20px -5px rgba(0, 0, 0, 0.6),
+                inset 0 2px 4px -1px rgba(255, 255, 255, 0.3);
+            padding: 1.2rem 1.5rem;
+            border-radius: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-option::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            transition: all 0.7s ease;
+        }
+        .game-option:hover::before { left: 150%; }
+
+        .game-option:hover { 
+            background: rgba(255, 255, 255, 0.08); 
+            transform: translateY(-2px);
+            box-shadow: 
+                0 15px 25px -5px rgba(0, 0, 0, 0.8),
+                inset 0 3px 5px -1px rgba(255, 255, 255, 0.5);
+        }
+        .game-option.correct { 
+            background: rgba(16, 185, 129, 0.15); 
+            border-top: 1px solid rgba(16, 185, 129, 0.8);
+            box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.4), inset 0 4px 8px rgba(16, 185, 129, 0.6);
+        }
+        .game-option.wrong { 
+            background: rgba(239, 68, 68, 0.15); 
+            border-top: 1px solid rgba(239, 68, 68, 0.8);
+            box-shadow: 0 15px 30px -5px rgba(239, 68, 68, 0.4), inset 0 4px 8px rgba(239, 68, 68, 0.6);
         }
 
         /* Scroll Animations */
@@ -191,19 +292,6 @@
             padding-left: 2rem;
             will-change: transform;
         }
-        
-        /* Educational Game Styles */
-        .game-option {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .game-option:hover { background: rgba(255, 255, 255, 0.1); }
-        .game-option.correct { background: rgba(16, 185, 129, 0.3); border-color: rgba(16, 185, 129, 0.8); }
-        .game-option.wrong { background: rgba(239, 68, 68, 0.3); border-color: rgba(239, 68, 68, 0.8); }
 
         /* Video Section Background */
         .video-bg {
@@ -254,7 +342,7 @@
         <div id="intro-forest"></div>
         <div class="z-10 text-center px-4" id="intro-ui">
             <h1 id="intro-text" class="text-4xl md:text-6xl font-bold text-white mb-6 tracking-widest uppercase drop-shadow-2xl transition-opacity duration-1000">Rebuilding Reality</h1>
-            <button onclick="startExperience()" class="glass-btn text-lg px-8 py-4 transition-opacity duration-1000">Enter Portfolio</button>
+            <button onclick="startExperience()" class="glass-btn text-lg transition-opacity duration-1000"><span>Enter Portfolio</span></button>
         </div>
     </div>
 
@@ -356,8 +444,8 @@
                 </p>
 
                 <div class="flex flex-wrap gap-4 relative z-30">
-                    <a href="https://www.linkedin.com/in/vgurunagarajcivilengineer/" target="_blank" class="glass-btn" onclick="vibrateBtn()">LinkedIn Profile</a>
-                    <a href="https://github.com/GURUNAGARAJ-V" target="_blank" class="glass-btn" onclick="vibrateBtn()">GitHub Vault</a>
+                    <a href="https://www.linkedin.com/in/vgurunagarajcivilengineer/" target="_blank" class="glass-btn" onclick="vibrateBtn()"><span>LinkedIn Profile</span></a>
+                    <a href="https://github.com/GURUNAGARAJ-V" target="_blank" class="glass-btn" onclick="vibrateBtn()"><span>GitHub Vault</span></a>
                 </div>
             </div>
         </div>
@@ -370,9 +458,10 @@
                 <h2 class="text-3xl font-bold mb-4 text-white">Global Construction <span class="text-gray-300">Impact Ticker</span></h2>
                 <p class="text-gray-400 max-w-2xl mx-auto mb-8">Real-time estimations of global material production vs. actual environmental remediation efforts.</p>
                 
+                <!-- Individual Liquid Glass Pill Buttons -->
                 <div class="flex justify-center gap-4 flex-wrap relative z-30">
-                    <button onclick="switchMaterial('heavy'); vibrateBtn()" id="btn-heavy" class="glass-btn active">Heavy Materials</button>
-                    <button onclick="switchMaterial('urban'); vibrateBtn()" id="btn-urban" class="glass-btn">Urban Materials</button>
+                    <button onclick="switchMaterial('heavy'); vibrateBtn()" id="btn-heavy" class="glass-btn active"><span>Heavy Materials</span></button>
+                    <button onclick="switchMaterial('urban'); vibrateBtn()" id="btn-urban" class="glass-btn"><span>Urban Materials</span></button>
                 </div>
             </div>
 
@@ -396,9 +485,10 @@
                         <h3 class="text-lg font-bold mb-1 text-white">Dynamic Carbon Offset Calculator</h3>
                         <p id="calc-material-type" class="text-[10px] text-gray-500 mb-4 uppercase tracking-widest font-bold">Currently Calculating: Heavy Materials</p>
                         
-                        <div class="flex gap-4 relative z-30">
-                            <input type="number" id="carbon-input" placeholder="Enter Tons..." class="bg-black/60 border border-gray-600 rounded-lg px-4 py-2 text-white w-full outline-none focus:border-white shadow-inner relative z-30 pointer-events-auto">
-                            <button onclick="calculateTrees(); vibrateBtn()" class="glass-btn whitespace-nowrap">Calculate</button>
+                        <!-- Separated Input and Button with matching pill styling -->
+                        <div class="flex flex-col sm:flex-row gap-4 relative z-30">
+                            <input type="number" id="carbon-input" placeholder="Enter Tons..." class="glass-input w-full relative z-30 pointer-events-auto">
+                            <button onclick="calculateTrees(); vibrateBtn()" class="glass-btn whitespace-nowrap"><span>Calculate</span></button>
                         </div>
                         <div id="calc-result" class="mt-4 font-bold text-sm hidden text-white bg-white/10 p-4 rounded-lg border border-gray-600 leading-relaxed"></div>
                     </div>
@@ -460,7 +550,7 @@
                     <p class="text-gray-300 text-sm mb-6 bg-black/40 p-4 rounded-lg border border-gray-700 leading-relaxed">
                         <span id="explain-reasoning"></span>
                     </p>
-                    <button onclick="displayNextQuestion(); vibrateBtn()" class="glass-btn">Next Question →</button>
+                    <button onclick="displayNextQuestion(); vibrateBtn()" class="glass-btn"><span>Next Question →</span></button>
                 </div>
             </div>
         </div>
@@ -525,7 +615,7 @@
     <div id="achievement-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-md cursor-pointer" onclick="closeModal(); vibrateBtn()"></div>
 
-        <div class="relative z-10 glass-panel p-6 md:p-10 max-w-4xl w-full mx-4 transform scale-95 transition-transform duration-300 bg-black/90 border-gray-500/50 shadow-2xl" id="modal-content-box">
+        <div class="relative z-10 glass-panel p-6 md:p-10 max-w-4xl w-full mx-4 transform scale-95 transition-transform duration-300 shadow-2xl" id="modal-content-box">
             <button onclick="closeModal(); vibrateBtn()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition transform hover:rotate-90 duration-300">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
@@ -545,12 +635,12 @@
         </div>
     </div>
 
-    <!-- MODAL 2: COST OF PLANNING SOLUTIONS (Deep Blur) -->
+    <!-- MODAL 2: COST OF PLANNING SOLUTIONS (Deep Blur Liquid Modal) -->
     <div id="cost-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <!-- Deep Blur Overlay -->
-        <div class="absolute inset-0 bg-black/40 backdrop-blur-[40px] cursor-pointer" onclick="closeCostModal(); vibrateBtn()"></div>
+        <!-- Ultra Deep Blur Overlay -->
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-[60px] cursor-pointer" onclick="closeCostModal(); vibrateBtn()"></div>
 
-        <div class="relative z-10 glass-panel p-6 md:p-10 max-w-2xl w-full mx-4 transform scale-95 transition-transform duration-300 bg-black/70 border-emerald-900/50 shadow-2xl" id="cost-modal-box">
+        <div class="relative z-10 glass-panel p-6 md:p-10 max-w-2xl w-full mx-4 transform scale-95 transition-transform duration-300 border-emerald-900/50 shadow-2xl" id="cost-modal-box">
             <div class="text-center">
                 <div id="cost-modal-icon" class="text-6xl mb-4"></div>
                 <h2 id="cost-modal-title" class="text-3xl font-bold text-white mb-2 leading-tight"></h2>
@@ -779,7 +869,7 @@
                     <div data-index="${index}" onmouseenter="changeBlobColor('${ach.themeColor}')" onmouseleave="resetBlobColor()" class="achievement-card glass-panel p-5 w-80 inline-block whitespace-normal flex-shrink-0 transition hover:-translate-y-2 cursor-pointer bg-black/40 group border-gray-700/50">
                         <div class="overflow-hidden rounded-lg mb-5 border border-gray-700 shadow-lg h-52 flex items-center justify-center bg-black relative">
                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors z-10 flex items-center justify-center backdrop-blur-0 group-hover:backdrop-blur-sm">
-                                <span class="opacity-0 group-hover:opacity-100 glass-btn pointer-events-none transform scale-90 group-hover:scale-100 transition-all text-xs">Click to Expand</span>
+                                <span class="opacity-0 group-hover:opacity-100 glass-btn pointer-events-none transform scale-90 group-hover:scale-100 transition-all text-xs"><span>Click to Expand</span></span>
                             </div>
                             <img src="${ach.image}" alt="${ach.title}" onerror="this.src='https://via.placeholder.com/400x300.png?text=Photo+Error'" class="w-full h-full object-cover object-center ${rotateClass}">
                         </div>
@@ -1027,7 +1117,7 @@
             explanation.classList.add('hidden');
             
             currentEcoQuestion = ecoQuestions.pop();
-            ecoQuestions.unshift(currentEcoQuestion); // Put back to bottom of stack
+            ecoQuestions.unshift(currentEcoQuestion); 
 
             document.getElementById('game-question').innerText = currentEcoQuestion.q;
             
