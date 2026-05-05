@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V Gurunagaraj | Sustainable Infrastructure Engineering</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Professional Odometer Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-minimal.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
 
@@ -97,18 +95,15 @@
         }
 
         /* ----------------------------------------- */
-        /* UPGRADED: DEEP LIQUID GLASS PANELS        */
-        /* (Applied to all charts, cards, & windows) */
+        /* DEEP LIQUID GLASS PANELS                  */
         /* ----------------------------------------- */
         .glass-panel {
             background: rgba(20, 20, 20, 0.25);
             backdrop-filter: blur(40px) saturate(180%);
             -webkit-backdrop-filter: blur(40px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            /* Strong Top/Left lighting to simulate physical glass edge */
             border-top: 1px solid rgba(255, 255, 255, 0.35);
             border-left: 1px solid rgba(255, 255, 255, 0.2);
-            /* Deep shadows for 3D depth */
             box-shadow: 
                 0 30px 60px -15px rgba(0, 0, 0, 0.9), 
                 inset 0 2px 8px rgba(255, 255, 255, 0.15), 
@@ -128,14 +123,14 @@
         }
 
         /* ----------------------------------------- */
-        /* UPGRADED: LIQUID GLASS PILL BUTTONS       */
+        /* LIQUID GLASS PILL BUTTONS                 */
         /* ----------------------------------------- */
         .glass-btn {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%);
             backdrop-filter: blur(40px) saturate(180%);
             -webkit-backdrop-filter: blur(40px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-top: 1px solid rgba(255, 255, 255, 0.6); /* Rim light */
+            border-top: 1px solid rgba(255, 255, 255, 0.6); 
             border-left: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 
                 0 12px 30px -10px rgba(0, 0, 0, 0.8), 
@@ -143,7 +138,7 @@
                 inset 0 -4px 6px -2px rgba(0, 0, 0, 0.4); 
             color: #ffffff;
             padding: 0.75rem 2rem;
-            border-radius: 9999px; /* Perfect pill shape */
+            border-radius: 9999px; 
             font-weight: 600;
             letter-spacing: 0.5px;
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
@@ -157,7 +152,6 @@
             justify-content: center;
         }
 
-        /* The sweeping animated gloss reflection */
         .glass-btn::before {
             content: '';
             position: absolute;
@@ -323,7 +317,6 @@
 </head>
 <body class="antialiased min-h-screen relative">
 
-    <!-- INTRO ANIMATION SCREEN -->
     <div id="intro-screen">
         <div id="intro-city"></div>
         <div id="intro-forest"></div>
@@ -333,11 +326,9 @@
         </div>
     </div>
 
-    <!-- DYNAMIC BACKGROUND LIGHT ELEMENTS -->
     <div id="cursor-blob"></div>
     <div id="blob-overlay"></div>
 
-    <!-- "BACKEND" CONFIGURATION -->
     <script>
         const PORTFOLIO_CONFIG = {
             profilePhoto: "profile.jpg.jpeg", 
@@ -346,7 +337,7 @@
                     title: "Python 101 for Data Science (IBM)",
                     outerDesc: "Applying Python and Data analytics to modern infrastructure problems.",
                     innerDesc: "Completed advanced professional certifications through IBM focused on Python programming, data analytics, and big data management. This knowledge empowers me to process vast amounts of infrastructural telemetry data, translating raw numbers into actionable, eco-conscious civil engineering decisions.",
-                    image: "Project2.jpg",
+                    image: "project2.jpg",
                     rotation: "-rotate-90",
                     themeColor: "rgba(59, 130, 246, 0.6)" 
                 },
@@ -394,7 +385,6 @@
         };
     </script>
 
-    <!-- Navigation & Quote Ticker -->
     <nav class="fixed w-full z-40 glass-panel !rounded-none !border-b !border-x-0 !border-t-0 border-b-white/10 bg-black/20">
         <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center h-20">
             <div class="max-w-md w-full relative flex flex-col justify-center h-full">
@@ -407,13 +397,11 @@
                 <a href="#impact" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">Dashboard</a>
                 <a href="#game-section" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">Eco-Game</a>
                 <a href="#achievements" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">Projects</a>
-                <!-- NEW THEME SWITCHER -->
                 <button onclick="cycleGlobalTheme(); vibrateBtn()" class="glass-btn !py-1 !px-4 !text-xs ml-2"><span>Theme 🎨</span></button>
             </div>
         </div>
     </nav>
 
-    <!-- SECTION 1: Hero & About Me -->
     <section id="about" class="min-h-screen flex items-center justify-center pt-24 pb-16 md:pt-32 md:pb-24 px-4 relative z-10">
         <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center reveal">
             <div class="flex justify-center relative">
@@ -440,7 +428,6 @@
         </div>
     </section>
 
-    <!-- SECTION 2: Interactive Material Dashboard -->
     <section id="impact" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10 reveal">
@@ -454,7 +441,6 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8">
-                <!-- Left Column -->
                 <div class="space-y-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="glass-panel p-6 text-center reveal group">
@@ -481,7 +467,6 @@
                     </div>
                 </div>
 
-                <!-- Right Column -->
                 <div class="space-y-6">
                     <div class="glass-panel p-6 text-center reveal">
                         <div class="flex justify-between items-center mb-2">
@@ -512,7 +497,6 @@
         </div>
     </section>
 
-    <!-- SECTION 3: CUSTOM ENDLESS CIVIL TRIVIA GAME -->
     <section id="game-section" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10 bg-black/40">
         <div class="max-w-4xl mx-auto glass-panel p-8 reveal text-center min-h-[450px] flex flex-col">
             <h2 class="text-3xl font-bold mb-2 text-white">Eco-Intelligence <span class="text-gray-400">Challenge</span></h2>
@@ -527,8 +511,7 @@
                     </div>
                     <h3 id="game-question" class="text-xl font-semibold text-white mb-6">Question goes here?</h3>
                     <div class="space-y-4" id="game-options">
-                        <!-- Buttons injected via JS -->
-                    </div>
+                        </div>
                 </div>
 
                 <div id="game-explanation" class="hidden text-center py-4">
@@ -543,7 +526,6 @@
         </div>
     </section>
 
-    <!-- SECTION 4: THE ENVIRONMENTAL COST (Interactive Expandable Cards) -->
     <section id="cost-section" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10 overflow-hidden">
         <video class="video-bg" autoplay loop muted playsinline>
             <source src="https://cdn.pixabay.com/video/2019/04/24/23011-332483120_large.mp4" type="video/mp4">
@@ -556,25 +538,21 @@
             </div>
 
             <div class="cost-carousel reveal group" id="fast-carousel">
-                <!-- Javascript will inject the endless cost cards here -->
-            </div>
+                </div>
             
             <p class="text-xs text-gray-400 mt-8 tracking-widest uppercase animate-pulse">Click the active card to view the solution</p>
         </div>
     </section>
 
-    <!-- SECTION 5: Scrolling Achievements Carousel -->
     <section id="achievements" class="py-16 md:py-24 px-4 overflow-hidden relative border-t border-gray-800/50 z-10">
         <h2 class="text-3xl font-bold mb-16 text-center reveal text-white">Featured <span class="text-gray-400">Projects & Skills</span></h2>
         
         <div class="carousel-container reveal" id="carousel-grabbable-container">
             <div class="carousel-track" id="carousel-grabbable-track">
-                <!-- Javascript will inject sliding photos and text here -->
-            </div>
+                </div>
         </div>
     </section>
 
-    <!-- SECTION 6: API Data Transparency Footer -->
     <footer class="relative z-10 bg-black pt-12 pb-6 border-t border-gray-800">
         <div class="max-w-6xl mx-auto px-4 mb-8">
             <div class="glass-panel p-8">
@@ -596,7 +574,6 @@
         </div>
     </footer>
 
-    <!-- MODAL 1: ACHIEVEMENT POPUP LAYER -->
     <div id="achievement-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-[60px] cursor-pointer" onclick="closeModal(); vibrateBtn()"></div>
 
@@ -620,9 +597,7 @@
         </div>
     </div>
 
-    <!-- MODAL 2: COST OF PLANNING SOLUTIONS (Deep Blur Liquid Modal) -->
     <div id="cost-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <!-- Ultra Deep Blur Overlay -->
         <div class="absolute inset-0 bg-black/50 backdrop-blur-[60px] cursor-pointer" onclick="closeCostModal(); vibrateBtn()"></div>
 
         <div class="relative z-10 glass-panel p-6 md:p-10 max-w-2xl w-full mx-4 transform scale-95 transition-transform duration-300" id="cost-modal-box">
@@ -644,7 +619,6 @@
         </div>
     </div>
 
-    <!-- Interactive Logic & APIs -->
     <script>
         // ----------------------------------------------------
         // 0. HAPTIC FEEDBACK (Vibration)
@@ -724,7 +698,6 @@
             blob.style.background = themes[currentGlobalTheme];
         }
         
-        // Init theme
         resetBlobColor();
 
         // ----------------------------------------------------
@@ -810,12 +783,10 @@
             costCards[currentCostIndex].classList.add('active');
         }
         
-        // Start infinite 4s rotation
         costCarouselInterval = setInterval(rotateCostCards, 4000);
 
-        // --- COST MODAL LOGIC ---
         function openCostModal(index) {
-            clearInterval(costCarouselInterval); // Pause rotation while reading
+            clearInterval(costCarouselInterval); 
             const data = costData[index];
             
             document.getElementById('cost-modal-icon').innerText = data.icon;
@@ -845,13 +816,12 @@
             setTimeout(() => {
                 modal.classList.add('hidden');
                 document.body.style.overflow = 'auto'; 
-                costCarouselInterval = setInterval(rotateCostCards, 4000); // Resume
+                costCarouselInterval = setInterval(rotateCostCards, 4000); 
             }, 300);
         }
 
-
         // ----------------------------------------------------
-        // 4. PROFILE & CAROUSEL DRAG LOGIC
+        // 4. PROFILE & CAROUSEL DRAG LOGIC (WITH MOBILE TOUCH)
         // ----------------------------------------------------
         const imgElement = document.getElementById('profile-img');
         imgElement.src = PORTFOLIO_CONFIG.profilePhoto;
@@ -869,7 +839,7 @@
             PORTFOLIO_CONFIG.achievements.forEach((ach, index) => {
                 const rotateClass = ach.rotation ? ach.rotation : '';
                 carouselHTML += `
-                    <div data-index="${index}" onmouseenter="changeBlobColor('${ach.themeColor}')" onmouseleave="resetBlobColor()" class="achievement-card glass-panel p-6 w-80 inline-block whitespace-normal flex-shrink-0 transition hover:-translate-y-3 cursor-pointer group">
+                    <div data-index="${index}" onclick="if(draggedDistance < 10) { openModal(${index}); vibrateBtn(); }" onmouseenter="changeBlobColor('${ach.themeColor}')" onmouseleave="resetBlobColor()" class="achievement-card glass-panel p-6 w-80 inline-block whitespace-normal flex-shrink-0 transition hover:-translate-y-3 cursor-pointer group">
                         <div class="overflow-hidden rounded-xl mb-6 shadow-inner border border-white/5 bg-black/50 relative h-52 flex items-center justify-center">
                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors z-10 flex items-center justify-center backdrop-blur-0 group-hover:backdrop-blur-md">
                                 <span class="opacity-0 group-hover:opacity-100 glass-btn pointer-events-none transform scale-90 group-hover:scale-100 transition-all text-xs"><span>Click to Expand</span></span>
@@ -885,6 +855,7 @@
         }
         buildPortfolioCarousel();
 
+        // Mouse Drag Support
         carouselContainer.addEventListener('mousedown', (e) => {
             isDragging = true;
             draggedDistance = 0; 
@@ -910,19 +881,35 @@
             checkInfiniteLoop();
         });
 
-        carouselContainer.addEventListener('mouseup', (e) => {
+        carouselContainer.addEventListener('mouseup', () => {
             isDragging = false;
             startAutoplay();
             carouselContainer.classList.remove('grabbing');
+        });
 
-            if (draggedDistance < 10) {
-                const card = e.target.closest('.achievement-card');
-                if (card) {
-                    const index = card.getAttribute('data-index');
-                    vibrateBtn();
-                    openModal(index);
-                }
-            }
+        // Mobile Touch Drag Support
+        carouselContainer.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            draggedDistance = 0; 
+            carouselContainer.classList.add('grabbing');
+            startX = e.touches[0].pageX - carouselContainer.offsetLeft;
+            scrollLeft = carouselContainer.scrollLeft;
+            stopAutoplay();
+        }, {passive: true});
+
+        carouselContainer.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].pageX - carouselContainer.offsetLeft;
+            const walk = (x - startX) * 2; 
+            draggedDistance = Math.abs(x - startX); 
+            carouselContainer.scrollLeft = scrollLeft - walk;
+            checkInfiniteLoop();
+        }, {passive: true});
+
+        carouselContainer.addEventListener('touchend', () => {
+            isDragging = false;
+            startAutoplay();
+            carouselContainer.classList.remove('grabbing');
         });
 
         function passiveScroll() {
@@ -1191,3 +1178,4 @@
     </script>
 </body>
 </html>
+
