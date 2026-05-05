@@ -1,1 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V Gurunagaraj | Sustainable Infrastructure Engineering</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-minimal.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
+
+    <style>
+        /* Base Deep Black Body */
+        body {
+            background-color: #030303;
+            color: #f8fafc;
+            font-family: 'Inter', system-ui, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        /* ----------------------------------------- */
+        /* HYPER-CINEMATIC INTRO LAYER               */
+        /* ----------------------------------------- */
+        #intro-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.5s ease-in-out;
+            overflow: hidden;
+        }
+        
+        #intro-city {
+            position: absolute;
+            inset: -10%; 
+            background-image: url('https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2000&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6;
+            transition: transform 3s cubic-bezier(0.25, 1, 0.5, 1), filter 3s ease, opacity 2.5s ease;
+        }
+        
+        #intro-forest {
+            position: absolute;
+            inset: -10%;
+            background-image: url('https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1.5);
+            transition: transform 4s cubic-bezier(0.25, 1, 0.5, 1), opacity 3s ease;
+        }
+
+        .zoom-city {
+            transform: scale(2.5) !important;
+            filter: blur(20px) !important;
+            opacity: 0 !important;
+        }
+        .reveal-forest {
+            opacity: 0.7 !important;
+            transform: scale(1) !important;
+        }
+
+        /* ----------------------------------------- */
+        /* CHAMELEON MOUSE BLOB EFFECT               */
+        /* ----------------------------------------- */
+        #cursor-blob {
+            background: radial-gradient(circle, rgba(16,185,129,0.6) 0%, rgba(6,182,212,0.4) 100%);
+            height: 450px;
+            aspect-ratio: 1;
+            position: fixed;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            translate: -50% -50%;
+            filter: blur(100px);
+            z-index: 0;
+            pointer-events: none;
+            transition: background 1s ease; 
+        }
+        
+        #blob-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 5, 5, 0.85); 
+            backdrop-filter: blur(50px);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* ----------------------------------------- */
+        /* DEEP LIQUID GLASS PANELS                  */
+        /* ----------------------------------------- */
+        .glass-panel {
+            background: rgba(20, 20, 20, 0.25);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.35);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 30px 60px -15px rgba(0, 0, 0, 0.9), 
+                inset 0 2px 8px rgba(255, 255, 255, 0.15), 
+                inset 0 -2px 8px rgba(0, 0, 0, 0.6);
+            border-radius: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            z-index: 10;
+        }
+        .glass-panel:hover {
+            background: rgba(30, 30, 30, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 
+                0 40px 70px -15px rgba(0, 0, 0, 1), 
+                inset 0 2px 10px rgba(255, 255, 255, 0.25), 
+                inset 0 -2px 10px rgba(0, 0, 0, 0.7);
+        }
+
+        /* ----------------------------------------- */
+        /* LIQUID GLASS PILL BUTTONS                 */
+        /* ----------------------------------------- */
+        .glass-btn {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(40px) saturate(180%);
+            -webkit-backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.6); 
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 
+                0 12px 30px -10px rgba(0, 0, 0, 0.8), 
+                inset 0 4px 6px -2px rgba(255, 255, 255, 0.5), 
+                inset 0 -4px 6px -2px rgba(0, 0, 0, 0.4); 
+            color: #ffffff;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px; 
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            z-index: 50;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .glass-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            transition: all 0.7s ease;
+            z-index: 0;
+        }
+        .glass-btn:hover::before {
+            left: 150%;
+        }
+        .glass-btn span { position: relative; z-index: 10; }
+
+        .glass-btn:hover, .glass-btn.active {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 20px 40px -10px rgba(0, 0, 0, 0.9),
+                inset 0 4px 8px -2px rgba(255, 255, 255, 0.7),
+                inset 0 -4px 6px -2px rgba(0, 0, 0, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.8);
+        }
+        
+        .glass-btn:active {
+            transform: translateY(1px);
+            box-shadow: 
+                0 5px 15px -5px rgba(0, 0, 0, 0.8),
+                inset 0 2px 4px -1px rgba(255, 255, 255, 0.4),
+                inset 0 -2px 4px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Liquid Glass Input Field */
+        .glass-input {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(0, 0, 0, 0.5);
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.6), 0 2px 4px rgba(255,255,255,0.05);
+            color: white;
+            border-radius: 9999px; 
+            padding: 0.75rem 1.5rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .glass-input:focus {
+            border-color: rgba(16, 185, 129, 0.5);
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.6), 0 0 15px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: opacity, transform;
+            position: relative;
+            z-index: 10;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Grabbable Carousel */
+        .carousel-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0;
+            cursor: grab;
+            user-select: none; 
+            overflow-x: auto; 
+            -ms-overflow-style: none; 
+            scrollbar-width: none; 
+            z-index: 10;
+        }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-container.grabbing { cursor: grabbing; }
+        .carousel-track {
+            display: flex;
+            gap: 2rem;
+            padding-left: 2rem;
+            will-change: transform;
+        }
+
+        /* Deep Blur Cost Carousel */
+        .cost-carousel {
+            position: relative;
+            width: 100%;
+            height: 280px; 
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        .cost-card {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+            pointer-events: none; 
+        }
+        .cost-card.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        /* Trivia Game specific liquid styling */
+        .game-option {
+            background: rgba(20, 20, 20, 0.3);
+            backdrop-filter: blur(20px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.6), inset 0 2px 4px rgba(255,255,255,0.1);
+            padding: 1.2rem 1.5rem;
+            border-radius: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            font-weight: 500;
+        }
+        .game-option:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+        .game-option.correct { 
+            background: rgba(16, 185, 129, 0.2); 
+            border-top: 1px solid rgba(16, 185, 129, 0.8);
+            box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.4), inset 0 4px 8px rgba(16, 185, 129, 0.4);
+        }
+        .game-option.wrong { 
+            background: rgba(239, 68, 68, 0.2); 
+            border-top: 1px solid rgba(239, 68, 68, 0.8);
+            box-shadow: 0 15px 30px -5px rgba(239, 68, 68, 0.4), inset 0 4px 8px rgba(239, 68, 68, 0.4);
+        }
+
+        /* Video Section Background */
+        .video-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            z-index: 0;
+            filter: grayscale(80%) contrast(1.2);
+        }
+
+        .odometer.odometer-theme-minimal .odometer-digit { color: #ffffff; }
+        .rotate-90 { transform: rotate(90deg) scale(1.3); }
+        .-rotate-90 { transform: rotate(-90deg) scale(1.3); }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
+    </style>
+</head>
+<body class="antialiased min-h-screen relative">
+
+    <div id="intro-screen">
+        <div id="intro-city"></div>
+        <div id="intro-forest"></div>
+        <div class="z-10 text-center px-4" id="intro-ui">
+            <h1 id="intro-text" class="text-4xl md:text-6xl font-bold text-white mb-6 tracking-widest uppercase drop-shadow-2xl transition-opacity duration-1000">Rebuilding Reality</h1>
+            <button onclick="startExperience()" class="glass-btn text-lg transition-opacity duration-1000"><span>Enter Portfolio</span></button>
+        </div>
+    </div>
+
+    <div id="cursor-blob"></div>
+    <div id="blob-overlay"></div>
+
+    <script>
+        const PORTFOLIO_CONFIG = {
+            profilePhoto: "profile.jpg.jpeg", 
+            achievements: [
+                {
+                    title: "Python 101 for Data Science (IBM)",
+                    outerDesc: "Applying Python and Data analytics to modern infrastructure problems.",
+                    innerDesc: "Completed advanced professional certifications through IBM focused on Python programming, data analytics, and big data management. This knowledge empowers me to process vast amounts of infrastructural telemetry data, translating raw numbers into actionable, eco-conscious civil engineering decisions.",
+                    image: "project2.jpg",
+                    rotation: "-rotate-90",
+                    themeColor: "rgba(59, 130, 246, 0.6)" 
+                },
+                {
+                    title: "AutoCAD & BIM Design",
+                    outerDesc: "Advanced architectural drafting and building information modeling for smart cities.",
+                    innerDesc: "Certified in Advanced AutoCAD and Introduction to Building Information Modeling (BIM) via REVA University. My design philosophy bridges traditional civil engineering drafting with modern 3D intelligence, ensuring sustainable materials and efficient structural layouts are planned from the ground up.",
+                    image: "project6.jpg.jpeg",
+                    rotation: "-rotate-90",
+                    themeColor: "rgba(234, 179, 8, 0.5)" 
+                },
+                {
+                    title: "Bio-Inspired Health Monitoring",
+                    outerDesc: "Smart city models integrating bio-inspired health monitoring and sustainable materials.",
+                    innerDesc: "Engineered a physical smart city infrastructure model demonstrating bio-inspired health monitoring. This project showcases the integration of high-throughput sensors that mimic biological nervous systems to track structural strain in real-time, preventing catastrophic failures and optimizing maintenance.",
+                    image: "Project10.png",
+                    rotation: "-rotate-90",
+                    themeColor: "rgba(16, 185, 129, 0.6)" 
+                },
+                {
+                    title: "Waste Water & Embedded Systems",
+                    outerDesc: "Integrating embedded technology with water supply engineering.",
+                    innerDesc: "Successfully completed specialized training in Waste Water and Water Supply Engineering integrated with Embedded Systems. This expertise allows me to design automated, highly efficient water treatment and recycling plants that actively conserve resources and protect local ecosystems from contamination.",
+                    image: "project5.jpg.jpeg",
+                    rotation: "-rotate-90",
+                    themeColor: "rgba(239, 68, 68, 0.6)" 
+                },
+                {
+                    title: "Extensive Survey Camp",
+                    outerDesc: "As Team Lead, I managed an extensive survey camp involving the design of a 750m highway, Water Supply, NTP, and Village Planning.",
+                    innerDesc: "As Team Lead, I managed an extensive survey camp involving the design of a 750m highway, Water Supply, NTP, and Village Planning. I oversaw all field data collection, topographical mapping, and final project designs.",
+                    image: "project4.jpg.jpeg",
+                    rotation: "-rotate-90",
+                    themeColor: "rgba(234, 179, 8, 0.5)" 
+                },
+                {
+                    title: "Agri-Tech Exhibition Winner",
+                    outerDesc: "Integrating embedded technology with water supply engineering.",
+                    innerDesc: "Thrilled to secure 2nd position at the REVA University Agri-Tech Exhibition! Bridging Civil Engineering with modern technology, I showcased an IoT-integrated system for smart, sustainable sewage farming. This project transformed waste management by analyzing water quality, turning treated wastewater into a valuable agricultural resource.",
+                    image: "project1.jpg.jpeg",
+                    rotation: "-rotate-90",
+                    themeColor: "rgba(16, 185, 129, 0.6)" 
+                }
+            ]
+        };
+    </script>
+
+    <nav class="fixed w-full z-40 glass-panel !rounded-none !border-b !border-x-0 !border-t-0 border-b-white/10 bg-black/20">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center h-20">
+            <div class="max-w-md w-full relative flex flex-col justify-center h-full">
+                <p id="quote-text" class="text-gray-300 text-xs md:text-sm italic transition-opacity duration-700 opacity-0 leading-tight">Loading quote...</p>
+                <p id="quote-author" class="text-emerald-400 font-bold text-[9px] md:text-[10px] text-right mt-1 tracking-widest uppercase transition-opacity duration-700 opacity-0"></p>
+            </div>
+
+            <div class="space-x-4 text-sm font-medium hidden md:flex items-center ml-8 shrink-0">
+                <a href="#about" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">About</a>
+                <a href="#impact" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">Dashboard</a>
+                <a href="#game-section" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">Eco-Game</a>
+                <a href="#achievements" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">Projects</a>
+                <button onclick="cycleGlobalTheme(); vibrateBtn()" class="glass-btn !py-1 !px-4 !text-xs ml-2"><span>Theme 🎨</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="min-h-screen flex items-center justify-center pt-24 pb-16 md:pt-32 md:pb-24 px-4 relative z-10">
+        <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center reveal">
+            <div class="flex justify-center relative">
+                <div class="absolute inset-0 bg-white rounded-full blur-[120px] opacity-10"></div>
+                <img id="profile-img" src="" alt="V Gurunagaraj" onerror="this.src='https://ui-avatars.com/api/?name=V+Gurunagaraj&background=000&color=fff&size=400'" class="w-72 h-72 md:w-96 md:h-96 object-cover object-center rounded-full glass-panel p-2 z-10 border-4 border-gray-600/40 relative">
+            </div>
+            
+            <div class="glass-panel p-8 relative z-20">
+                <h2 class="text-gray-400 font-bold tracking-widest uppercase mb-2 text-sm">Civil Engineering Professional</h2>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight text-white">Bridging <span class="text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-white">Infrastructure</span> & Ecology.</h1>
+                
+                <p class="text-gray-300 text-base mb-4 leading-relaxed">
+                    I am a dedicated Civil Engineering professional with a deep passion for redefining how we build the world. My core mission is environmental protection through sustainable infrastructure and innovative technology.
+                </p>
+                <p class="text-gray-300 text-base mb-8 leading-relaxed">
+                    By bridging the gap between traditional construction and next-generation green practices, I engineer eco-conscious systems—from smart wastewater management to sustainable city planning—designed to actively reduce carbon footprints and revitalize our natural ecosystems.
+                </p>
+
+                <div class="flex flex-wrap gap-4 relative z-30">
+                    <a href="https://www.linkedin.com/in/vgurunagarajcivilengineer/" target="_blank" class="glass-btn" onclick="vibrateBtn()"><span>LinkedIn Profile</span></a>
+                    <a href="https://github.com/GURUNAGARAJ-V" target="_blank" class="glass-btn" onclick="vibrateBtn()"><span>GitHub Vault</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-10 reveal">
+                <h2 class="text-3xl font-bold mb-4 text-white">Global Construction <span class="text-gray-300">Impact Ticker</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mb-8">Real-time estimations of global material production vs. actual environmental remediation efforts.</p>
+                
+                <div class="flex justify-center gap-4 flex-wrap relative z-30">
+                    <button onclick="switchMaterial('heavy'); vibrateBtn()" id="btn-heavy" class="glass-btn active"><span>Heavy Materials</span></button>
+                    <button onclick="switchMaterial('urban'); vibrateBtn()" id="btn-urban" class="glass-btn"><span>Urban Materials</span></button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8">
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="glass-panel p-6 text-center reveal group">
+                            <div id="metric1-label" class="text-gray-400 text-[10px] font-bold tracking-widest uppercase mb-2">Global Cement Poured</div>
+                            <div id="metric1-counter" class="odometer text-4xl font-mono font-bold mb-1 text-white">85000</div>
+                            <div class="text-gray-500 text-xs mt-2">Tons (Today)</div>
+                        </div>
+                        <div class="glass-panel p-6 text-center reveal group">
+                            <div id="metric2-label" class="text-gray-400 text-[10px] font-bold tracking-widest uppercase mb-2">Global Steel Produced</div>
+                            <div id="metric2-counter" class="odometer text-4xl font-mono font-bold mb-1 text-white">42000</div>
+                            <div class="text-gray-500 text-xs mt-2">Tons (Today)</div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-6 reveal relative z-30">
+                        <h3 class="text-lg font-bold mb-1 text-white">Dynamic Carbon Offset Calculator</h3>
+                        <p id="calc-material-type" class="text-[10px] text-gray-500 mb-4 uppercase tracking-widest font-bold">Currently Calculating: Heavy Materials</p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 relative z-30">
+                            <input type="number" id="carbon-input" placeholder="Enter Tons..." class="glass-input w-full relative z-30 pointer-events-auto">
+                            <button onclick="calculateTrees(); vibrateBtn()" class="glass-btn whitespace-nowrap"><span>Calculate</span></button>
+                        </div>
+                        <div id="calc-result" class="mt-4 font-bold text-sm hidden text-white bg-white/10 p-4 rounded-lg border border-gray-600 leading-relaxed"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="glass-panel p-6 text-center reveal">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="text-white text-sm font-bold tracking-widest uppercase">Global Trees Planted</h3>
+                            <span class="flex items-center gap-2 text-[8px] font-bold text-black bg-white px-2 py-1 rounded uppercase tracking-widest">
+                                <span class="w-1.5 h-1.5 rounded-full bg-black animate-pulse"></span> Live API Data
+                            </span>
+                        </div>
+                        <div id="global-tree-counter" class="odometer text-5xl font-mono font-bold mb-1 text-gray-200">1420500</div>
+                        <div class="text-gray-400 text-xs font-bold mt-2">Trees (Global 24h Avg Estimate)</div>
+                    </div>
+
+                    <div class="glass-panel p-6 reveal">
+                        <h3 class="text-sm font-bold mb-4 text-gray-300 uppercase tracking-widest">Global Carbon Deficit Analysis</h3>
+                        <p class="text-xs text-gray-400 mb-6 leading-relaxed">Comparing live material production vs. global reforestation. The percentage fluctuates as trees combat industrial output.</p>
+                        
+                        <div class="w-full bg-gray-900 rounded-full h-4 mb-2 overflow-hidden border border-gray-700 shadow-inner relative">
+                            <div id="deficit-tree-bar" class="bg-gray-300 h-4 absolute left-0 top-0 z-20" style="width: 15%; transition: width 1s ease-in-out;"></div>
+                            <div class="bg-gray-800 h-4 w-full absolute left-0 top-0 z-10"></div>
+                        </div>
+                        <div class="flex justify-between text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                            <span class="text-gray-200">Trees Planted (<span id="deficit-tree-pct">15.00%</span>)</span>
+                            <span>Carbon Debt (<span id="deficit-debt-pct">85.00%</span>)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="game-section" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10 bg-black/40">
+        <div class="max-w-4xl mx-auto glass-panel p-8 reveal text-center min-h-[450px] flex flex-col">
+            <h2 class="text-3xl font-bold mb-2 text-white">Eco-Intelligence <span class="text-gray-400">Challenge</span></h2>
+            <p class="text-gray-400 text-sm mb-8">Test your knowledge on sustainable infrastructure and environmental engineering.</p>
+            
+            <div id="game-container" class="max-w-lg mx-auto text-left w-full flex-1 flex flex-col justify-center">
+                
+                <div id="game-board">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-bold text-gray-400 tracking-widest uppercase">Endless Trivia</span>
+                        <span id="score-counter" class="text-xs font-bold text-emerald-300 bg-emerald-900/40 border border-emerald-500/30 px-3 py-1 rounded-full">Streak: 0</span>
+                    </div>
+                    <h3 id="game-question" class="text-xl font-semibold text-white mb-6">Question goes here?</h3>
+                    <div class="space-y-4" id="game-options">
+                        </div>
+                </div>
+
+                <div id="game-explanation" class="hidden text-center py-4">
+                    <div id="explain-icon" class="text-5xl mb-4"></div>
+                    <h3 class="text-2xl font-bold mb-2" id="explain-title">Correct!</h3>
+                    <p class="text-gray-200 text-sm mb-6 bg-black/40 p-5 rounded-xl border border-gray-700/50 shadow-inner leading-relaxed">
+                        <span id="explain-reasoning"></span>
+                    </p>
+                    <button onclick="displayNextQuestion(); vibrateBtn()" class="glass-btn"><span>Next Question →</span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cost-section" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10 overflow-hidden">
+        <video class="video-bg" autoplay loop muted playsinline>
+            <source src="https://cdn.pixabay.com/video/2019/04/24/23011-332483120_large.mp4" type="video/mp4">
+        </video>
+        
+        <div class="max-w-3xl mx-auto relative z-10 text-center">
+            <div class="mb-12 reveal">
+                <h2 class="text-3xl font-bold mb-4 text-white">The Cost of <span class="text-red-400">Poor Planning</span></h2>
+                <p class="text-gray-300 max-w-2xl mx-auto drop-shadow-md text-sm md:text-base">When traditional infrastructure scales without ecological foresight, the damage is catastrophic. Click any active scenario to see how we engineer the solution.</p>
+            </div>
+
+            <div class="cost-carousel reveal group" id="fast-carousel">
+                </div>
+            
+            <p class="text-xs text-gray-400 mt-8 tracking-widest uppercase animate-pulse">Click the active card to view the solution</p>
+        </div>
+    </section>
+
+    <section id="achievements" class="py-16 md:py-24 px-4 overflow-hidden relative border-t border-gray-800/50 z-10">
+        <h2 class="text-3xl font-bold mb-16 text-center reveal text-white">Featured <span class="text-gray-400">Projects & Skills</span></h2>
+        
+        <div class="carousel-container reveal" id="carousel-grabbable-container">
+            <div class="carousel-track" id="carousel-grabbable-track">
+                </div>
+        </div>
+    </section>
+
+    <footer class="relative z-10 bg-black pt-12 pb-6 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto px-4 mb-8">
+            <div class="glass-panel p-8">
+                <h4 class="text-xs font-bold text-emerald-400 tracking-widest uppercase mb-4">Data Integrations & Sources</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-gray-400 leading-relaxed">
+                    <div>
+                        <strong class="text-gray-200 block mb-1">Impact Dashboard Math:</strong>
+                        Based on annual material production algorithms derived from UN Environment Programme & IEA averages.
+                    </div>
+                    <div>
+                        <strong class="text-gray-200 block mb-1">Global Tree Counter:</strong>
+                        Simulated live pacing based on cumulative data from global NGO reforestation counters.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center text-gray-500 text-xs">
+            <p>&copy; 2026 V Gurunagaraj. | Sustainable Engineering Professional.</p>
+        </div>
+    </footer>
+
+    <div id="achievement-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-[60px] cursor-pointer" onclick="closeModal(); vibrateBtn()"></div>
+
+        <div class="relative z-10 glass-panel p-6 md:p-10 max-w-4xl w-full mx-4 transform scale-95 transition-transform duration-300" id="modal-content-box">
+            <button onclick="closeModal(); vibrateBtn()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition transform hover:rotate-90 duration-300 z-50">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="flex flex-col md:flex-row gap-8 items-center relative z-20">
+                <div class="w-full md:w-1/2 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.8)] border border-white/10 bg-black flex items-center justify-center h-[300px]">
+                    <img id="modal-img" src="" alt="" class="w-full h-full object-cover object-center">
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 id="modal-title" class="text-3xl font-bold text-white mb-4 leading-tight"></h2>
+                    <div class="w-16 h-1 bg-gray-400 mb-6 rounded-full"></div>
+                    <p id="modal-desc" class="text-gray-300 text-base leading-relaxed mb-8"></p>
+                    <button onclick="closeModal(); vibrateBtn()" class="glass-btn w-full md:w-auto">
+                        <span>← Back to Portfolio</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cost-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-[60px] cursor-pointer" onclick="closeCostModal(); vibrateBtn()"></div>
+
+        <div class="relative z-10 glass-panel p-6 md:p-10 max-w-2xl w-full mx-4 transform scale-95 transition-transform duration-300" id="cost-modal-box">
+            <div class="text-center relative z-20">
+                <div id="cost-modal-icon" class="text-6xl mb-4 drop-shadow-lg"></div>
+                <h2 id="cost-modal-title" class="text-3xl font-bold text-white mb-2 leading-tight"></h2>
+                <div class="w-16 h-1 bg-red-500 mx-auto mb-6 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+                <p id="cost-modal-desc" class="text-gray-400 text-sm mb-8"></p>
+                
+                <div class="glass-panel !bg-emerald-900/20 !border-emerald-500/30 p-6 mb-8">
+                    <h3 class="text-sm font-bold text-emerald-400 mb-3 uppercase tracking-widest">Engineering Solution</h3>
+                    <p id="cost-modal-solution" class="text-gray-200 text-base leading-relaxed"></p>
+                </div>
+                
+                <button onclick="closeCostModal(); vibrateBtn()" class="glass-btn w-full">
+                    <span>← Return to Dashboard</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ----------------------------------------------------
+        // 0. HAPTIC FEEDBACK (Vibration)
+        // ----------------------------------------------------
+        function vibrateBtn() {
+            if (navigator.vibrate) navigator.vibrate(15); 
+        }
+        function vibrateRollingWin() {
+            if (navigator.vibrate) {
+                navigator.vibrate([50, 50, 100, 50, 150, 50, 200, 50, 250, 50, 200, 50, 150, 50, 100, 50, 50]); 
+            }
+        }
+        function vibrateError() {
+            if (navigator.vibrate) navigator.vibrate([100, 50, 100]); 
+        }
+
+        // ----------------------------------------------------
+        // 0.5 CINEMATIC INTRO ANIMATION
+        // ----------------------------------------------------
+        function startExperience() {
+            vibrateBtn();
+            const introScreen = document.getElementById('intro-screen');
+            const cityBg = document.getElementById('intro-city');
+            const forestBg = document.getElementById('intro-forest');
+            const ui = document.getElementById('intro-ui');
+            
+            ui.style.opacity = '0';
+            cityBg.classList.add('zoom-city');
+
+            setTimeout(() => { forestBg.classList.add('reveal-forest'); }, 800);
+
+            setTimeout(() => {
+                introScreen.style.opacity = '0';
+                setTimeout(() => { introScreen.style.display = 'none'; }, 1500);
+            }, 3500);
+        }
+
+        // ----------------------------------------------------
+        // 1. DYNAMIC THEMES & LIQUID CURSOR BLOB
+        // ----------------------------------------------------
+        const themes = [
+            'radial-gradient(circle, rgba(16,185,129,0.6) 0%, rgba(6,182,212,0.4) 100%)',   // Aurora (Emerald/Cyan)
+            'radial-gradient(circle, rgba(168,85,247,0.6) 0%, rgba(236,72,153,0.4) 100%)', // Nebula (Purple/Pink)
+            'radial-gradient(circle, rgba(249,115,22,0.6) 0%, rgba(234,179,8,0.4) 100%)'   // Sunset (Orange/Yellow)
+        ];
+        let currentGlobalTheme = 0;
+
+        const blob = document.getElementById("cursor-blob");
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let blobX = mouseX;
+        let blobY = mouseY;
+
+        window.addEventListener("mousemove", (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateBlob() {
+            blobX += (mouseX - blobX) * 0.05;
+            blobY += (mouseY - blobY) * 0.05;
+            blob.style.left = `${blobX}px`;
+            blob.style.top = `${blobY}px`;
+            requestAnimationFrame(animateBlob);
+        }
+        animateBlob();
+
+        function cycleGlobalTheme() {
+            currentGlobalTheme = (currentGlobalTheme + 1) % themes.length;
+            resetBlobColor();
+        }
+
+        function changeBlobColor(colorHex) {
+            blob.style.background = `radial-gradient(circle, ${colorHex} 0%, transparent 80%)`;
+        }
+        function resetBlobColor() {
+            blob.style.background = themes[currentGlobalTheme];
+        }
+        
+        resetBlobColor();
+
+        // ----------------------------------------------------
+        // 2. SUSTAINABLE QUOTE TICKER 
+        // ----------------------------------------------------
+        const quotes = [
+            { text: "We cannot build the future with the materials of the past.", author: "Sustainable Engineering Principle" },
+            { text: "Infrastructure is the foundation, sustainability is the blueprint.", author: "Green Tech Vision" },
+            { text: "The greatest threat to our planet is the belief that someone else will save it.", author: "Robert Swan" },
+            { text: "Building responsibly today ensures we have a world to engineer tomorrow.", author: "Civil Eco-Mandate" },
+            { text: "Sustainability is no longer about doing less harm. It’s about doing more good.", author: "Jochen Zeitz" },
+            { text: "Design is not just what it looks like and feels like. Design is how it works.", author: "Steve Jobs" }
+        ];
+        
+        let currentQuoteIndex = 0;
+        const quoteTextElement = document.getElementById("quote-text");
+        const quoteAuthorElement = document.getElementById("quote-author");
+
+        function cycleQuotes() {
+            quoteTextElement.classList.remove("opacity-100");
+            quoteAuthorElement.classList.remove("opacity-100");
+            quoteTextElement.classList.add("opacity-0");
+            quoteAuthorElement.classList.add("opacity-0");
+
+            setTimeout(() => {
+                quoteTextElement.innerText = `"${quotes[currentQuoteIndex].text}"`;
+                quoteAuthorElement.innerText = `- ${quotes[currentQuoteIndex].author}`;
+
+                quoteTextElement.classList.remove("opacity-0");
+                quoteAuthorElement.classList.remove("opacity-0");
+                quoteTextElement.classList.add("opacity-100");
+                quoteAuthorElement.classList.add("opacity-100");
+
+                currentQuoteIndex = (currentQuoteIndex + 1) % quotes.length;
+            }, 700); 
+        }
+        cycleQuotes();
+        setInterval(cycleQuotes, 8000);
+
+        // ----------------------------------------------------
+        // 3. EXPANDABLE "COST OF POOR PLANNING" CAROUSEL
+        // ----------------------------------------------------
+        const costData = [
+            { icon: "🏭", title: "Urban Heat Islands", desc: "Concrete and asphalt trap heat, raising city temps drastically.", solution: "Implement green roofs, utilize high-albedo (reflective) materials, and integrate widespread urban canopy covers to naturally cool microclimates." },
+            { icon: "🌊", title: "Wastewater Runoff", desc: "Poor drainage floods ecosystems, contaminating drinking supplies.", solution: "Deploy permeable pavements, bioswales, and decentralized rainwater harvesting systems to absorb and filter runoff at the source." },
+            { icon: "🗑️", title: "Material Waste Crisis", desc: "Construction contributes to 30% of global waste in landfills.", solution: "Adopt Building Information Modeling (BIM) to optimize material quantities and enforce circular economy practices like concrete recycling." },
+            { icon: "🌲", title: "Habitat Fragmentation", desc: "Highway expansion disrupts natural migration patterns permanently.", solution: "Construct wildlife overpasses/underpasses and integrate bio-corridors into initial highway planning phases." },
+            { icon: "💨", title: "Particulate Pollution", desc: "Inefficient construction zones release massive PM2.5 dust clouds.", solution: "Mandate wet-suppression techniques, enclose dust-generating activities, and utilize prefabricated modular construction to minimize on-site cutting." },
+            { icon: "💧", title: "Groundwater Depletion", desc: "Over-extraction for urban use leads to severe land subsidence.", solution: "Mandate dual-plumbing networks for greywater recycling and enforce strict aquifer-recharge zoning laws." },
+            { icon: "🚗", title: "Traffic Congestion", desc: "Poor civil layouts exponentially increase idle vehicle emissions.", solution: "Transition to Transit-Oriented Development (TOD), implement smart traffic light algorithms, and prioritize dedicated non-motorized lanes." },
+            { icon: "🏜️", title: "Soil Degradation", desc: "Urban sprawl strips topsoil, destroying natural agricultural viability.", solution: "Promote high-density vertical development instead of outward sprawl, and mandate topsoil preservation/re-application protocols." },
+            { icon: "🔊", title: "Noise Pollution", desc: "Unbuffered infrastructure leads to severe urban psychological stress.", solution: "Integrate acoustic barriers using recycled materials, plant dense vegetation buffers, and specify noise-reducing asphalt mixes." },
+            { icon: "💡", title: "Light Pollution", desc: "Over-illumination disrupts nocturnal wildlife and wastes immense energy.", solution: "Install smart, motion-activated LED streetlights with full-cutoff fixtures that direct light exclusively downward." }
+        ];
+
+        let currentCostIndex = 0;
+        let costCarouselInterval;
+
+        function buildCostCarousel() {
+            const carousel = document.getElementById('fast-carousel');
+            let html = '';
+            costData.forEach((data, index) => {
+                let activeClass = index === 0 ? 'active' : '';
+                html += `
+                    <div class="cost-card ${activeClass} glass-panel p-8 border-red-900/30 flex flex-col items-center justify-center cursor-pointer transition-all hover:border-red-500/50 group" onclick="openCostModal(${index}); vibrateBtn()">
+                        <div class="text-6xl mb-6 transition-transform group-hover:scale-110 drop-shadow-xl">${data.icon}</div>
+                        <h3 class="text-2xl font-bold text-white mb-4">${data.title}</h3>
+                        <p class="text-sm md:text-base text-gray-300">${data.desc}</p>
+                        <div class="mt-6">
+                            <span class="glass-btn !py-1 !px-4 !text-xs !bg-emerald-900/30 !border-emerald-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span>View Solution</span></span>
+                        </div>
+                    </div>
+                `;
+            });
+            carousel.innerHTML = html;
+        }
+        buildCostCarousel();
+
+        function rotateCostCards() {
+            const costCards = document.querySelectorAll('#fast-carousel .cost-card');
+            costCards.forEach(card => card.classList.remove('active'));
+            currentCostIndex = (currentCostIndex + 1) % costCards.length;
+            costCards[currentCostIndex].classList.add('active');
+        }
+        
+        costCarouselInterval = setInterval(rotateCostCards, 4000);
+
+        function openCostModal(index) {
+            clearInterval(costCarouselInterval); 
+            const data = costData[index];
+            
+            document.getElementById('cost-modal-icon').innerText = data.icon;
+            document.getElementById('cost-modal-title').innerText = data.title;
+            document.getElementById('cost-modal-desc').innerText = data.desc;
+            document.getElementById('cost-modal-solution').innerText = data.solution;
+            
+            const modal = document.getElementById('cost-modal');
+            const contentBox = document.getElementById('cost-modal-box');
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                contentBox.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeCostModal() {
+            const modal = document.getElementById('cost-modal');
+            const contentBox = document.getElementById('cost-modal-box');
+            
+            modal.classList.add('opacity-0');
+            contentBox.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto'; 
+                costCarouselInterval = setInterval(rotateCostCards, 4000); 
+            }, 300);
+        }
+
+        // ----------------------------------------------------
+        // 4. PROFILE & CAROUSEL DRAG LOGIC (WITH MOBILE TOUCH)
+        // ----------------------------------------------------
+        const imgElement = document.getElementById('profile-img');
+        imgElement.src = PORTFOLIO_CONFIG.profilePhoto;
+
+        const carouselContainer = document.getElementById('carousel-grabbable-container');
+        const track = document.getElementById('carousel-grabbable-track');
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+        let draggedDistance = 0; 
+        let autoplayInterval;
+
+        function buildPortfolioCarousel() {
+            let carouselHTML = '';
+            PORTFOLIO_CONFIG.achievements.forEach((ach, index) => {
+                const rotateClass = ach.rotation ? ach.rotation : '';
+                carouselHTML += `
+                    <div data-index="${index}" onclick="if(draggedDistance < 10) { openModal(${index}); vibrateBtn(); }" onmouseenter="changeBlobColor('${ach.themeColor}')" onmouseleave="resetBlobColor()" class="achievement-card glass-panel p-6 w-80 inline-block whitespace-normal flex-shrink-0 transition hover:-translate-y-3 cursor-pointer group">
+                        <div class="overflow-hidden rounded-xl mb-6 shadow-inner border border-white/5 bg-black/50 relative h-52 flex items-center justify-center">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors z-10 flex items-center justify-center backdrop-blur-0 group-hover:backdrop-blur-md">
+                                <span class="opacity-0 group-hover:opacity-100 glass-btn pointer-events-none transform scale-90 group-hover:scale-100 transition-all text-xs"><span>Click to Expand</span></span>
+                            </div>
+                            <img src="${ach.image}" alt="${ach.title}" onerror="this.src='https://via.placeholder.com/400x300.png?text=Photo+Error'" class="w-full h-full object-cover object-center ${rotateClass}">
+                        </div>
+                        <h4 class="font-bold text-white text-xl mb-3 leading-tight truncate drop-shadow-md">${ach.title}</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed whitespace-normal line-clamp-3">${ach.outerDesc}</p>
+                    </div>
+                `;
+            });
+            track.innerHTML = carouselHTML + carouselHTML + carouselHTML;
+        }
+        buildPortfolioCarousel();
+
+        // Mouse Drag Support
+        carouselContainer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            draggedDistance = 0; 
+            carouselContainer.classList.add('grabbing');
+            startX = e.pageX - carouselContainer.offsetLeft;
+            scrollLeft = carouselContainer.scrollLeft;
+            stopAutoplay();
+        });
+
+        carouselContainer.addEventListener('mouseleave', () => {
+            if(isDragging) startAutoplay();
+            isDragging = false;
+            carouselContainer.classList.remove('grabbing');
+        });
+
+        carouselContainer.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - carouselContainer.offsetLeft;
+            const walk = (x - startX) * 2; 
+            draggedDistance = Math.abs(x - startX); 
+            carouselContainer.scrollLeft = scrollLeft - walk;
+            checkInfiniteLoop();
+        });
+
+        carouselContainer.addEventListener('mouseup', () => {
+            isDragging = false;
+            startAutoplay();
+            carouselContainer.classList.remove('grabbing');
+        });
+
+        // Mobile Touch Drag Support
+        carouselContainer.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            draggedDistance = 0; 
+            carouselContainer.classList.add('grabbing');
+            startX = e.touches[0].pageX - carouselContainer.offsetLeft;
+            scrollLeft = carouselContainer.scrollLeft;
+            stopAutoplay();
+        }, {passive: true});
+
+        carouselContainer.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].pageX - carouselContainer.offsetLeft;
+            const walk = (x - startX) * 2; 
+            draggedDistance = Math.abs(x - startX); 
+            carouselContainer.scrollLeft = scrollLeft - walk;
+            checkInfiniteLoop();
+        }, {passive: true});
+
+        carouselContainer.addEventListener('touchend', () => {
+            isDragging = false;
+            startAutoplay();
+            carouselContainer.classList.remove('grabbing');
+        });
+
+        function passiveScroll() {
+            carouselContainer.scrollLeft += 1;
+            checkInfiniteLoop();
+        }
+        function checkInfiniteLoop() {
+            const trackWidth = track.scrollWidth / 3;
+            if (carouselContainer.scrollLeft > trackWidth * 2) {
+                carouselContainer.scrollLeft = trackWidth;
+            } else if (carouselContainer.scrollLeft < 10) {
+                carouselContainer.scrollLeft = trackWidth;
+            }
+        }
+        function startAutoplay() {
+            stopAutoplay();
+            autoplayInterval = setInterval(passiveScroll, 15);
+        }
+        function stopAutoplay() { clearInterval(autoplayInterval); }
+        
+        carouselContainer.scrollLeft = track.scrollWidth / 3;
+        startAutoplay();
+
+        function openModal(index) {
+            const ach = PORTFOLIO_CONFIG.achievements[index];
+            const modal = document.getElementById('achievement-modal');
+            const contentBox = document.getElementById('modal-content-box');
+            const img = document.getElementById('modal-img');
+
+            document.getElementById('modal-title').innerText = ach.title;
+            document.getElementById('modal-desc').innerText = ach.innerDesc;
+            img.src = ach.image;
+            img.className = `w-full h-full object-cover object-center ${ach.rotation ? ach.rotation : ''}`;
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                contentBox.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('achievement-modal');
+            const contentBox = document.getElementById('modal-content-box');
+            modal.classList.add('opacity-0');
+            contentBox.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto'; 
+            }, 300);
+        }
+
+        // ----------------------------------------------------
+        // 5. DASHBOARD & MATH LOGIC
+        // ----------------------------------------------------
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('active'); } 
+                else { entry.target.classList.remove('active'); }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        let currentMaterial = 'heavy';
+        let val1 = 85000; let val2 = 42000;
+        let globalTrees = 1420500; 
+        const carbonMultipliers = { 'heavy': 1.25, 'urban': 0.85 };
+        
+        function switchMaterial(type) {
+            currentMaterial = type;
+            document.querySelectorAll('#btn-heavy, #btn-urban').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + type).classList.add('active');
+
+            if(type === 'heavy') {
+                document.getElementById('metric1-label').innerText = "Global Cement Poured";
+                document.getElementById('metric2-label').innerText = "Global Steel Produced";
+                document.getElementById('calc-material-type').innerText = "Currently Calculating: Heavy Materials";
+                val1 = 85000; val2 = 42000; 
+            } else {
+                document.getElementById('metric1-label').innerText = "Global Asphalt Laid";
+                document.getElementById('metric2-label').innerText = "Architectural Glass Manufactured";
+                document.getElementById('calc-material-type').innerText = "Currently Calculating: Urban Materials";
+                val1 = 15000; val2 = 8000; 
+            }
+            document.getElementById('metric1-counter').innerHTML = val1;
+            document.getElementById('metric2-counter').innerHTML = val2;
+            updateDeficitDashboard();
+        }
+
+        function updateDeficitDashboard() {
+            const totalMaterial = val1 + val2; 
+            const multiplier = carbonMultipliers[currentMaterial];
+            const totalEmissions = totalMaterial * multiplier;
+            const treesNeeded = Math.ceil(totalEmissions / 0.02);
+            
+            let baseTreePct = (globalTrees / treesNeeded) * 100;
+            let dynamicJitter = Math.sin(Date.now() / 1000) * 0.4; 
+            let treePct = baseTreePct + dynamicJitter;
+
+            if (treePct > 100) treePct = 100; 
+            if (treePct < 0) treePct = 0;
+            const debtPct = 100 - treePct;
+
+            document.getElementById('deficit-tree-bar').style.width = `${treePct}%`;
+            document.getElementById('deficit-tree-pct').innerText = `${treePct.toFixed(2)}%`;
+            document.getElementById('deficit-debt-pct').innerText = `${debtPct.toFixed(2)}%`;
+        }
+
+        setInterval(() => {
+            if(currentMaterial === 'heavy') {
+                val1 += Math.floor(Math.random() * 80) + 10; 
+                val2 += Math.floor(Math.random() * 40) + 5;
+            } else {
+                val1 += Math.floor(Math.random() * 30) + 5; 
+                val2 += Math.floor(Math.random() * 20) + 2;
+            }
+            globalTrees += Math.floor(Math.random() * 60) + 10; 
+
+            document.getElementById('metric1-counter').innerHTML = val1;
+            document.getElementById('metric2-counter').innerHTML = val2;
+            document.getElementById('global-tree-counter').innerHTML = globalTrees;
+            updateDeficitDashboard();
+        }, 2000); 
+
+        function calculateTrees() {
+            const input = document.getElementById('carbon-input').value;
+            const resDiv = document.getElementById('calc-result');
+            if(input && input > 0) {
+                const multiplier = carbonMultipliers[currentMaterial];
+                const totalEmissions = input * multiplier;
+                const treesNeeded = Math.ceil(totalEmissions / 0.02);
+                resDiv.innerHTML = `🌍 To offset <span class="text-white">${input} tons</span> of these materials, plant <span class="text-white font-extrabold text-lg">${treesNeeded.toLocaleString()} trees</span>.`;
+                resDiv.classList.remove('hidden');
+            } else {
+                resDiv.innerHTML = "Please enter a valid number of tons.";
+                resDiv.classList.remove('hidden');
+            }
+        }
+        updateDeficitDashboard();
+
+        // ----------------------------------------------------
+        // 6. CUSTOM CIVIL ENGINEERING TRIVIA LOGIC
+        // ----------------------------------------------------
+        const ecoQuestions = [
+            {
+                q: "Which material is a highly sustainable, recycled alternative often added to traditional Portland cement?",
+                options: ["Fly Ash", "Asphalt", "PVC Plastics", "Fiberglass"],
+                correct: "Fly Ash",
+                explanation: "Fly ash is an industrial byproduct that, when mixed with cement, dramatically reduces the carbon footprint of concrete while improving its long-term durability."
+            },
+            {
+                q: "What is the primary ecological goal of installing a 'Green Roof' on urban infrastructure?",
+                options: ["Reduce building weight", "Mitigate the urban heat island effect", "Increase aerodynamic wind resistance", "Provide outdoor storage"],
+                correct: "Mitigate the urban heat island effect",
+                explanation: "Green roofs absorb heat, provide natural insulation, lower urban temperatures, and act as a sponge to manage hazardous stormwater runoff."
+            },
+            {
+                q: "In civil engineering, what does 'BIM' stand for?",
+                options: ["Building Information Modeling", "Basic Infrastructure Metrics", "Base Interior Materials", "Bridge Integration Management"],
+                correct: "Building Information Modeling",
+                explanation: "BIM is a digital representation of physical and functional characteristics of a facility. It allows engineers to optimize material usage and reduce waste before construction even begins."
+            },
+            {
+                q: "Which urban planning strategy focuses on creating walkable, mixed-use areas to reduce car dependency?",
+                options: ["Urban Sprawl", "Transit-Oriented Development (TOD)", "Zoning Isolation", "Suburban Tracts"],
+                correct: "Transit-Oriented Development (TOD)",
+                explanation: "TOD maximizes the amount of residential, business, and leisure space within walking distance of public transport, heavily reducing carbon emissions from idle traffic."
+            },
+            {
+                q: "What is 'Permeable Pavement' designed to prevent?",
+                options: ["Traffic accidents", "Stormwater runoff and flooding", "Potholes", "Heat absorption"],
+                correct: "Stormwater runoff and flooding",
+                explanation: "Permeable pavement allows water to seep through its surface into the ground below, filtering out pollutants and preventing local sewer systems from overflowing during storms."
+            }
+        ];
+
+        let currentEcoQuestion = null;
+        let gameStreak = 0;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+        shuffle(ecoQuestions);
+
+        function displayNextQuestion() {
+            const board = document.getElementById('game-board');
+            const explanation = document.getElementById('game-explanation');
+            
+            explanation.classList.add('hidden');
+            
+            currentEcoQuestion = ecoQuestions.pop();
+            ecoQuestions.unshift(currentEcoQuestion); 
+
+            document.getElementById('game-question').innerText = currentEcoQuestion.q;
+            
+            let answers = [...currentEcoQuestion.options];
+            shuffle(answers);
+            
+            const optionsContainer = document.getElementById('game-options');
+            optionsContainer.innerHTML = ''; 
+            
+            answers.forEach(answer => {
+                const isCorrect = (answer === currentEcoQuestion.correct);
+                optionsContainer.innerHTML += `
+                    <div class="game-option" onclick="checkAnswer(this, ${isCorrect}, '${currentEcoQuestion.correct.replace(/'/g, "\\'")}', '${currentEcoQuestion.explanation.replace(/'/g, "\\'")}')">
+                        ${answer}
+                    </div>
+                `;
+            });
+            
+            board.classList.remove('hidden');
+        }
+
+        function checkAnswer(element, isCorrect, correctAnswerText, explanationText) {
+            document.querySelectorAll('.game-option').forEach(el => el.style.pointerEvents = 'none');
+            
+            const board = document.getElementById('game-board');
+            const explanation = document.getElementById('game-explanation');
+            const explainTitle = document.getElementById('explain-title');
+            const explainIcon = document.getElementById('explain-icon');
+            const explainReasoning = document.getElementById('explain-reasoning');
+
+            if (isCorrect) {
+                element.classList.add('correct');
+                gameStreak++;
+                document.getElementById('score-counter').innerText = `Streak: ${gameStreak}`;
+                vibrateRollingWin();
+                
+                setTimeout(() => {
+                    board.classList.add('hidden');
+                    explainIcon.innerText = "🌟";
+                    explainTitle.innerText = "Correct!";
+                    explainTitle.classList.replace('text-red-400', 'text-emerald-400');
+                    explainReasoning.innerHTML = `<strong>Answer: ${correctAnswerText}</strong><br><br>${explanationText}`;
+                    explanation.classList.remove('hidden');
+                }, 600);
+            } else {
+                element.classList.add('wrong');
+                gameStreak = 0; 
+                document.getElementById('score-counter').innerText = `Streak: 0`;
+                vibrateError();
+                
+                document.querySelectorAll('.game-option').forEach(el => {
+                    if (el.innerText.trim() === correctAnswerText) el.classList.add('correct');
+                });
+
+                setTimeout(() => {
+                    board.classList.add('hidden');
+                    explainIcon.innerText = "❌";
+                    explainTitle.innerText = "Incorrect";
+                    explainTitle.classList.replace('text-emerald-400', 'text-red-400');
+                    explainReasoning.innerHTML = `<strong>The correct answer was: ${correctAnswerText}</strong><br><br>${explanationText}`;
+                    explanation.classList.remove('hidden');
+                }, 1200);
+            }
+        }
+        
+        displayNextQuestion();
+
+    </script>
+</body>
+</html>
 
