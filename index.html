@@ -14,49 +14,34 @@
 
     <style>
         /* ======================================================== */
-        /* BULLETPROOF THEME ENGINE (LIQUID GLASS)                  */
+        /* TRUE LIQUID GLASS ENGINE (LIGHT THEME ONLY)              */
         /* ======================================================== */
         :root {
-            /* LIGHT THEME DEFAULTS (Clear Liquid Glass) */
-            --bg-base: #f1f5f9;
+            /* Background and Text Colors */
+            --bg-base: #e2e8f0; /* Soft cool gray for contrast against bright glass */
             --text-main: #0f172a;
             --text-muted: #475569;
+            
+            /* Glass Material Properties */
             --glass-bg: rgba(255, 255, 255, 0.45);
-            --glass-inner-bg: rgba(255, 255, 255, 0.6);
-            --glass-border-top: rgba(255, 255, 255, 0.9);
-            --glass-border-left: rgba(255, 255, 255, 0.6);
-            --glass-border-right: rgba(255, 255, 255, 0.2);
-            --glass-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1), inset 0 1px 3px rgba(255, 255, 255, 0.8);
-            --btn-bg: rgba(255, 255, 255, 0.6);
-            --btn-hover-bg: rgba(255, 255, 255, 0.9);
+            --glass-inner-bg: rgba(255, 255, 255, 0.7);
+            --glass-border-top: rgba(255, 255, 255, 1);
+            --glass-border-left: rgba(255, 255, 255, 0.8);
+            --glass-border-right: rgba(255, 255, 255, 0.3);
+            --glass-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.08), inset 0 2px 4px rgba(255, 255, 255, 1);
+            
+            /* Button Properties */
+            --btn-bg: rgba(255, 255, 255, 0.7);
+            --btn-hover-bg: rgba(255, 255, 255, 1);
             --btn-glow: rgba(52, 211, 153, 0.5);
+            
+            /* Blur & Color Refractions */
             --blur-intensity: blur(60px);
-            --saturation: saturate(200%);
-            --orb-1: rgba(52, 211, 153, 0.4);
-            --orb-2: rgba(56, 189, 248, 0.3);
-            --orb-3: rgba(251, 146, 60, 0.2);
-            --modal-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
-        }
-
-        body.dark-theme {
-            /* DARK THEME OVERRIDES (Obsidian Liquid Glass) */
-            --bg-base: #030303;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --glass-bg: rgba(20, 20, 20, 0.3);
-            --glass-inner-bg: rgba(0, 0, 0, 0.3);
-            --glass-border-top: rgba(255, 255, 255, 0.35);
-            --glass-border-left: rgba(255, 255, 255, 0.15);
-            --glass-border-right: rgba(255, 255, 255, 0.02);
-            --glass-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.2);
-            --btn-bg: rgba(255, 255, 255, 0.05);
-            --btn-hover-bg: rgba(255, 255, 255, 0.15);
-            --btn-glow: rgba(16, 185, 129, 0.4);
-            --blur-intensity: blur(70px);
-            --orb-1: rgba(16,185,129,0.5);
-            --orb-2: rgba(6,182,212,0.4);
-            --orb-3: rgba(139,92,246,0.3);
-            --modal-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+            --saturation: saturate(180%);
+            --orb-1: rgba(52, 211, 153, 0.5); /* Emerald */
+            --orb-2: rgba(56, 189, 248, 0.4); /* Sky Blue */
+            --orb-3: rgba(251, 146, 60, 0.3); /* Orange */
+            --modal-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.6));
         }
 
         body {
@@ -65,40 +50,25 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             overflow-x: hidden;
             margin: 0;
-            transition: background-color 0.8s ease, color 0.8s ease;
         }
 
         /* Dynamic Typography Utilities */
-        .text-main { color: var(--text-main) !important; transition: color 0.5s ease; }
-        .text-muted { color: var(--text-muted) !important; transition: color 0.5s ease; }
-        .bg-inner { background-color: var(--glass-inner-bg) !important; transition: background-color 0.5s ease;}
+        .text-main { color: var(--text-main) !important; }
+        .text-muted { color: var(--text-muted) !important; }
+        .bg-inner { background-color: var(--glass-inner-bg) !important; }
 
         /* ======================================================== */
         /* LIQUID GLASS TYPOGRAPHY (iOS Lock Screen Style)          */
-        /* Engineered based on provided image references            */
         /* ======================================================== */
         .odometer .odometer-digit {
-            /* Translucent body to let background refraction show through */
-            color: rgba(255, 255, 255, 0.05) !important; 
-            /* Crisp carved edge */
-            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.5); 
-            /* Layered shadows for 3D depth and rim lighting */
+            /* Translucent body with crisp dark stroke and shadow */
+            color: rgba(0, 0, 0, 0.03) !important; 
+            -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.6); 
             text-shadow: 
-                -1px -1px 3px rgba(255, 255, 255, 0.6), 
-                2px 2px 5px rgba(0, 0, 0, 0.7),       
-                0px 10px 20px rgba(0, 0, 0, 0.6);     
+                -2px -2px 4px rgba(255, 255, 255, 0.8), 
+                2px 2px 6px rgba(0, 0, 0, 0.15),       
+                inset 0px 5px 10px rgba(255, 255, 255, 1);     
             font-weight: 800 !important;
-            transition: all 0.8s ease;
-        }
-
-        body.light-theme .odometer .odometer-digit {
-            /* Adapt for Clear Glass */
-            color: rgba(0, 0, 0, 0.02) !important;
-            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.9); 
-            text-shadow: 
-                -2px -2px 4px rgba(255, 255, 255, 1), 
-                1px 1px 4px rgba(0, 0, 0, 0.15),      
-                0px 8px 20px rgba(0, 0, 0, 0.1);      
         }
 
         /* ----------------------------------------- */
@@ -123,14 +93,16 @@
         }
         .zoom-city { transform: scale(2.5) !important; filter: blur(20px) !important; opacity: 0 !important; }
         .reveal-forest { opacity: 0.7 !important; transform: scale(1) !important; }
-        .intro-btn { color: white !important; background: rgba(255,255,255,0.1) !important; border-color: rgba(255,255,255,0.4) !important; }
-        .intro-btn:hover { background: rgba(255,255,255,0.2) !important; color: white !important; }
+        
+        /* Intro Button overrides (must remain white to contrast the black intro video) */
+        .intro-btn { color: white !important; background: rgba(255,255,255,0.15) !important; border-top: 1px solid rgba(255,255,255,0.6) !important; }
+        .intro-btn:hover { background: rgba(255,255,255,0.3) !important; color: white !important; }
 
         /* ----------------------------------------- */
         /* AMBIENT BACKGROUND ENGINE                 */
         /* ----------------------------------------- */
         .ambient-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-        .ambient-orb { position: absolute; border-radius: 50%; filter: blur(120px); transition: background 1s ease; opacity: 0.8; }
+        .ambient-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.8; }
         #orb1 { top: -10%; left: -10%; width: 60vw; height: 60vw; background: var(--orb-1); animation: float 20s infinite alternate; }
         #orb2 { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: var(--orb-2); animation: float 25s infinite alternate-reverse; }
         #orb3 { top: 40%; left: 50%; width: 40vw; height: 40vw; background: var(--orb-3); animation: pulse 15s infinite alternate; }
@@ -141,7 +113,7 @@
         #cursor-refractor {
             position: fixed; width: 400px; height: 400px; border-radius: 50%;
             background: radial-gradient(circle, var(--btn-glow) 0%, transparent 70%);
-            left: 50%; top: 50%; translate: -50% -50%; filter: blur(70px); z-index: 0; pointer-events: none; transition: background 0.5s ease;
+            left: 50%; top: 50%; translate: -50% -50%; filter: blur(70px); z-index: 0; pointer-events: none;
         }
 
         /* ----------------------------------------- */
@@ -166,10 +138,10 @@
             background: var(--modal-bg);
             backdrop-filter: blur(50px) saturate(200%);
             -webkit-backdrop-filter: blur(50px) saturate(200%);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
             border-top: 1px solid var(--glass-border-top);
             border-left: 1px solid var(--glass-border-left);
-            box-shadow: 0 40px 80px -10px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 80px -10px rgba(0, 0, 0, 0.2), inset 0 0 0 2px rgba(255, 255, 255, 0.8);
             border-radius: 2rem;
             transition: all 0.4s ease;
         }
@@ -184,7 +156,7 @@
             border: 1px solid transparent;
             border-top-color: var(--glass-border-top);
             border-left-color: var(--glass-border-left);
-            box-shadow: 0 8px 20px -5px rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.3);
+            box-shadow: 0 8px 15px -5px rgba(0,0,0,0.1), inset 0 2px 5px rgba(255,255,255,0.8);
             color: var(--text-main);
             padding: 0.8rem 1.8rem;
             border-radius: 9999px; 
@@ -193,42 +165,38 @@
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
             z-index: 50;
         }
-        body.dark-theme .liquid-btn { box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5), inset 0 2px 4px rgba(255,255,255,0.2); }
         
         .liquid-btn::before {
             content: ''; position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%);
+            background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
             transform: skewX(-20deg); transition: all 0.7s ease; z-index: 0;
         }
         .liquid-btn:hover::before { left: 150%; }
         .liquid-btn span { position: relative; z-index: 10; }
+        
         .liquid-btn:hover, .liquid-btn.active {
             background: var(--btn-hover-bg); transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 15px 30px -5px rgba(0,0,0,0.15), inset 0 4px 8px rgba(255,255,255,0.6); color: var(--text-main);
-        }
-        body.dark-theme .liquid-btn:hover, body.dark-theme .liquid-btn.active {
-            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.7), inset 0 4px 8px rgba(255,255,255,0.4);
+            box-shadow: 0 15px 30px -5px rgba(0,0,0,0.15), inset 0 4px 8px rgba(255,255,255,1); 
         }
         
+        /* Inputs & Game Tiles */
         .liquid-input {
             background: var(--glass-inner-bg); backdrop-filter: var(--blur-intensity); -webkit-backdrop-filter: var(--blur-intensity);
             border: 1px solid var(--glass-border-left); border-top-color: var(--glass-border-top);
-            box-shadow: inset 0 4px 10px rgba(0,0,0,0.1), 0 2px 5px rgba(255,255,255,0.4);
+            box-shadow: inset 0 4px 10px rgba(0,0,0,0.05), 0 2px 5px rgba(255,255,255,0.8);
             color: var(--text-main); border-radius: 9999px; padding: 0.8rem 1.5rem; outline: none; transition: all 0.3s ease;
         }
-        .liquid-input:focus { border-color: var(--btn-glow); box-shadow: inset 0 4px 10px rgba(0,0,0,0.2), 0 0 20px var(--btn-glow); }
-        body.dark-theme .liquid-input { box-shadow: inset 0 4px 10px rgba(0,0,0,0.4), 0 2px 5px rgba(255,255,255,0.05); }
+        .liquid-input:focus { border-color: var(--btn-glow); box-shadow: inset 0 4px 10px rgba(0,0,0,0.1), 0 0 20px var(--btn-glow); }
 
-        /* Game Tiles */
         .liquid-tile {
             background: var(--btn-bg); backdrop-filter: var(--blur-intensity) var(--saturation);
             border: 1px solid transparent; border-top-color: var(--glass-border-top); border-left-color: var(--glass-border-left);
-            box-shadow: var(--glass-shadow); padding: 1.5rem; border-radius: 1.5rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;
-            color: var(--text-main); font-weight: 500;
+            box-shadow: var(--glass-shadow); padding: 1.5rem; border-radius: 1.5rem; cursor: pointer; transition: all 0.3s ease;
+            color: var(--text-main); font-weight: 500; position: relative; overflow: hidden;
         }
         .liquid-tile:hover { background: var(--btn-hover-bg); transform: translateY(-4px); }
-        .liquid-tile.correct { background: rgba(16,185,129,0.3) !important; border-color: rgba(16,185,129,0.8) !important; }
-        .liquid-tile.wrong { background: rgba(239,68,68,0.3) !important; border-color: rgba(239,68,68,0.8) !important; }
+        .liquid-tile.correct { background: rgba(16,185,129,0.2) !important; border-color: rgba(16,185,129,0.8) !important; }
+        .liquid-tile.wrong { background: rgba(239,68,68,0.2) !important; border-color: rgba(239,68,68,0.8) !important; }
 
         /* Mobile Menu */
         #mobile-menu {
@@ -236,20 +204,19 @@
             border-left: 1px solid var(--glass-border-left); z-index: 1000;
         }
 
-        /* Essential Animations */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); z-index: 10; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+        /* Essential Structure & Positioning */
         .carousel-container { width: 100%; overflow: hidden; padding: 20px 0; cursor: grab; user-select: none; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; z-index: 10; }
         .carousel-container::-webkit-scrollbar { display: none; }
         .carousel-track { display: flex; gap: 2rem; padding-left: 2rem; will-change: transform; }
         .cost-carousel { position: relative; width: 100%; height: 320px; overflow: hidden; perspective: 1000px; }
         .cost-card { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transform: scale(0.95); transition: all 1.2s cubic-bezier(0.25, 0.8, 0.25, 1); pointer-events: none; }
         .cost-card.active { opacity: 1; transform: scale(1); pointer-events: auto; }
-        .video-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.15; z-index: 0; filter: grayscale(100%); mix-blend-mode: overlay; }
+        /* Very faint overlay to prevent white-on-white clashes */
+        .video-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.05; z-index: 0; filter: grayscale(100%); mix-blend-mode: overlay; }
         .rotate-90 { transform: rotate(90deg) scale(1.3); }
     </style>
 </head>
-<body class="antialiased min-h-screen relative light-theme">
+<body class="antialiased min-h-screen relative">
 
     <!-- INTRO ANIMATION SCREEN -->
     <div id="intro-screen">
@@ -325,16 +292,15 @@
         <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center h-20">
             <div class="max-w-md w-full relative flex flex-col justify-center h-full">
                 <p id="quote-text" class="text-main text-xs md:text-sm italic font-medium transition-opacity duration-700 leading-tight">Loading quote...</p>
-                <p id="quote-author" class="text-emerald-500 font-bold text-[9px] md:text-[10px] text-right mt-1 tracking-widest uppercase transition-opacity duration-700"></p>
+                <p id="quote-author" class="text-emerald-600 font-bold text-[9px] md:text-[10px] text-right mt-1 tracking-widest uppercase transition-opacity duration-700"></p>
             </div>
 
             <!-- Desktop Nav -->
             <div class="space-x-3 text-sm font-bold hidden lg:flex items-center ml-8 shrink-0">
-                <a href="#about" class="text-muted hover:text-emerald-500 transition px-2" onclick="vibrateBtn()">About</a>
-                <a href="#impact" class="text-muted hover:text-emerald-500 transition px-2" onclick="vibrateBtn()">Dashboard</a>
-                <a href="#game-section" class="text-muted hover:text-emerald-500 transition px-2" onclick="vibrateBtn()">Eco-Game</a>
-                <a href="#achievements" class="text-muted hover:text-emerald-500 transition px-2" onclick="vibrateBtn()">Projects</a>
-                <button onclick="toggleTheme(); vibrateBtn()" class="liquid-btn !py-1.5 !px-4 !text-xs ml-2"><span>Theme 🌗</span></button>
+                <a href="#about" class="text-muted hover:text-emerald-600 transition px-2" onclick="vibrateBtn()">About</a>
+                <a href="#impact" class="text-muted hover:text-emerald-600 transition px-2" onclick="vibrateBtn()">Dashboard</a>
+                <a href="#game-section" class="text-muted hover:text-emerald-600 transition px-2" onclick="vibrateBtn()">Eco-Game</a>
+                <a href="#achievements" class="text-muted hover:text-emerald-600 transition px-2" onclick="vibrateBtn()">Projects</a>
             </div>
 
             <!-- Mobile Hamburger -->
@@ -356,12 +322,11 @@
             <a href="#impact" onclick="toggleMobileMenu(); vibrateBtn()">Live Dashboard</a>
             <a href="#game-section" onclick="toggleMobileMenu(); vibrateBtn()">Eco-Game</a>
             <a href="#achievements" onclick="toggleMobileMenu(); vibrateBtn()">Projects</a>
-            <button onclick="toggleTheme(); vibrateBtn()" class="liquid-btn w-full mt-4 !py-3"><span>Switch Theme 🌗</span></button>
         </div>
         
         <!-- Live View Counter Widget inside Menu -->
         <div class="mt-auto liquid-glass p-6 text-center">
-            <h4 class="text-xs font-bold text-emerald-500 tracking-widest uppercase mb-4">Live Analytics</h4>
+            <h4 class="text-xs font-bold text-emerald-600 tracking-widest uppercase mb-4">Live Analytics</h4>
             <div class="flex justify-between items-center mb-2 text-main text-sm">
                 <span>Global Views:</span>
                 <span id="view-counter" class="font-mono font-bold">--</span>
@@ -375,13 +340,13 @@
 
     <!-- SECTION 1: Hero & About Me -->
     <section id="about" class="min-h-screen flex items-center justify-center pt-28 pb-16 md:pt-36 md:pb-24 px-4 md:px-8 relative z-10">
-        <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center reveal">
+        <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div class="flex justify-center relative">
                 <img id="profile-img" src="" alt="V Gurunagaraj" onerror="this.src='https://ui-avatars.com/api/?name=V+Gurunagaraj&background=000&color=fff&size=400'" class="w-72 h-72 md:w-96 md:h-96 object-cover object-center rounded-full liquid-glass p-3 z-10 relative">
             </div>
             
             <div class="liquid-glass p-8 md:p-10 relative z-20 flex flex-col justify-center">
-                <h2 class="text-emerald-500 font-bold tracking-widest uppercase mb-3 text-xs">Civil Engineering Professional</h2>
+                <h2 class="text-emerald-600 font-bold tracking-widest uppercase mb-3 text-xs">Civil Engineering Professional</h2>
                 <h1 class="text-4xl md:text-5xl font-extrabold mb-6 leading-tight text-main">Bridging <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-cyan-500">Infrastructure</span> & Ecology.</h1>
                 
                 <p class="text-muted text-base mb-4 leading-relaxed font-medium">
@@ -403,8 +368,8 @@
     <!-- SECTION 2: Interactive Material Dashboard -->
     <section id="impact" class="py-16 md:py-24 px-4 md:px-8 relative z-10">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-12 reveal">
-                <h2 class="text-3xl font-bold mb-4 text-main">Global Construction <span class="text-emerald-500">Impact Ticker</span></h2>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-main">Global Construction <span class="text-emerald-600">Impact Ticker</span></h2>
                 <p class="text-muted max-w-2xl mx-auto mb-8 font-medium">Real-time estimations of global material production vs. actual environmental remediation efforts.</p>
                 
                 <div class="flex justify-center gap-4 flex-wrap relative z-30">
@@ -417,13 +382,13 @@
                 <!-- Left Column -->
                 <div class="space-y-8 flex flex-col">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                        <div class="liquid-glass p-8 text-center reveal group flex flex-col justify-center">
+                        <div class="liquid-glass p-8 text-center group flex flex-col justify-center">
                             <div id="metric1-label" class="text-muted text-xs font-bold tracking-widest uppercase mb-3">Global Cement Poured</div>
                             <!-- ODOMETER WITH LIQUID GLASS TYPOGRAPHY -->
                             <div id="metric1-counter" class="odometer text-5xl mb-2">85000</div>
                             <div class="text-muted text-xs mt-2 font-semibold">Tons (Today)</div>
                         </div>
-                        <div class="liquid-glass p-8 text-center reveal group flex flex-col justify-center">
+                        <div class="liquid-glass p-8 text-center group flex flex-col justify-center">
                             <div id="metric2-label" class="text-muted text-xs font-bold tracking-widest uppercase mb-3">Global Steel Produced</div>
                             <!-- ODOMETER WITH LIQUID GLASS TYPOGRAPHY -->
                             <div id="metric2-counter" class="odometer text-5xl mb-2">42000</div>
@@ -431,9 +396,9 @@
                         </div>
                     </div>
 
-                    <div class="liquid-glass p-8 reveal relative z-30 flex-1 flex flex-col justify-center">
+                    <div class="liquid-glass p-8 relative z-30 flex-1 flex flex-col justify-center">
                         <h3 class="text-xl font-bold mb-2 text-main">Dynamic Carbon Offset Calculator</h3>
-                        <p id="calc-material-type" class="text-xs text-emerald-500 mb-6 uppercase tracking-widest font-bold">Currently Calculating: Heavy Materials</p>
+                        <p id="calc-material-type" class="text-xs text-emerald-600 mb-6 uppercase tracking-widest font-bold">Currently Calculating: Heavy Materials</p>
                         
                         <div class="flex flex-col sm:flex-row gap-4 relative z-30 w-full">
                             <input type="number" id="carbon-input" placeholder="Enter Tons..." class="liquid-input flex-1 relative z-30 pointer-events-auto">
@@ -445,10 +410,10 @@
 
                 <!-- Right Column -->
                 <div class="space-y-8 flex flex-col">
-                    <div class="liquid-glass p-8 text-center reveal flex-1 flex flex-col justify-center">
+                    <div class="liquid-glass p-8 text-center flex-1 flex flex-col justify-center">
                         <div class="flex justify-between items-center mb-4">
                             <h3 class="text-main text-sm font-bold tracking-widest uppercase">Global Trees Planted</h3>
-                            <span class="flex items-center gap-2 text-[9px] font-bold text-white bg-emerald-500 px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
+                            <span class="flex items-center gap-2 text-[9px] font-bold text-white bg-emerald-500 px-3 py-1.5 rounded-full uppercase tracking-widest shadow-md">
                                 <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span> Live API
                             </span>
                         </div>
@@ -457,12 +422,12 @@
                         <div class="text-muted text-xs font-bold mt-3">Trees (Global 24h Avg Estimate)</div>
                     </div>
 
-                    <div class="liquid-glass p-8 reveal flex-1 flex flex-col justify-center">
+                    <div class="liquid-glass p-8 flex-1 flex flex-col justify-center">
                         <h3 class="text-sm font-bold mb-4 text-main uppercase tracking-widest">Global Carbon Deficit Analysis</h3>
                         <p class="text-xs text-muted mb-8 leading-relaxed font-medium">Comparing live material production vs. global reforestation. The percentage fluctuates as trees combat industrial output.</p>
                         
-                        <div class="w-full bg-inner rounded-full h-6 mb-3 overflow-hidden border border-black/10 dark:border-white/10 shadow-inner relative">
-                            <div id="deficit-tree-bar" class="bg-gradient-to-r from-emerald-500 to-cyan-400 h-6 absolute left-0 top-0 z-20 shadow-[0_0_15px_rgba(16,185,129,0.8)]" style="width: 15%; transition: width 1s ease-in-out;"></div>
+                        <div class="w-full bg-inner rounded-full h-6 mb-3 overflow-hidden shadow-inner relative">
+                            <div id="deficit-tree-bar" class="bg-gradient-to-r from-emerald-400 to-cyan-400 h-6 absolute left-0 top-0 z-20 shadow-[0_0_15px_rgba(16,185,129,0.5)]" style="width: 15%; transition: width 1s ease-in-out;"></div>
                         </div>
                         <div class="flex justify-between text-[10px] font-bold text-muted uppercase tracking-widest">
                             <span>Trees Planted (<span id="deficit-tree-pct">15.00%</span>)</span>
@@ -476,8 +441,8 @@
 
     <!-- SECTION 3: CUSTOM ENDLESS CIVIL TRIVIA GAME -->
     <section id="game-section" class="py-16 md:py-24 px-4 md:px-8 relative z-10">
-        <div class="max-w-4xl mx-auto liquid-glass p-8 md:p-10 reveal text-center min-h-[450px] flex flex-col justify-center items-center">
-            <h2 class="text-3xl font-bold mb-3 text-main">Eco-Intelligence <span class="text-emerald-500">Challenge</span></h2>
+        <div class="max-w-4xl mx-auto liquid-glass p-8 md:p-10 text-center min-h-[450px] flex flex-col justify-center items-center">
+            <h2 class="text-3xl font-bold mb-3 text-main">Eco-Intelligence <span class="text-emerald-600">Challenge</span></h2>
             <p class="text-muted text-sm mb-10 font-medium">Test your knowledge on sustainable infrastructure and environmental engineering.</p>
             
             <div id="game-container" class="max-w-2xl w-full text-left">
@@ -485,7 +450,7 @@
                 <div id="game-board">
                     <div class="flex justify-between items-center mb-6">
                         <span class="text-xs font-bold text-muted tracking-widest uppercase">Endless Trivia</span>
-                        <span id="score-counter" class="text-xs font-bold text-emerald-600 dark:text-emerald-300 bg-emerald-500/20 border border-emerald-500/30 px-4 py-1.5 rounded-full shadow-sm">Streak: 0</span>
+                        <span id="score-counter" class="text-xs font-bold text-emerald-700 bg-emerald-500/20 border border-emerald-500/30 px-4 py-1.5 rounded-full shadow-sm">Streak: 0</span>
                     </div>
                     <h3 id="game-question" class="text-2xl font-semibold text-main mb-8 leading-tight">Question goes here?</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="game-options">
@@ -496,8 +461,7 @@
                 <div id="game-explanation" class="hidden text-center py-6 w-full">
                     <div id="explain-icon" class="text-6xl mb-6"></div>
                     <h3 class="text-3xl font-bold mb-4 text-main" id="explain-title">Correct!</h3>
-                    <!-- Explanation background dynamically matches theme -->
-                    <p class="text-main text-sm mb-8 bg-inner p-6 rounded-2xl border border-black/10 dark:border-white/20 shadow-inner leading-relaxed font-medium">
+                    <p class="text-main text-sm mb-8 bg-inner p-6 rounded-2xl shadow-inner leading-relaxed font-medium">
                         <span id="explain-reasoning"></span>
                     </p>
                     <button onclick="displayNextQuestion(); vibrateBtn()" class="liquid-btn"><span>Next Question →</span></button>
@@ -513,12 +477,12 @@
         </video>
         
         <div class="max-w-4xl mx-auto relative z-10 text-center">
-            <div class="mb-14 reveal">
+            <div class="mb-14">
                 <h2 class="text-4xl font-bold mb-4 text-main">The Cost of <span class="text-red-500">Poor Planning</span></h2>
                 <p class="text-muted max-w-2xl mx-auto text-base font-medium">When traditional infrastructure scales without ecological foresight, the damage is catastrophic. Click any active scenario to see how we engineer the solution.</p>
             </div>
 
-            <div class="cost-carousel reveal group" id="fast-carousel">
+            <div class="cost-carousel group" id="fast-carousel">
                 <!-- Javascript will inject the endless cost cards here -->
             </div>
             
@@ -528,9 +492,9 @@
 
     <!-- SECTION 5: Scrolling Achievements Carousel -->
     <section id="achievements" class="py-16 md:py-24 px-4 md:px-8 overflow-hidden relative z-10">
-        <h2 class="text-3xl font-bold mb-16 text-center reveal text-main">Featured <span class="text-emerald-500">Projects & Skills</span></h2>
+        <h2 class="text-3xl font-bold mb-16 text-center text-main">Featured <span class="text-emerald-600">Projects & Skills</span></h2>
         
-        <div class="carousel-container reveal" id="carousel-grabbable-container">
+        <div class="carousel-container" id="carousel-grabbable-container">
             <div class="carousel-track" id="carousel-grabbable-track">
                 <!-- Javascript will inject sliding photos and text here -->
             </div>
@@ -540,8 +504,8 @@
     <!-- SECTION 6: API Data Transparency Footer -->
     <footer class="relative z-10 pt-12 pb-8">
         <div class="max-w-6xl mx-auto px-4 md:px-8 mb-8">
-            <div class="liquid-glass p-10 reveal">
-                <h4 class="text-sm font-bold text-emerald-500 tracking-widest uppercase mb-6">Data Integrations & Sources</h4>
+            <div class="liquid-glass p-10">
+                <h4 class="text-sm font-bold text-emerald-600 tracking-widest uppercase mb-6">Data Integrations & Sources</h4>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-sm text-muted leading-relaxed font-medium">
                     <div>
                         <strong class="text-main block mb-2">Impact Dashboard Math:</strong>
@@ -561,7 +525,7 @@
 
     <!-- MODAL 1: ACHIEVEMENT EXTENDED WINDOW -->
     <div id="achievement-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div class="absolute inset-0 bg-black/40 backdrop-blur-[50px] cursor-pointer" onclick="closeModal(); vibrateBtn()"></div>
+        <div class="absolute inset-0 bg-white/20 backdrop-blur-[40px] cursor-pointer" onclick="closeModal(); vibrateBtn()"></div>
 
         <!-- MODAL-GLASS-UI -->
         <div class="relative z-10 modal-glass-ui p-8 md:p-12 max-w-4xl w-full mx-4 transform scale-95 transition-transform duration-300" id="modal-content-box">
@@ -569,7 +533,7 @@
                 <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             <div class="flex flex-col md:flex-row gap-10 items-stretch relative z-20">
-                <div class="w-full md:w-1/2 rounded-3xl overflow-hidden shadow-2xl border border-black/10 dark:border-white/10 bg-inner flex items-center justify-center min-h-[350px]">
+                <div class="w-full md:w-1/2 rounded-3xl overflow-hidden shadow-lg bg-inner flex items-center justify-center min-h-[350px]">
                     <img id="modal-img" src="" alt="" class="w-full h-full object-cover object-center">
                 </div>
                 <div class="w-full md:w-1/2 flex flex-col justify-center">
@@ -586,18 +550,18 @@
 
     <!-- MODAL 2: COST OF PLANNING EXTENDED WINDOW -->
     <div id="cost-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-[60px] cursor-pointer" onclick="closeCostModal(); vibrateBtn()"></div>
+        <div class="absolute inset-0 bg-white/20 backdrop-blur-[40px] cursor-pointer" onclick="closeCostModal(); vibrateBtn()"></div>
 
         <!-- MODAL-GLASS-UI -->
-        <div class="relative z-10 modal-glass-ui p-8 md:p-12 max-w-3xl w-full mx-4 transform scale-95 transition-transform duration-300 border-emerald-400/30" id="cost-modal-box">
+        <div class="relative z-10 modal-glass-ui p-8 md:p-12 max-w-3xl w-full mx-4 transform scale-95 transition-transform duration-300" id="cost-modal-box">
             <div class="text-center relative z-20">
                 <div id="cost-modal-icon" class="text-7xl mb-6"></div>
                 <h2 id="cost-modal-title" class="text-3xl md:text-4xl font-bold text-main mb-4 leading-tight"></h2>
-                <div class="w-20 h-1.5 bg-red-500/80 mx-auto mb-8 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.8)]"></div>
+                <div class="w-20 h-1.5 bg-red-500 mx-auto mb-8 rounded-full shadow-md"></div>
                 <p id="cost-modal-desc" class="text-muted text-lg mb-10 font-medium"></p>
                 
-                <div class="liquid-glass !bg-inner !border-emerald-500/30 p-8 mb-10 shadow-inner border-none">
-                    <h3 class="text-base font-bold text-emerald-600 dark:text-emerald-400 mb-4 uppercase tracking-widest">Engineering Solution</h3>
+                <div class="liquid-glass !bg-emerald-500/10 p-8 mb-10 shadow-inner border-none">
+                    <h3 class="text-base font-bold text-emerald-600 mb-4 uppercase tracking-widest">Engineering Solution</h3>
                     <p id="cost-modal-solution" class="text-main text-lg leading-relaxed font-medium"></p>
                 </div>
                 
@@ -618,7 +582,7 @@
         function vibrateError() { if (navigator.vibrate) navigator.vibrate([100, 50, 100]); }
 
         // ----------------------------------------------------
-        // Mobile Menu Logic
+        // Mobile Menu Logic & View Counter
         // ----------------------------------------------------
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
@@ -655,34 +619,9 @@
         }
 
         // ----------------------------------------------------
-        // 1. DYNAMIC THEMES & LIQUID CURSOR BLOB
+        // 1. LIQUID CURSOR BLOB
         // ----------------------------------------------------
-        let isLightMode = true; // Set default to Light Mode
-        
-        function applyTheme() {
-            const orbs = document.querySelectorAll('.ambient-orb');
-            if(!isLightMode) {
-                document.body.classList.add('dark-theme');
-                document.body.classList.remove('light-theme');
-                orbs[0].style.background = 'rgba(16,185,129,0.5)';
-                orbs[1].style.background = 'rgba(6,182,212,0.4)';
-                orbs[2].style.background = 'rgba(139,92,246,0.3)';
-            } else {
-                document.body.classList.add('light-theme');
-                document.body.classList.remove('dark-theme');
-                orbs[0].style.background = 'rgba(52, 211, 153, 0.4)';
-                orbs[1].style.background = 'rgba(56, 189, 248, 0.3)';
-                orbs[2].style.background = 'rgba(251, 146, 60, 0.2)';
-            }
-        }
-
-        function toggleTheme() {
-            isLightMode = !isLightMode;
-            applyTheme();
-        }
-        applyTheme(); // Run on load
-
-        const blob = document.getElementById("cursor-blob");
+        const blob = document.getElementById("cursor-refractor");
         let mouseX = window.innerWidth / 2; let mouseY = window.innerHeight / 2;
         let blobX = mouseX; let blobY = mouseY;
         window.addEventListener("mousemove", (e) => { mouseX = e.clientX; mouseY = e.clientY; });
@@ -764,7 +703,7 @@
                     <div class="cost-card ${activeClass} liquid-glass p-8 flex flex-col items-center justify-center cursor-pointer group" onclick="openCostModal(${index}); vibrateBtn()">
                         <div class="text-7xl mb-6 transition-transform group-hover:scale-110">${data.icon}</div>
                         <h3 class="text-3xl font-bold text-main mb-4">${data.title}</h3>
-                        <p class="text-base text-muted font-medium transition-colors">${data.desc}</p>
+                        <p class="text-base text-muted font-medium">${data.desc}</p>
                         <div class="mt-8">
                             <span class="liquid-btn !py-2 !px-6 !text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span>View Solution</span></span>
                         </div>
@@ -810,7 +749,7 @@
                 carouselHTML += `
                     <div data-index="${index}" onclick="if(draggedDistance < 10) { openModal(${index}); vibrateBtn(); }" class="achievement-card liquid-glass p-6 w-80 inline-block whitespace-normal flex-shrink-0 transition hover:-translate-y-3 cursor-pointer group">
                         <div class="overflow-hidden rounded-2xl mb-6 shadow-inner bg-inner relative h-52 flex items-center justify-center">
-                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 dark:group-hover:bg-black/40 transition-colors z-10 flex items-center justify-center backdrop-blur-0 group-hover:backdrop-blur-md">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-white/40 transition-colors z-10 flex items-center justify-center backdrop-blur-0 group-hover:backdrop-blur-md">
                                 <span class="opacity-0 group-hover:opacity-100 liquid-btn pointer-events-none transform scale-90 group-hover:scale-100 transition-all text-xs"><span>Click to Expand</span></span>
                             </div>
                             <img src="${ach.image}" alt="${ach.title}" onerror="this.src='https://via.placeholder.com/400x300.png?text=Photo+Error'" class="w-full h-full object-cover object-center ${rotateClass}">
@@ -856,20 +795,7 @@
         }
 
         // ----------------------------------------------------
-        // 5. INTERSECTION OBSERVER (FIXED FOR MOBILE SCROLLING)
-        // ----------------------------------------------------
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                // Only add the class once it enters the viewport. Do not remove it.
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-        // ----------------------------------------------------
-        // 6. DASHBOARD & MATH LOGIC
+        // 5. DASHBOARD & MATH LOGIC
         // ----------------------------------------------------
         let currentMaterial = 'heavy'; let val1 = 85000; let val2 = 42000; let globalTrees = 1420500; 
         const carbonMultipliers = { 'heavy': 1.25, 'urban': 0.85 };
@@ -901,14 +827,14 @@
             const input = document.getElementById('carbon-input').value; const resDiv = document.getElementById('calc-result');
             if(input && input > 0) {
                 const treesNeeded = Math.ceil((input * carbonMultipliers[currentMaterial]) / 0.02);
-                resDiv.innerHTML = `🌍 To offset <span class="font-bold">${input} tons</span>, plant <span class="font-extrabold text-lg text-emerald-500">${treesNeeded.toLocaleString()} trees</span>.`;
+                resDiv.innerHTML = `🌍 To offset <span class="font-bold">${input} tons</span>, plant <span class="font-extrabold text-lg text-emerald-600">${treesNeeded.toLocaleString()} trees</span>.`;
                 resDiv.classList.remove('hidden');
             } else { resDiv.innerHTML = "Please enter a valid number of tons."; resDiv.classList.remove('hidden'); }
         }
         updateDeficitDashboard();
 
         // ----------------------------------------------------
-        // 7. CUSTOM CIVIL ENGINEERING TRIVIA LOGIC (15 Questions)
+        // 6. CUSTOM CIVIL ENGINEERING TRIVIA LOGIC (15 Questions)
         // ----------------------------------------------------
         const ecoQuestions = [
             { q: "Which material is a highly sustainable, recycled alternative often added to traditional Portland cement?", options: ["Fly Ash", "Asphalt", "PVC Plastics", "Fiberglass"], correct: "Fly Ash", explanation: "Fly ash is an industrial byproduct that dramatically reduces the carbon footprint of concrete." },
@@ -957,7 +883,7 @@
                 element.classList.add('correct'); gameStreak++; document.getElementById('score-counter').innerText = `Streak: ${gameStreak}`; vibrateRollingWin();
                 setTimeout(() => {
                     board.classList.add('hidden'); explainIcon.innerText = "🌟"; explainTitle.innerText = "Correct!";
-                    explainTitle.classList.remove('text-red-500'); explainTitle.classList.add('text-emerald-500');
+                    explainTitle.classList.remove('text-red-500'); explainTitle.classList.add('text-emerald-600');
                     explainReasoning.innerHTML = `<strong>Answer: ${correctAnswerText}</strong><br><br>${explanationText}`;
                     explanation.classList.remove('hidden');
                 }, 600);
@@ -966,7 +892,7 @@
                 document.querySelectorAll('.liquid-tile').forEach(el => { if (el.innerText.trim() === correctAnswerText) el.classList.add('correct'); });
                 setTimeout(() => {
                     board.classList.add('hidden'); explainIcon.innerText = "❌"; explainTitle.innerText = "Incorrect";
-                    explainTitle.classList.remove('text-emerald-500'); explainTitle.classList.add('text-red-500');
+                    explainTitle.classList.remove('text-emerald-600'); explainTitle.classList.add('text-red-500');
                     explainReasoning.innerHTML = `<strong>The correct answer was: ${correctAnswerText}</strong><br><br>${explanationText}`;
                     explanation.classList.remove('hidden');
                 }, 1200);
