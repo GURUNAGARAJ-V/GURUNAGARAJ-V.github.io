@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>V Gurunagaraj | Sustainable Infrastructure Engineering</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Professional Odometer Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/themes/odometer-theme-minimal.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/odometer.js/0.4.8/odometer.min.js"></script>
 
     <style>
-        /* Base Deep Black Body */
+        /* Base Deep Black Body (Dark Theme Default) */
         body {
             background-color: #030303;
             color: #f8fafc;
             font-family: 'Inter', system-ui, sans-serif;
             overflow-x: hidden;
             margin: 0;
+            transition: background-color 0.8s ease, color 0.8s ease;
         }
 
         /* ----------------------------------------- */
@@ -92,21 +95,19 @@
             backdrop-filter: blur(50px);
             z-index: 1;
             pointer-events: none;
+            transition: background 0.8s ease;
         }
 
         /* ----------------------------------------- */
-        /* UPGRADED: DEEP LIQUID GLASS PANELS        */
-        /* (Applied to all charts, cards, & windows) */
+        /* DEEP LIQUID GLASS PANELS                  */
         /* ----------------------------------------- */
         .glass-panel {
             background: rgba(20, 20, 20, 0.25);
             backdrop-filter: blur(40px) saturate(180%);
             -webkit-backdrop-filter: blur(40px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            /* Strong Top/Left lighting to simulate physical glass edge */
             border-top: 1px solid rgba(255, 255, 255, 0.35);
             border-left: 1px solid rgba(255, 255, 255, 0.2);
-            /* Deep shadows for 3D depth */
             box-shadow: 
                 0 30px 60px -15px rgba(0, 0, 0, 0.9), 
                 inset 0 2px 8px rgba(255, 255, 255, 0.15), 
@@ -126,14 +127,32 @@
         }
 
         /* ----------------------------------------- */
-        /* UPGRADED: LIQUID GLASS PILL BUTTONS       */
+        /* PREMIUM EXTENDED WINDOWS (MODALS)         */
+        /* Matching the reference image perfectly    */
+        /* ----------------------------------------- */
+        .modal-glass-ui {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(50px) saturate(200%);
+            -webkit-backdrop-filter: blur(50px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.6);
+            border-left: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 40px 80px -10px rgba(0, 0, 0, 0.8), 
+                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            border-radius: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        /* ----------------------------------------- */
+        /* LIQUID GLASS PILL BUTTONS                 */
         /* ----------------------------------------- */
         .glass-btn {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%);
             backdrop-filter: blur(40px) saturate(180%);
             -webkit-backdrop-filter: blur(40px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-top: 1px solid rgba(255, 255, 255, 0.6); /* Rim light */
+            border-top: 1px solid rgba(255, 255, 255, 0.6); 
             border-left: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 
                 0 12px 30px -10px rgba(0, 0, 0, 0.8), 
@@ -141,7 +160,7 @@
                 inset 0 -4px 6px -2px rgba(0, 0, 0, 0.4); 
             color: #ffffff;
             padding: 0.75rem 2rem;
-            border-radius: 9999px; /* Perfect pill shape */
+            border-radius: 9999px; 
             font-weight: 600;
             letter-spacing: 0.5px;
             text-shadow: 0 1px 3px rgba(0,0,0,0.8);
@@ -155,7 +174,6 @@
             justify-content: center;
         }
 
-        /* The sweeping animated gloss reflection */
         .glass-btn::before {
             content: '';
             position: absolute;
@@ -166,9 +184,7 @@
             transition: all 0.7s ease;
             z-index: 0;
         }
-        .glass-btn:hover::before {
-            left: 150%;
-        }
+        .glass-btn:hover::before { left: 150%; }
         .glass-btn span { position: relative; z-index: 10; }
 
         .glass-btn:hover, .glass-btn.active {
@@ -189,11 +205,9 @@
                 inset 0 -2px 4px -1px rgba(0, 0, 0, 0.3);
         }
 
-        /* Liquid Glass Input Field */
         .glass-input {
             background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-top: 1px solid rgba(0, 0, 0, 0.5);
             box-shadow: inset 0 4px 8px rgba(0,0,0,0.6), 0 2px 4px rgba(255,255,255,0.05);
@@ -203,72 +217,8 @@
             outline: none;
             transition: all 0.3s ease;
         }
-        .glass-input:focus {
-            border-color: rgba(16, 185, 129, 0.5);
-            box-shadow: inset 0 4px 8px rgba(0,0,0,0.6), 0 0 15px rgba(16, 185, 129, 0.3);
-        }
 
-        /* Scroll Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-            will-change: opacity, transform;
-            position: relative;
-            z-index: 10;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Grabbable Carousel */
-        .carousel-container {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            padding: 20px 0;
-            cursor: grab;
-            user-select: none; 
-            overflow-x: auto; 
-            -ms-overflow-style: none; 
-            scrollbar-width: none; 
-            z-index: 10;
-        }
-        .carousel-container::-webkit-scrollbar { display: none; }
-        .carousel-container.grabbing { cursor: grabbing; }
-        .carousel-track {
-            display: flex;
-            gap: 2rem;
-            padding-left: 2rem;
-            will-change: transform;
-        }
-
-        /* Deep Blur Cost Carousel */
-        .cost-carousel {
-            position: relative;
-            width: 100%;
-            height: 280px; 
-            overflow: hidden;
-            perspective: 1000px;
-        }
-        .cost-card {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            opacity: 0;
-            transform: scale(0.95);
-            transition: all 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-            pointer-events: none; 
-        }
-        .cost-card.active {
-            opacity: 1;
-            transform: scale(1);
-            pointer-events: auto;
-        }
-
-        /* Trivia Game specific liquid styling */
+        /* Trivia Game Styles */
         .game-option {
             background: rgba(20, 20, 20, 0.3);
             backdrop-filter: blur(20px) saturate(150%);
@@ -279,48 +229,78 @@
             border-radius: 1.2rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
             color: white;
             font-weight: 500;
         }
-        .game-option:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateY(-2px);
-        }
-        .game-option.correct { 
-            background: rgba(16, 185, 129, 0.2); 
-            border-top: 1px solid rgba(16, 185, 129, 0.8);
-            box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.4), inset 0 4px 8px rgba(16, 185, 129, 0.4);
-        }
-        .game-option.wrong { 
-            background: rgba(239, 68, 68, 0.2); 
-            border-top: 1px solid rgba(239, 68, 68, 0.8);
-            box-shadow: 0 15px 30px -5px rgba(239, 68, 68, 0.4), inset 0 4px 8px rgba(239, 68, 68, 0.4);
-        }
 
-        /* Video Section Background */
-        .video-bg {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-            z-index: 0;
-            filter: grayscale(80%) contrast(1.2);
+        /* ----------------------------------------- */
+        /* LIGHT THEME OVERRIDES                     */
+        /* ----------------------------------------- */
+        body.light-theme {
+            background-color: #f0f4f8; 
+            color: #0f172a;
         }
+        body.light-theme #blob-overlay {
+            background: rgba(255, 255, 255, 0.65); 
+        }
+        body.light-theme .glass-panel {
+            background: rgba(255, 255, 255, 0.45) !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+            border-top: 1px solid rgba(255, 255, 255, 1) !important;
+            border-left: 1px solid rgba(255, 255, 255, 0.9) !important;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05), inset 0 2px 10px rgba(255, 255, 255, 0.8) !important;
+        }
+        body.light-theme .modal-glass-ui {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4)) !important;
+            box-shadow: 0 40px 80px -10px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.8) !important;
+            border-top: 1px solid rgba(255, 255, 255, 1) !important;
+            border-left: 1px solid rgba(255, 255, 255, 0.9) !important;
+        }
+        body.light-theme .glass-btn {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%) !important;
+            color: #0f172a !important;
+            text-shadow: none !important;
+            border: 1px solid rgba(255, 255, 255, 0.9) !important;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.05), inset 0 2px 4px rgba(255,255,255,0.8) !important;
+        }
+        body.light-theme .glass-input {
+            background: rgba(255, 255, 255, 0.6) !important;
+            color: #0f172a !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.9) !important;
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.05) !important;
+        }
+        body.light-theme .game-option {
+            background: rgba(255, 255, 255, 0.5) !important;
+            color: #0f172a !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.9) !important;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+        }
+        
+        /* Force Text Colors in Light Theme */
+        body.light-theme .text-white { color: #0f172a !important; }
+        body.light-theme .text-gray-400, body.light-theme .text-gray-300 { color: #334155 !important; }
+        body.light-theme .text-gray-200 { color: #475569 !important; }
+        body.light-theme .bg-black, body.light-theme .bg-black\/50, body.light-theme .bg-black\/60, body.light-theme .bg-black\/70, body.light-theme .bg-black\/80 { background-color: rgba(255, 255, 255, 0.4) !important; }
+        body.light-theme .border-gray-800, body.light-theme .border-gray-700 { border-color: rgba(255, 255, 255, 0.6) !important; }
+        body.light-theme .bg-gradient-to-r.from-gray-300.to-white { background-image: linear-gradient(to right, #334155, #0f172a) !important; }
+        body.light-theme .odometer-digit { color: #0f172a !important; }
 
-        .odometer.odometer-theme-minimal .odometer-digit { color: #ffffff; }
+        /* General Utilities */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); z-index: 10; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .carousel-container { width: 100%; overflow: hidden; padding: 20px 0; cursor: grab; user-select: none; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; z-index: 10; }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-track { display: flex; gap: 2rem; padding-left: 2rem; will-change: transform; }
+        .cost-carousel { position: relative; width: 100%; height: 280px; overflow: hidden; perspective: 1000px; }
+        .cost-card { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; transform: scale(0.95); transition: all 1.2s cubic-bezier(0.25, 0.8, 0.25, 1); pointer-events: none; }
+        .cost-card.active { opacity: 1; transform: scale(1); pointer-events: auto; }
+        .video-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; z-index: 0; filter: grayscale(80%) contrast(1.2); }
         .rotate-90 { transform: rotate(90deg) scale(1.3); }
-        .-rotate-90 { transform: rotate(-90deg) scale(1.3); }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
     </style>
 </head>
 <body class="antialiased min-h-screen relative">
 
+    <!-- INTRO ANIMATION SCREEN -->
     <div id="intro-screen">
         <div id="intro-city"></div>
         <div id="intro-forest"></div>
@@ -330,9 +310,11 @@
         </div>
     </div>
 
+    <!-- DYNAMIC BACKGROUND LIGHT ELEMENTS -->
     <div id="cursor-blob"></div>
     <div id="blob-overlay"></div>
 
+    <!-- "BACKEND" CONFIGURATION -->
     <script>
         const PORTFOLIO_CONFIG = {
             profilePhoto: "profile.jpg.jpeg", 
@@ -341,8 +323,8 @@
                     title: "Python 101 for Data Science (IBM)",
                     outerDesc: "Applying Python and Data analytics to modern infrastructure problems.",
                     innerDesc: "Completed advanced professional certifications through IBM focused on Python programming, data analytics, and big data management. This knowledge empowers me to process vast amounts of infrastructural telemetry data, translating raw numbers into actionable, eco-conscious civil engineering decisions.",
-                    image: "project2.jpg",
-                    rotation: "rotate+90", // Updated to rotate-90 clockwise
+                    image: "Project2.jpg",
+                    rotation: "rotate-90", 
                     themeColor: "rgba(59, 130, 246, 0.6)" 
                 },
                 {
@@ -350,7 +332,7 @@
                     outerDesc: "Advanced architectural drafting and building information modeling for smart cities.",
                     innerDesc: "Certified in Advanced AutoCAD and Introduction to Building Information Modeling (BIM) via REVA University. My design philosophy bridges traditional civil engineering drafting with modern 3D intelligence, ensuring sustainable materials and efficient structural layouts are planned from the ground up.",
                     image: "project6.jpg.jpeg",
-                    rotation: "rotate+90", // Updated to rotate-90 clockwise
+                    rotation: "rotate-90", 
                     themeColor: "rgba(234, 179, 8, 0.5)" 
                 },
                 {
@@ -358,7 +340,7 @@
                     outerDesc: "Smart city models integrating bio-inspired health monitoring and sustainable materials.",
                     innerDesc: "Engineered a physical smart city infrastructure model demonstrating bio-inspired health monitoring. This project showcases the integration of high-throughput sensors that mimic biological nervous systems to track structural strain in real-time, preventing catastrophic failures and optimizing maintenance.",
                     image: "Project10.png",
-                    rotation: "rotate+90", // Updated to rotate-90 clockwise
+                    rotation: "rotate-90", 
                     themeColor: "rgba(16, 185, 129, 0.6)" 
                 },
                 {
@@ -366,7 +348,7 @@
                     outerDesc: "Integrating embedded technology with water supply engineering.",
                     innerDesc: "Successfully completed specialized training in Waste Water and Water Supply Engineering integrated with Embedded Systems. This expertise allows me to design automated, highly efficient water treatment and recycling plants that actively conserve resources and protect local ecosystems from contamination.",
                     image: "project5.jpg.jpeg",
-                    rotation: "rotate+90", // Updated to rotate-90 clockwise
+                    rotation: "rotate-90", 
                     themeColor: "rgba(239, 68, 68, 0.6)" 
                 },
                 {
@@ -374,7 +356,7 @@
                     outerDesc: "As Team Lead, I managed an extensive survey camp involving the design of a 750m highway, Water Supply, NTP, and Village Planning.",
                     innerDesc: "As Team Lead, I managed an extensive survey camp involving the design of a 750m highway, Water Supply, NTP, and Village Planning. I oversaw all field data collection, topographical mapping, and final project designs.",
                     image: "project4.jpg.jpeg",
-                    rotation: "rotate+90", // Updated to rotate-90 clockwise
+                    rotation: "rotate-90", 
                     themeColor: "rgba(234, 179, 8, 0.5)" 
                 },
                 {
@@ -382,21 +364,14 @@
                     outerDesc: "Integrating embedded technology with water supply engineering.",
                     innerDesc: "Thrilled to secure 2nd position at the REVA University Agri-Tech Exhibition! Bridging Civil Engineering with modern technology, I showcased an IoT-integrated system for smart, sustainable sewage farming. This project transformed waste management by analyzing water quality, turning treated wastewater into a valuable agricultural resource.",
                     image: "project1.jpg.jpeg",
-                    rotation: "rotate+90", // Updated to rotate-90 clockwise
-                    themeColor: "rgba(16, 185, 129, 0.6)" 
-                },
-                {
-                    title: "Geotechnical engineering soil exploration",
-                    outerDesc: "Completed Site Soil Exploration and Geotechnical Engineering Assessment.",
-                    innerDesc: "Completed subsurface investigations and laboratory testing to evaluate soil parameters, providing a detailed geotechnical report for structural foundation.",
-                    image: "project8.jpg.jpeg",
-                    rotation: "rotate+90", // Updated to rotate-90 clockwise
+                    rotation: "rotate-90", 
                     themeColor: "rgba(16, 185, 129, 0.6)" 
                 }
             ]
         };
     </script>
 
+    <!-- Navigation & Quote Ticker -->
     <nav class="fixed w-full z-40 glass-panel !rounded-none !border-b !border-x-0 !border-t-0 border-b-white/10 bg-black/20">
         <div class="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center h-20">
             <div class="max-w-md w-full relative flex flex-col justify-center h-full">
@@ -409,11 +384,13 @@
                 <a href="#impact" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">Dashboard</a>
                 <a href="#game-section" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">Eco-Game</a>
                 <a href="#achievements" class="text-gray-400 hover:text-white transition" onclick="vibrateBtn()">Projects</a>
+                <!-- THEME SWITCHER -->
                 <button onclick="cycleGlobalTheme(); vibrateBtn()" class="glass-btn !py-1 !px-4 !text-xs ml-2"><span>Theme 🎨</span></button>
             </div>
         </div>
     </nav>
 
+    <!-- SECTION 1: Hero & About Me -->
     <section id="about" class="min-h-screen flex items-center justify-center pt-24 pb-16 md:pt-32 md:pb-24 px-4 relative z-10">
         <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center reveal">
             <div class="flex justify-center relative">
@@ -440,6 +417,7 @@
         </div>
     </section>
 
+    <!-- SECTION 2: Interactive Material Dashboard -->
     <section id="impact" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10 reveal">
@@ -453,6 +431,7 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8">
+                <!-- Left Column -->
                 <div class="space-y-6">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div class="glass-panel p-6 text-center reveal group">
@@ -475,10 +454,11 @@
                             <input type="number" id="carbon-input" placeholder="Enter Tons..." class="glass-input w-full relative z-30 pointer-events-auto">
                             <button onclick="calculateTrees(); vibrateBtn()" class="glass-btn whitespace-nowrap"><span>Calculate</span></button>
                         </div>
-                        <div id="calc-result" class="mt-4 font-bold text-sm hidden text-white bg-white/10 p-4 rounded-lg border border-gray-600 leading-relaxed"></div>
+                        <div id="calc-result" class="mt-4 font-bold text-sm hidden text-white p-4 rounded-lg border border-white/20 shadow-inner leading-relaxed"></div>
                     </div>
                 </div>
 
+                <!-- Right Column -->
                 <div class="space-y-6">
                     <div class="glass-panel p-6 text-center reveal">
                         <div class="flex justify-between items-center mb-2">
@@ -495,9 +475,9 @@
                         <h3 class="text-sm font-bold mb-4 text-gray-300 uppercase tracking-widest">Global Carbon Deficit Analysis</h3>
                         <p class="text-xs text-gray-400 mb-6 leading-relaxed">Comparing live material production vs. global reforestation. The percentage fluctuates as trees combat industrial output.</p>
                         
-                        <div class="w-full bg-gray-900 rounded-full h-4 mb-2 overflow-hidden border border-gray-700 shadow-inner relative">
+                        <div class="w-full bg-black/40 rounded-full h-4 mb-2 overflow-hidden border border-white/10 shadow-inner relative">
                             <div id="deficit-tree-bar" class="bg-gray-300 h-4 absolute left-0 top-0 z-20" style="width: 15%; transition: width 1s ease-in-out;"></div>
-                            <div class="bg-gray-800 h-4 w-full absolute left-0 top-0 z-10"></div>
+                            <div class="bg-black/60 h-4 w-full absolute left-0 top-0 z-10"></div>
                         </div>
                         <div class="flex justify-between text-[10px] font-bold text-gray-400 uppercase tracking-widest">
                             <span class="text-gray-200">Trees Planted (<span id="deficit-tree-pct">15.00%</span>)</span>
@@ -509,7 +489,8 @@
         </div>
     </section>
 
-    <section id="game-section" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10 bg-black/40">
+    <!-- SECTION 3: CUSTOM ENDLESS CIVIL TRIVIA GAME -->
+    <section id="game-section" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10 bg-black/20">
         <div class="max-w-4xl mx-auto glass-panel p-8 reveal text-center min-h-[450px] flex flex-col">
             <h2 class="text-3xl font-bold mb-2 text-white">Eco-Intelligence <span class="text-gray-400">Challenge</span></h2>
             <p class="text-gray-400 text-sm mb-8">Test your knowledge on sustainable infrastructure and environmental engineering.</p>
@@ -519,17 +500,18 @@
                 <div id="game-board">
                     <div class="flex justify-between items-center mb-4">
                         <span class="text-xs font-bold text-gray-400 tracking-widest uppercase">Endless Trivia</span>
-                        <span id="score-counter" class="text-xs font-bold text-emerald-300 bg-emerald-900/40 border border-emerald-500/30 px-3 py-1 rounded-full">Streak: 0</span>
+                        <span id="score-counter" class="text-xs font-bold text-emerald-300 bg-emerald-900/40 border border-emerald-500/30 px-3 py-1 rounded-full shadow-inner">Streak: 0</span>
                     </div>
                     <h3 id="game-question" class="text-xl font-semibold text-white mb-6">Question goes here?</h3>
                     <div class="space-y-4" id="game-options">
-                        </div>
+                        <!-- Buttons injected via JS -->
+                    </div>
                 </div>
 
                 <div id="game-explanation" class="hidden text-center py-4">
                     <div id="explain-icon" class="text-5xl mb-4"></div>
                     <h3 class="text-2xl font-bold mb-2" id="explain-title">Correct!</h3>
-                    <p class="text-gray-200 text-sm mb-6 bg-black/40 p-5 rounded-xl border border-gray-700/50 shadow-inner leading-relaxed">
+                    <p class="text-gray-200 text-sm mb-6 bg-black/30 p-5 rounded-xl border border-white/10 shadow-inner leading-relaxed">
                         <span id="explain-reasoning"></span>
                     </p>
                     <button onclick="displayNextQuestion(); vibrateBtn()" class="glass-btn"><span>Next Question →</span></button>
@@ -538,6 +520,7 @@
         </div>
     </section>
 
+    <!-- SECTION 4: THE ENVIRONMENTAL COST -->
     <section id="cost-section" class="py-16 md:py-24 px-4 relative border-t border-gray-800/50 z-10 overflow-hidden">
         <video class="video-bg" autoplay loop muted playsinline>
             <source src="https://cdn.pixabay.com/video/2019/04/24/23011-332483120_large.mp4" type="video/mp4">
@@ -550,22 +533,26 @@
             </div>
 
             <div class="cost-carousel reveal group" id="fast-carousel">
-                </div>
+                <!-- Javascript will inject the endless cost cards here -->
+            </div>
             
             <p class="text-xs text-gray-400 mt-8 tracking-widest uppercase animate-pulse">Click the active card to view the solution</p>
         </div>
     </section>
 
+    <!-- SECTION 5: Scrolling Achievements Carousel -->
     <section id="achievements" class="py-16 md:py-24 px-4 overflow-hidden relative border-t border-gray-800/50 z-10">
         <h2 class="text-3xl font-bold mb-16 text-center reveal text-white">Featured <span class="text-gray-400">Projects & Skills</span></h2>
         
         <div class="carousel-container reveal" id="carousel-grabbable-container">
             <div class="carousel-track" id="carousel-grabbable-track">
-                </div>
+                <!-- Javascript will inject sliding photos and text here -->
+            </div>
         </div>
     </section>
 
-    <footer class="relative z-10 bg-black pt-12 pb-6 border-t border-gray-800">
+    <!-- SECTION 6: Footer -->
+    <footer class="relative z-10 bg-black/40 pt-12 pb-6 border-t border-gray-800">
         <div class="max-w-6xl mx-auto px-4 mb-8">
             <div class="glass-panel p-8">
                 <h4 class="text-xs font-bold text-emerald-400 tracking-widest uppercase mb-4">Data Integrations & Sources</h4>
@@ -586,21 +573,23 @@
         </div>
     </footer>
 
+    <!-- MODAL 1: ACHIEVEMENT EXTENDED WINDOW -->
     <div id="achievement-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div class="absolute inset-0 bg-black/60 backdrop-blur-[60px] cursor-pointer" onclick="closeModal(); vibrateBtn()"></div>
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-md cursor-pointer" onclick="closeModal(); vibrateBtn()"></div>
 
-        <div class="relative z-10 glass-panel p-6 md:p-10 max-w-4xl w-full mx-4 transform scale-95 transition-transform duration-300" id="modal-content-box">
+        <!-- NEW MODAL-GLASS-UI APPLIED HERE -->
+        <div class="relative z-10 modal-glass-ui p-6 md:p-10 max-w-4xl w-full mx-4 transform scale-95 transition-transform duration-300" id="modal-content-box">
             <button onclick="closeModal(); vibrateBtn()" class="absolute top-4 right-4 text-gray-400 hover:text-white transition transform hover:rotate-90 duration-300 z-50">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             <div class="flex flex-col md:flex-row gap-8 items-center relative z-20">
-                <div class="w-full md:w-1/2 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.8)] border border-white/10 bg-black flex items-center justify-center h-[300px]">
+                <div class="w-full md:w-1/2 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/20 bg-black/20 flex items-center justify-center h-[300px]">
                     <img id="modal-img" src="" alt="" class="w-full h-full object-cover object-center">
                 </div>
                 <div class="w-full md:w-1/2">
-                    <h2 id="modal-title" class="text-3xl font-bold text-white mb-4 leading-tight"></h2>
-                    <div class="w-16 h-1 bg-gray-400 mb-6 rounded-full"></div>
-                    <p id="modal-desc" class="text-gray-300 text-base leading-relaxed mb-8"></p>
+                    <h2 id="modal-title" class="text-3xl font-bold text-white mb-4 leading-tight drop-shadow-md"></h2>
+                    <div class="w-16 h-1 bg-white/50 mb-6 rounded-full shadow-inner"></div>
+                    <p id="modal-desc" class="text-white/90 text-base leading-relaxed mb-8 drop-shadow-sm"></p>
                     <button onclick="closeModal(); vibrateBtn()" class="glass-btn w-full md:w-auto">
                         <span>← Back to Portfolio</span>
                     </button>
@@ -609,19 +598,21 @@
         </div>
     </div>
 
+    <!-- MODAL 2: COST OF PLANNING EXTENDED WINDOW -->
     <div id="cost-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-[60px] cursor-pointer" onclick="closeCostModal(); vibrateBtn()"></div>
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-md cursor-pointer" onclick="closeCostModal(); vibrateBtn()"></div>
 
-        <div class="relative z-10 glass-panel p-6 md:p-10 max-w-2xl w-full mx-4 transform scale-95 transition-transform duration-300" id="cost-modal-box">
+        <!-- NEW MODAL-GLASS-UI APPLIED HERE -->
+        <div class="relative z-10 modal-glass-ui p-6 md:p-10 max-w-2xl w-full mx-4 transform scale-95 transition-transform duration-300" id="cost-modal-box">
             <div class="text-center relative z-20">
-                <div id="cost-modal-icon" class="text-6xl mb-4 drop-shadow-lg"></div>
-                <h2 id="cost-modal-title" class="text-3xl font-bold text-white mb-2 leading-tight"></h2>
-                <div class="w-16 h-1 bg-red-500 mx-auto mb-6 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
-                <p id="cost-modal-desc" class="text-gray-400 text-sm mb-8"></p>
+                <div id="cost-modal-icon" class="text-6xl mb-4 drop-shadow-xl"></div>
+                <h2 id="cost-modal-title" class="text-3xl font-bold text-white mb-2 leading-tight drop-shadow-md"></h2>
+                <div class="w-16 h-1 bg-red-500/80 mx-auto mb-6 rounded-full shadow-inner"></div>
+                <p id="cost-modal-desc" class="text-white/80 text-sm mb-8 drop-shadow-sm"></p>
                 
-                <div class="glass-panel !bg-emerald-900/20 !border-emerald-500/30 p-6 mb-8">
+                <div class="glass-panel !bg-black/20 !border-white/10 p-6 mb-8 shadow-inner">
                     <h3 class="text-sm font-bold text-emerald-400 mb-3 uppercase tracking-widest">Engineering Solution</h3>
-                    <p id="cost-modal-solution" class="text-gray-200 text-base leading-relaxed"></p>
+                    <p id="cost-modal-solution" class="text-white text-base leading-relaxed drop-shadow-sm"></p>
                 </div>
                 
                 <button onclick="closeCostModal(); vibrateBtn()" class="glass-btn w-full">
@@ -631,6 +622,7 @@
         </div>
     </div>
 
+    <!-- Interactive Logic & APIs -->
     <script>
         // ----------------------------------------------------
         // 0. HAPTIC FEEDBACK (Vibration)
@@ -671,13 +663,7 @@
         // ----------------------------------------------------
         // 1. DYNAMIC THEMES & LIQUID CURSOR BLOB
         // ----------------------------------------------------
-        const themes = [
-            'radial-gradient(circle, rgba(16,185,129,0.6) 0%, rgba(6,182,212,0.4) 100%)',   // Aurora (Emerald/Cyan)
-            'radial-gradient(circle, rgba(168,85,247,0.6) 0%, rgba(236,72,153,0.4) 100%)', // Nebula (Purple/Pink)
-            'radial-gradient(circle, rgba(249,115,22,0.6) 0%, rgba(234,179,8,0.4) 100%)'   // Sunset (Orange/Yellow)
-        ];
-        let currentGlobalTheme = 0;
-
+        let isLightMode = false;
         const blob = document.getElementById("cursor-blob");
         let mouseX = window.innerWidth / 2;
         let mouseY = window.innerHeight / 2;
@@ -699,18 +685,20 @@
         animateBlob();
 
         function cycleGlobalTheme() {
-            currentGlobalTheme = (currentGlobalTheme + 1) % themes.length;
-            resetBlobColor();
-        }
-
-        function changeBlobColor(colorHex) {
-            blob.style.background = `radial-gradient(circle, ${colorHex} 0%, transparent 80%)`;
-        }
-        function resetBlobColor() {
-            blob.style.background = themes[currentGlobalTheme];
+            isLightMode = !isLightMode;
+            if(isLightMode) {
+                document.body.classList.add('light-theme');
+                // Softer, brighter blobs for light mode
+                blob.style.background = 'radial-gradient(circle, rgba(52, 211, 153, 0.4) 0%, rgba(56, 189, 248, 0.2) 100%)';
+            } else {
+                document.body.classList.remove('light-theme');
+                // Original deep blobs for dark mode
+                blob.style.background = 'radial-gradient(circle, rgba(16,185,129,0.6) 0%, rgba(6,182,212,0.4) 100%)';
+            }
         }
         
-        resetBlobColor();
+        // Init theme
+        blob.style.background = 'radial-gradient(circle, rgba(16,185,129,0.6) 0%, rgba(6,182,212,0.4) 100%)';
 
         // ----------------------------------------------------
         // 2. SUSTAINABLE QUOTE TICKER 
@@ -774,12 +762,12 @@
             costData.forEach((data, index) => {
                 let activeClass = index === 0 ? 'active' : '';
                 html += `
-                    <div class="cost-card ${activeClass} glass-panel p-8 border-red-900/30 flex flex-col items-center justify-center cursor-pointer transition-all hover:border-red-500/50 group" onclick="openCostModal(${index}); vibrateBtn()">
+                    <div class="cost-card ${activeClass} glass-panel p-8 border-white/10 flex flex-col items-center justify-center cursor-pointer transition-all hover:border-white/30 group" onclick="openCostModal(${index}); vibrateBtn()">
                         <div class="text-6xl mb-6 transition-transform group-hover:scale-110 drop-shadow-xl">${data.icon}</div>
                         <h3 class="text-2xl font-bold text-white mb-4">${data.title}</h3>
-                        <p class="text-sm md:text-base text-gray-300">${data.desc}</p>
+                        <p class="text-sm md:text-base text-gray-300 group-hover:text-white transition-colors">${data.desc}</p>
                         <div class="mt-6">
-                            <span class="glass-btn !py-1 !px-4 !text-xs !bg-emerald-900/30 !border-emerald-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span>View Solution</span></span>
+                            <span class="glass-btn !py-1 !px-4 !text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span>View Solution</span></span>
                         </div>
                     </div>
                 `;
@@ -851,9 +839,9 @@
             PORTFOLIO_CONFIG.achievements.forEach((ach, index) => {
                 const rotateClass = ach.rotation ? ach.rotation : '';
                 carouselHTML += `
-                    <div data-index="${index}" onclick="if(draggedDistance < 10) { openModal(${index}); vibrateBtn(); }" onmouseenter="changeBlobColor('${ach.themeColor}')" onmouseleave="resetBlobColor()" class="achievement-card glass-panel p-6 w-80 inline-block whitespace-normal flex-shrink-0 transition hover:-translate-y-3 cursor-pointer group">
-                        <div class="overflow-hidden rounded-xl mb-6 shadow-inner border border-white/5 bg-black/50 relative h-52 flex items-center justify-center">
-                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors z-10 flex items-center justify-center backdrop-blur-0 group-hover:backdrop-blur-md">
+                    <div data-index="${index}" onclick="if(draggedDistance < 10) { openModal(${index}); vibrateBtn(); }" class="achievement-card glass-panel p-6 w-80 inline-block whitespace-normal flex-shrink-0 transition hover:-translate-y-3 cursor-pointer group">
+                        <div class="overflow-hidden rounded-xl mb-6 shadow-inner border border-white/10 bg-black/30 relative h-52 flex items-center justify-center">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors z-10 flex items-center justify-center backdrop-blur-0 group-hover:backdrop-blur-md">
                                 <span class="opacity-0 group-hover:opacity-100 glass-btn pointer-events-none transform scale-90 group-hover:scale-100 transition-all text-xs"><span>Click to Expand</span></span>
                             </div>
                             <img src="${ach.image}" alt="${ach.title}" onerror="this.src='https://via.placeholder.com/400x300.png?text=Photo+Error'" class="w-full h-full object-cover object-center ${rotateClass}">
@@ -1056,7 +1044,7 @@
                 const multiplier = carbonMultipliers[currentMaterial];
                 const totalEmissions = input * multiplier;
                 const treesNeeded = Math.ceil(totalEmissions / 0.02);
-                resDiv.innerHTML = `🌍 To offset <span class="text-white">${input} tons</span> of these materials, plant <span class="text-white font-extrabold text-lg">${treesNeeded.toLocaleString()} trees</span>.`;
+                resDiv.innerHTML = `🌍 To offset <span class="text-white font-bold">${input} tons</span>, plant <span class="text-white font-extrabold text-lg">${treesNeeded.toLocaleString()} trees</span>.`;
                 resDiv.classList.remove('hidden');
             } else {
                 resDiv.innerHTML = "Please enter a valid number of tons.";
@@ -1190,4 +1178,3 @@
     </script>
 </body>
 </html>
-
