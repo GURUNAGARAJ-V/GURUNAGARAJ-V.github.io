@@ -30,12 +30,12 @@
             --btn-bg: rgba(255, 255, 255, 0.6);
             --btn-hover-bg: rgba(255, 255, 255, 0.9);
             --btn-glow: rgba(52, 211, 153, 0.5);
-            --blur-intensity: blur(40px);
-            --saturation: saturate(150%);
+            --blur-intensity: blur(60px);
+            --saturation: saturate(200%);
             --orb-1: rgba(52, 211, 153, 0.4);
             --orb-2: rgba(56, 189, 248, 0.3);
             --orb-3: rgba(251, 146, 60, 0.2);
-            --modal-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
+            --modal-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.4));
         }
 
         body.dark-theme {
@@ -52,7 +52,7 @@
             --btn-bg: rgba(255, 255, 255, 0.05);
             --btn-hover-bg: rgba(255, 255, 255, 0.15);
             --btn-glow: rgba(16, 185, 129, 0.4);
-            --blur-intensity: blur(50px);
+            --blur-intensity: blur(70px);
             --orb-1: rgba(16,185,129,0.5);
             --orb-2: rgba(6,182,212,0.4);
             --orb-3: rgba(139,92,246,0.3);
@@ -72,7 +72,34 @@
         .text-main { color: var(--text-main) !important; transition: color 0.5s ease; }
         .text-muted { color: var(--text-muted) !important; transition: color 0.5s ease; }
         .bg-inner { background-color: var(--glass-inner-bg) !important; transition: background-color 0.5s ease;}
-        .odometer.odometer-theme-minimal .odometer-digit { color: var(--text-main) !important; }
+
+        /* ======================================================== */
+        /* LIQUID GLASS TYPOGRAPHY (iOS Lock Screen Style)          */
+        /* Engineered based on provided image references            */
+        /* ======================================================== */
+        .odometer .odometer-digit {
+            /* Translucent body to let background refraction show through */
+            color: rgba(255, 255, 255, 0.05) !important; 
+            /* Crisp carved edge */
+            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.5); 
+            /* Layered shadows for 3D depth and rim lighting */
+            text-shadow: 
+                -1px -1px 3px rgba(255, 255, 255, 0.6), 
+                2px 2px 5px rgba(0, 0, 0, 0.7),       
+                0px 10px 20px rgba(0, 0, 0, 0.6);     
+            font-weight: 800 !important;
+            transition: all 0.8s ease;
+        }
+
+        body.light-theme .odometer .odometer-digit {
+            /* Adapt for Clear Glass */
+            color: rgba(0, 0, 0, 0.02) !important;
+            -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.9); 
+            text-shadow: 
+                -2px -2px 4px rgba(255, 255, 255, 1), 
+                1px 1px 4px rgba(0, 0, 0, 0.15),      
+                0px 8px 20px rgba(0, 0, 0, 0.1);      
+        }
 
         /* ----------------------------------------- */
         /* HYPER-CINEMATIC INTRO LAYER               */
@@ -96,7 +123,6 @@
         }
         .zoom-city { transform: scale(2.5) !important; filter: blur(20px) !important; opacity: 0 !important; }
         .reveal-forest { opacity: 0.7 !important; transform: scale(1) !important; }
-        /* Special class to ensure intro button text stays white regardless of theme */
         .intro-btn { color: white !important; background: rgba(255,255,255,0.1) !important; border-color: rgba(255,255,255,0.4) !important; }
         .intro-btn:hover { background: rgba(255,255,255,0.2) !important; color: white !important; }
 
@@ -104,13 +130,19 @@
         /* AMBIENT BACKGROUND ENGINE                 */
         /* ----------------------------------------- */
         .ambient-layer { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-        .ambient-orb { position: absolute; border-radius: 50%; filter: blur(100px); transition: background 1s ease; opacity: 0.8; }
+        .ambient-orb { position: absolute; border-radius: 50%; filter: blur(120px); transition: background 1s ease; opacity: 0.8; }
         #orb1 { top: -10%; left: -10%; width: 60vw; height: 60vw; background: var(--orb-1); animation: float 20s infinite alternate; }
         #orb2 { bottom: -10%; right: -10%; width: 50vw; height: 50vw; background: var(--orb-2); animation: float 25s infinite alternate-reverse; }
         #orb3 { top: 40%; left: 50%; width: 40vw; height: 40vw; background: var(--orb-3); animation: pulse 15s infinite alternate; }
         
         @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(10%, 10%) scale(1.1); } }
         @keyframes pulse { 0% { transform: scale(0.9); opacity: 0.6; } 100% { transform: scale(1.2); opacity: 0.9; } }
+
+        #cursor-refractor {
+            position: fixed; width: 400px; height: 400px; border-radius: 50%;
+            background: radial-gradient(circle, var(--btn-glow) 0%, transparent 70%);
+            left: 50%; top: 50%; translate: -50% -50%; filter: blur(70px); z-index: 0; pointer-events: none; transition: background 0.5s ease;
+        }
 
         /* ----------------------------------------- */
         /* LIQUID GLASS PANELS                       */
@@ -137,13 +169,13 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-top: 1px solid var(--glass-border-top);
             border-left: 1px solid var(--glass-border-left);
-            box-shadow: 0 40px 80px -10px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 80px -10px rgba(0, 0, 0, 0.8), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
             border-radius: 2rem;
             transition: all 0.4s ease;
         }
 
         /* ----------------------------------------- */
-        /* LIQUID GLASS BUTTONS                      */
+        /* LIQUID GLASS PILL BUTTONS                 */
         /* ----------------------------------------- */
         .liquid-btn {
             background: var(--btn-bg);
@@ -170,7 +202,6 @@
         }
         .liquid-btn:hover::before { left: 150%; }
         .liquid-btn span { position: relative; z-index: 10; }
-        
         .liquid-btn:hover, .liquid-btn.active {
             background: var(--btn-hover-bg); transform: translateY(-2px) scale(1.02);
             box-shadow: 0 15px 30px -5px rgba(0,0,0,0.15), inset 0 4px 8px rgba(255,255,255,0.6); color: var(--text-main);
@@ -179,19 +210,20 @@
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.7), inset 0 4px 8px rgba(255,255,255,0.4);
         }
         
-        /* Inputs & Game Tiles */
         .liquid-input {
             background: var(--glass-inner-bg); backdrop-filter: var(--blur-intensity); -webkit-backdrop-filter: var(--blur-intensity);
             border: 1px solid var(--glass-border-left); border-top-color: var(--glass-border-top);
             box-shadow: inset 0 4px 10px rgba(0,0,0,0.1), 0 2px 5px rgba(255,255,255,0.4);
             color: var(--text-main); border-radius: 9999px; padding: 0.8rem 1.5rem; outline: none; transition: all 0.3s ease;
         }
+        .liquid-input:focus { border-color: var(--btn-glow); box-shadow: inset 0 4px 10px rgba(0,0,0,0.2), 0 0 20px var(--btn-glow); }
         body.dark-theme .liquid-input { box-shadow: inset 0 4px 10px rgba(0,0,0,0.4), 0 2px 5px rgba(255,255,255,0.05); }
 
+        /* Game Tiles */
         .liquid-tile {
             background: var(--btn-bg); backdrop-filter: var(--blur-intensity) var(--saturation);
             border: 1px solid transparent; border-top-color: var(--glass-border-top); border-left-color: var(--glass-border-left);
-            box-shadow: var(--glass-shadow); padding: 1.5rem; border-radius: 1.5rem; cursor: pointer; transition: all 0.3s ease;
+            box-shadow: var(--glass-shadow); padding: 1.5rem; border-radius: 1.5rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;
             color: var(--text-main); font-weight: 500;
         }
         .liquid-tile:hover { background: var(--btn-hover-bg); transform: translateY(-4px); }
@@ -235,6 +267,7 @@
         <div class="ambient-orb" id="orb2"></div>
         <div class="ambient-orb" id="orb3"></div>
     </div>
+    <div id="cursor-refractor"></div>
 
     <!-- "BACKEND" CONFIGURATION -->
     <script>
@@ -288,7 +321,7 @@
     </script>
 
     <!-- Navigation & Mobile Menu -->
-    <nav class="fixed w-full z-50 liquid-glass !rounded-none !border-b !border-x-0 !border-t-0 border-b-white/20 bg-transparent">
+    <nav class="fixed w-full z-50 liquid-glass !rounded-none !border-b !border-x-0 !border-t-0 bg-transparent">
         <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center h-20">
             <div class="max-w-md w-full relative flex flex-col justify-center h-full">
                 <p id="quote-text" class="text-main text-xs md:text-sm italic font-medium transition-opacity duration-700 leading-tight">Loading quote...</p>
@@ -312,7 +345,7 @@
     </nav>
 
     <!-- Mobile Slider Menu -->
-    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-80 max-w-full translate-x-full transition-transform duration-500 ease-in-out shadow-2xl flex flex-col p-8">
+    <div id="mobile-menu" class="fixed inset-y-0 right-0 w-80 max-w-full z-[100] translate-x-full transition-transform duration-500 ease-in-out shadow-2xl flex flex-col p-8">
         <div class="flex justify-end mb-8">
             <button onclick="toggleMobileMenu(); vibrateBtn()" class="text-main p-2">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -386,12 +419,14 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
                         <div class="liquid-glass p-8 text-center reveal group flex flex-col justify-center">
                             <div id="metric1-label" class="text-muted text-xs font-bold tracking-widest uppercase mb-3">Global Cement Poured</div>
-                            <div id="metric1-counter" class="odometer text-4xl font-mono font-bold mb-2 text-main">85000</div>
+                            <!-- ODOMETER WITH LIQUID GLASS TYPOGRAPHY -->
+                            <div id="metric1-counter" class="odometer text-5xl mb-2">85000</div>
                             <div class="text-muted text-xs mt-2 font-semibold">Tons (Today)</div>
                         </div>
                         <div class="liquid-glass p-8 text-center reveal group flex flex-col justify-center">
                             <div id="metric2-label" class="text-muted text-xs font-bold tracking-widest uppercase mb-3">Global Steel Produced</div>
-                            <div id="metric2-counter" class="odometer text-4xl font-mono font-bold mb-2 text-main">42000</div>
+                            <!-- ODOMETER WITH LIQUID GLASS TYPOGRAPHY -->
+                            <div id="metric2-counter" class="odometer text-5xl mb-2">42000</div>
                             <div class="text-muted text-xs mt-2 font-semibold">Tons (Today)</div>
                         </div>
                     </div>
@@ -417,7 +452,8 @@
                                 <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span> Live API
                             </span>
                         </div>
-                        <div id="global-tree-counter" class="odometer text-5xl font-mono font-bold mb-2 text-main">1420500</div>
+                        <!-- ODOMETER WITH LIQUID GLASS TYPOGRAPHY -->
+                        <div id="global-tree-counter" class="odometer text-6xl mb-2">1420500</div>
                         <div class="text-muted text-xs font-bold mt-3">Trees (Global 24h Avg Estimate)</div>
                     </div>
 
@@ -425,7 +461,7 @@
                         <h3 class="text-sm font-bold mb-4 text-main uppercase tracking-widest">Global Carbon Deficit Analysis</h3>
                         <p class="text-xs text-muted mb-8 leading-relaxed font-medium">Comparing live material production vs. global reforestation. The percentage fluctuates as trees combat industrial output.</p>
                         
-                        <div class="w-full bg-inner rounded-full h-6 mb-3 overflow-hidden shadow-inner relative">
+                        <div class="w-full bg-inner rounded-full h-6 mb-3 overflow-hidden border border-black/10 dark:border-white/10 shadow-inner relative">
                             <div id="deficit-tree-bar" class="bg-gradient-to-r from-emerald-500 to-cyan-400 h-6 absolute left-0 top-0 z-20 shadow-[0_0_15px_rgba(16,185,129,0.8)]" style="width: 15%; transition: width 1s ease-in-out;"></div>
                         </div>
                         <div class="flex justify-between text-[10px] font-bold text-muted uppercase tracking-widest">
@@ -449,7 +485,7 @@
                 <div id="game-board">
                     <div class="flex justify-between items-center mb-6">
                         <span class="text-xs font-bold text-muted tracking-widest uppercase">Endless Trivia</span>
-                        <span id="score-counter" class="text-xs font-bold text-emerald-600 dark:text-emerald-300 bg-emerald-500/20 border border-emerald-500/30 px-4 py-1.5 rounded-full shadow-inner">Streak: 0</span>
+                        <span id="score-counter" class="text-xs font-bold text-emerald-600 dark:text-emerald-300 bg-emerald-500/20 border border-emerald-500/30 px-4 py-1.5 rounded-full shadow-sm">Streak: 0</span>
                     </div>
                     <h3 id="game-question" class="text-2xl font-semibold text-main mb-8 leading-tight">Question goes here?</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="game-options">
@@ -461,7 +497,7 @@
                     <div id="explain-icon" class="text-6xl mb-6"></div>
                     <h3 class="text-3xl font-bold mb-4 text-main" id="explain-title">Correct!</h3>
                     <!-- Explanation background dynamically matches theme -->
-                    <p class="text-main text-sm mb-8 bg-inner p-6 rounded-2xl border border-white/20 shadow-inner leading-relaxed font-medium">
+                    <p class="text-main text-sm mb-8 bg-inner p-6 rounded-2xl border border-black/10 dark:border-white/20 shadow-inner leading-relaxed font-medium">
                         <span id="explain-reasoning"></span>
                     </p>
                     <button onclick="displayNextQuestion(); vibrateBtn()" class="liquid-btn"><span>Next Question →</span></button>
@@ -486,7 +522,7 @@
                 <!-- Javascript will inject the endless cost cards here -->
             </div>
             
-            <p class="text-xs text-main opacity-80 mt-10 tracking-widest uppercase animate-pulse font-bold">Click the active card to view the solution</p>
+            <p class="text-xs text-muted mt-10 tracking-widest uppercase animate-pulse font-bold">Click the active card to view the solution</p>
         </div>
     </section>
 
@@ -504,7 +540,7 @@
     <!-- SECTION 6: API Data Transparency Footer -->
     <footer class="relative z-10 pt-12 pb-8">
         <div class="max-w-6xl mx-auto px-4 md:px-8 mb-8">
-            <div class="liquid-glass p-10">
+            <div class="liquid-glass p-10 reveal">
                 <h4 class="text-sm font-bold text-emerald-500 tracking-widest uppercase mb-6">Data Integrations & Sources</h4>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-sm text-muted leading-relaxed font-medium">
                     <div>
@@ -530,15 +566,15 @@
         <!-- MODAL-GLASS-UI -->
         <div class="relative z-10 modal-glass-ui p-8 md:p-12 max-w-4xl w-full mx-4 transform scale-95 transition-transform duration-300" id="modal-content-box">
             <button onclick="closeModal(); vibrateBtn()" class="absolute top-6 right-6 text-muted hover:text-red-500 transition transform hover:rotate-90 duration-300 z-50">
-                <svg class="w-10 h-10 drop-shadow-md" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             <div class="flex flex-col md:flex-row gap-10 items-stretch relative z-20">
-                <div class="w-full md:w-1/2 rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-inner flex items-center justify-center min-h-[350px]">
+                <div class="w-full md:w-1/2 rounded-3xl overflow-hidden shadow-2xl border border-black/10 dark:border-white/10 bg-inner flex items-center justify-center min-h-[350px]">
                     <img id="modal-img" src="" alt="" class="w-full h-full object-cover object-center">
                 </div>
                 <div class="w-full md:w-1/2 flex flex-col justify-center">
                     <h2 id="modal-title" class="text-3xl md:text-4xl font-bold text-main mb-6 leading-tight"></h2>
-                    <div class="w-20 h-1.5 bg-emerald-500 mb-6 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.8)]"></div>
+                    <div class="w-20 h-1.5 bg-emerald-500 mb-6 rounded-full"></div>
                     <p id="modal-desc" class="text-muted text-lg leading-relaxed mb-10 font-medium"></p>
                     <button onclick="closeModal(); vibrateBtn()" class="liquid-btn w-full md:w-auto self-start">
                         <span>← Back to Portfolio</span>
@@ -550,7 +586,7 @@
 
     <!-- MODAL 2: COST OF PLANNING EXTENDED WINDOW -->
     <div id="cost-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div class="absolute inset-0 bg-black/40 backdrop-blur-[50px] cursor-pointer" onclick="closeCostModal(); vibrateBtn()"></div>
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-[60px] cursor-pointer" onclick="closeCostModal(); vibrateBtn()"></div>
 
         <!-- MODAL-GLASS-UI -->
         <div class="relative z-10 modal-glass-ui p-8 md:p-12 max-w-3xl w-full mx-4 transform scale-95 transition-transform duration-300 border-emerald-400/30" id="cost-modal-box">
@@ -560,7 +596,7 @@
                 <div class="w-20 h-1.5 bg-red-500/80 mx-auto mb-8 rounded-full shadow-[0_0_15px_rgba(239,68,68,0.8)]"></div>
                 <p id="cost-modal-desc" class="text-muted text-lg mb-10 font-medium"></p>
                 
-                <div class="liquid-glass !bg-emerald-500/10 p-8 mb-10 shadow-inner border-none">
+                <div class="liquid-glass !bg-inner !border-emerald-500/30 p-8 mb-10 shadow-inner border-none">
                     <h3 class="text-base font-bold text-emerald-600 dark:text-emerald-400 mb-4 uppercase tracking-widest">Engineering Solution</h3>
                     <p id="cost-modal-solution" class="text-main text-lg leading-relaxed font-medium"></p>
                 </div>
@@ -582,7 +618,7 @@
         function vibrateError() { if (navigator.vibrate) navigator.vibrate([100, 50, 100]); }
 
         // ----------------------------------------------------
-        // Mobile Menu Logic & View Counter
+        // Mobile Menu Logic
         // ----------------------------------------------------
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
@@ -593,10 +629,9 @@
             }
         }
 
-        let baseViews = 24518; 
+        let baseViews = 24518;
         let localVisits = localStorage.getItem('site_visits') ? parseInt(localStorage.getItem('site_visits')) : 0;
-        localVisits++;
-        localStorage.setItem('site_visits', localVisits);
+        localVisits++; localStorage.setItem('site_visits', localVisits);
         document.getElementById('view-counter').innerText = (baseViews + localVisits).toLocaleString();
         document.getElementById('duplicate-counter').innerText = localVisits;
 
@@ -622,7 +657,7 @@
         // ----------------------------------------------------
         // 1. DYNAMIC THEMES & LIQUID CURSOR BLOB
         // ----------------------------------------------------
-        let isLightMode = true; 
+        let isLightMode = true; // Set default to Light Mode
         
         function applyTheme() {
             const orbs = document.querySelectorAll('.ambient-orb');
@@ -646,6 +681,18 @@
             applyTheme();
         }
         applyTheme(); // Run on load
+
+        const blob = document.getElementById("cursor-blob");
+        let mouseX = window.innerWidth / 2; let mouseY = window.innerHeight / 2;
+        let blobX = mouseX; let blobY = mouseY;
+        window.addEventListener("mousemove", (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+
+        function animateBlob() {
+            blobX += (mouseX - blobX) * 0.05; blobY += (mouseY - blobY) * 0.05;
+            blob.style.left = `${blobX}px`; blob.style.top = `${blobY}px`;
+            requestAnimationFrame(animateBlob);
+        }
+        animateBlob();
 
         // ----------------------------------------------------
         // 2. SUSTAINABLE QUOTE TICKER (15 Quotes)
@@ -706,8 +753,7 @@
             { icon: "💡", title: "Light Pollution", desc: "Over-illumination disrupts nocturnal wildlife and wastes immense energy.", solution: "Install smart, motion-activated LED streetlights with full-cutoff fixtures that direct light exclusively downward." }
         ];
 
-        let currentCostIndex = 0;
-        let costCarouselInterval;
+        let currentCostIndex = 0; let costCarouselInterval;
 
         function buildCostCarousel() {
             const carousel = document.getElementById('fast-carousel');
@@ -716,9 +762,9 @@
                 let activeClass = index === 0 ? 'active' : '';
                 html += `
                     <div class="cost-card ${activeClass} liquid-glass p-8 flex flex-col items-center justify-center cursor-pointer group" onclick="openCostModal(${index}); vibrateBtn()">
-                        <div class="text-7xl mb-6 transition-transform group-hover:scale-110 drop-shadow-lg">${data.icon}</div>
+                        <div class="text-7xl mb-6 transition-transform group-hover:scale-110">${data.icon}</div>
                         <h3 class="text-3xl font-bold text-main mb-4">${data.title}</h3>
-                        <p class="text-base text-muted group-hover:text-main font-medium transition-colors">${data.desc}</p>
+                        <p class="text-base text-muted font-medium transition-colors">${data.desc}</p>
                         <div class="mt-8">
                             <span class="liquid-btn !py-2 !px-6 !text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300"><span>View Solution</span></span>
                         </div>
@@ -741,12 +787,9 @@
         function openCostModal(index) {
             clearInterval(costCarouselInterval); 
             const data = costData[index];
-            document.getElementById('cost-modal-icon').innerText = data.icon;
-            document.getElementById('cost-modal-title').innerText = data.title;
-            document.getElementById('cost-modal-desc').innerText = data.desc;
-            document.getElementById('cost-modal-solution').innerText = data.solution;
-            const modal = document.getElementById('cost-modal');
-            const contentBox = document.getElementById('cost-modal-box');
+            document.getElementById('cost-modal-icon').innerText = data.icon; document.getElementById('cost-modal-title').innerText = data.title;
+            document.getElementById('cost-modal-desc').innerText = data.desc; document.getElementById('cost-modal-solution').innerText = data.solution;
+            const modal = document.getElementById('cost-modal'); const contentBox = document.getElementById('cost-modal-box');
             modal.classList.remove('hidden'); document.body.style.overflow = 'hidden';
             setTimeout(() => { modal.classList.remove('opacity-0'); contentBox.classList.remove('scale-95'); }, 10);
         }
@@ -766,7 +809,7 @@
                 const rotateClass = ach.rotation ? ach.rotation : '';
                 carouselHTML += `
                     <div data-index="${index}" onclick="if(draggedDistance < 10) { openModal(${index}); vibrateBtn(); }" class="achievement-card liquid-glass p-6 w-80 inline-block whitespace-normal flex-shrink-0 transition hover:-translate-y-3 cursor-pointer group">
-                        <div class="overflow-hidden rounded-2xl mb-6 shadow-inner border border-white/10 bg-inner relative h-52 flex items-center justify-center">
+                        <div class="overflow-hidden rounded-2xl mb-6 shadow-inner bg-inner relative h-52 flex items-center justify-center">
                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 dark:group-hover:bg-black/40 transition-colors z-10 flex items-center justify-center backdrop-blur-0 group-hover:backdrop-blur-md">
                                 <span class="opacity-0 group-hover:opacity-100 liquid-btn pointer-events-none transform scale-90 group-hover:scale-100 transition-all text-xs"><span>Click to Expand</span></span>
                             </div>
@@ -813,10 +856,11 @@
         }
 
         // ----------------------------------------------------
-        // 5. INTERSECTION OBSERVER (REVEAL ANIMATIONS)
+        // 5. INTERSECTION OBSERVER (FIXED FOR MOBILE SCROLLING)
         // ----------------------------------------------------
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                // Only add the class once it enters the viewport. Do not remove it.
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 }
